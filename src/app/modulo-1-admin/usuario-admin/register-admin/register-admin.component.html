@@ -1,0 +1,63 @@
+<div class="row mt-3">
+    <div class="col-md-4 offset-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center">Crie sua Conta</h2>
+
+          <div *ngIf="mensagem" class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>{{mensagem}}</strong>
+            <button type="button" class="btn-close" aria-label="Close" (click)="mensagem = ''"></button>
+        </div>
+
+          <hr />
+                    <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+
+                        <div class="row">
+
+                        <div class="col-md-12 mt-3">
+                            <label for="formFile" class="form-label">Perfil</label>
+                            <select class="form-select" formControlName="id">
+                                <option [value]="p.id" *ngFor="let p of perfis">
+                                    {{ p?.nome }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                        
+
+
+                    <div class="row">
+
+                        <div class="col-md- mt-3">                           
+                             <label for="inputNome" class="form-label">Nome do usuário:</label>
+                            <input type="text" class="form-control" id="inputNome" formControlName="nome">
+                          
+                        </div>
+                    </div>
+
+                        <div class="mb-2">
+                            <label for="inputEmail" class="form-label">Email:</label>
+                            <input type="email" class="form-control" id="inputEmail" formControlName="email">
+                    
+                        </div>
+                        <div class="mb-2">
+                            <label for="inputPassword" class="form-label">Senha:</label>
+                            <input type="password" class="form-control" id="inputPassword" formControlName="senha">
+                      
+                        </div>
+              
+
+                  
+                        <div class="d-grid mb-2 mt-3">
+                            <button type="submit" class="btn btn-success">Realizar Cadastro</button>
+                        </div>
+                    </form>
+
+                    <div class="d-grid">
+                        <a class="btn btn-light btn-sm" href="/acessar-conta">Voltar</a>
+                    </div>
+                </div>
+            </div>
+         
+        </div>

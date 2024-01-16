@@ -1,0 +1,424 @@
+<app-perfil-aluno></app-perfil-aluno>
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-body">
+
+ 
+          <div class="row mb-2 mt-4">         
+            <div class=" col-6">
+       <h5>Lista de Todas as Matriculas</h5>
+        </div>
+
+        <div class="col-6 text-left">
+          <input type="text" class="form-control" [(ngModel)]="filtro.nome_contato"
+            placeholder="Pesquisar pelo nome do contato" />
+        </div>
+        
+      </div>
+
+  
+        
+            <div class="table-responsive mt-2">
+                        <table class="table table-sm table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Empresa</th>
+						    <th>Matricula</th>
+                            <th>Funcionario</th>
+                            <th>CPF</th>
+                            <th>Curso</th>
+                            <th>Evidências</th>
+                            <th>Operações</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let m of matriculas | paginate: { itemsPerPage: itensPorPagina, currentPage: paginaAtual } | ngxSearchPipe:filtro.nome_contato">
+                            <td>{{ m.funcionario?.empresa?.nomefantasia }}</td> <!-- Usar operador de navegação segura '?' -->
+                            <td>{{m.numeroMatricula}}</td>
+                            <td>{{ m.funcionario?.nome }}</td>
+                            <td>{{ m.funcionario?.cpf }}</td>
+                            <td>{{ m.turmas?.curso?.curso }}</td> 
+                            <td>
+
+                            
+
+                              
+
+                              <button class="btn btn-success m-1 btn-sm dropdown-toggle" type="button"
+                              data-bs-toggle="dropdown" aria-expanded="false">
+                                   Incluir</button>
+
+
+                          <ul class="dropdown-menu btn-sm border dropdown-menu-primary">
+
+                                    <li>  <a data-bs-toggle="modal" 
+                          data-bs-target="#cadastrarEvidenciaModal"
+                          (click)="setEvidencias(matriculaSelecionada)"                                
+                                      >Incluir Evidência</a></li>
+
+                                  
+
+          
+                                            </ul>
+                          
+                                            <button class="btn btn-success m-1 btn-sm dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                                 Consultar</button>
+              
+              
+                                        <ul class="dropdown-menu btn-sm border dropdown-menu-success">
+              
+                                                  <li>  <a   data-bs-toggle="modal" 
+                                                      data-bs-target="#ConsultarEvidenciaModal"
+                                                      (click)="setEvidencias(matriculaSelecionada)"
+                                                      (click)="exibirEvidencias(m)"                                
+                                                    >Consultar Evidências</a></li>
+
+                                              
+              
+                                                </ul>
+
+                        </td>
+                         
+                              
+                              <td>
+                         
+                              
+                                <button class="btn btn-success m-1 btn-sm dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                     Listas</button>
+  
+  
+                            <ul class="dropdown-menu btn-sm border dropdown-menu-success">
+  
+                                      <li> <a href="lista-de-presenca-primeiro-dia-pessoa-juridica"
+                                        class="dropdown-item btn btn-primary"
+                                        [routerLink]="['/lista-de-presenca-primeiro-dia-pessoa-juridica', m.idMatricula]"                                 
+                                        >Primeiro Dia</a></li>
+  
+                                        <li> <a href="lista-de-presenca-segundo-dia-pessoa-juridica"
+                                          class="dropdown-item btn btn-primary"
+                                          [routerLink]="['/lista-de-presenca-segundo-dia-pessoa-juridica', m.idMatricula]"                                 
+                                          >Segundo Dia</a></li>
+  
+  
+                                          <li> <a href="lista-de-presenca-terceiro-dia-pessoa-juridica"
+                                            class="dropdown-item btn btn-primary"
+                                            [routerLink]="['/lista-de-presenca-terceiro-dia-pessoa-juridica', m.idMatricula]"                                 
+                                            >Terceiro Dia</a></li>
+  
+                              
+                                            <li> <a href="lista-de-presenca-quarto-dia-pessoa-juridica"
+                                              class="dropdown-item btn btn-primary"
+                                              [routerLink]="['/lista-de-presenca-quarto-dia-pessoa-juridica', m.idMatricula]"                                 
+                                              >Quarto Dia</a></li>
+  
+                                              
+                                        <li> <a href="lista-de-presenca-quinto-dia-pessoa-juridica"
+                                          class="dropdown-item btn btn-primary"
+                                          [routerLink]="['/lista-de-presenca-quinto-dia-pessoa-juridica', m.idMatricula]"                                 
+                                          >Quinto Dia</a></li>
+  
+                                    </ul>
+                                <button class="btn btn-success m-1 btn-sm dropdown-toggle" type="button"
+                                  data-bs-toggle="dropdown" aria-expanded="false">
+                                       Certificados</button>
+  
+  
+                              <ul class="dropdown-menu btn-sm border dropdown-menu-success">
+  
+                                <li> <a href="gerar-certificado"
+                                  class="dropdown-item btn btn-primary"
+                                  [routerLink]="['/gerar-certificado', m.idMatricula]"                                 
+                                  >Gerar Certificado</a></li>
+  
+                                  <li> <a href="gerar-lista-de-presenca"
+                                    class="dropdown-item btn btn-primary"
+                                    [routerLink]="['/gerar-lista-de-presenca', m.idMatricula]"                                 
+                                    >Gerar Autorização</a></li>
+  
+                                     
+                                         
+                              </ul>
+                              </td>
+
+                       
+                        </tr>
+                    </tbody>
+                
+                </table>
+                Quantidade de Matriculas: {{(matriculas).length}}
+
+                <pagination-controls 
+                (pageChange)="paginaAtual = $event"
+                previousLabel="Página anterior"
+                nextLabel="Próxima página"
+                [maxSize]="10" 
+                [itemsPerPage]="itensPorPagina" 
+              ></pagination-controls> 
+
+            </div> 
+
+ 
+            <div class="modal fade" id="cadastrarEvidenciaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Evidência da Matricula</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  
+                  <div class="modal-body">
+                    <div *ngIf="mensagem" class="alert alert-info alert-dismissible fade show" role="alert">
+                      <strong>{{mensagem}}</strong>
+                      <button type="button" class="btn-close" aria-label="Close" (click)="mensagem = ''"></button>
+                  </div>
+      <form [formGroup]="formCadastrarEvidencias" (ngSubmit)="CadastrarEvidenciaSubmit()">
+        <input type="hidden" formControlName="idMatricula" />
+        <div class="mb-2">             
+      </div>
+        <div class="row">  
+        <div class="col-md-12">
+          <label for="recipient-name" class="col-form-label">Evidência:</label>
+          <input type="text" class="form-control" id="recipient-name"
+          formControlName="evidencias">
+        </div>
+        <div class="col-md-12">
+          <label for="recipient-name" class="col-form-label">Descrição:</label>
+          <input type="text" class="form-control" id="recipient-name"
+          formControlName="descricao">
+        </div>
+          
+      </div>
+      <div class="modal-footer">
+        <div class="row mb-2">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-primary"
+            (click)="CadastrarEvidenciaSubmit()" data-bs-dismiss="modal"           
+            
+            >
+            Cadastrar Evidência
+        </button>                  
+      </div>
+      </div>
+      </div>               
+      </form>
+    </div>
+  </div>
+  </div>
+  </div>
+  
+
+  <div class="modal fade" id="editarEvidenciaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Evidência da Matricula</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <div class="modal-body">
+          <div *ngIf="mensagem" class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>{{mensagem}}</strong>
+            <button type="button" class="btn-close" aria-label="Close" (click)="mensagem = ''"></button>
+        </div>
+<form [formGroup]="formEditarEvidencias" (ngSubmit)="EditarEvidenciaSubmit()">
+<input type="hidden" formControlName="idMatricula" />
+<input type="hidden" formControlName="idEvidencias" />
+
+<div class="mb-2">             
+</div>
+<div class="row">  
+<div class="col-md-12">
+<label for="recipient-name" class="col-form-label">Evidência:</label>
+<input type="text" class="form-control" id="recipient-name"
+formControlName="evidencias">
+</div>
+<div class="col-md-12">
+<label for="recipient-name" class="col-form-label">Descrição:</label>
+<input type="text" class="form-control" id="recipient-name"
+formControlName="descricao">
+</div>
+
+</div>
+<div class="modal-footer">
+<div class="row mb-2">
+<div class="col-md-12">
+  <button type="button" class="btn btn-primary"
+  (click)="EditarEvidenciaSubmit()" data-bs-dismiss="modal"           
+  
+  >
+  Cadastrar Evidência
+</button>                  
+</div>
+</div>
+</div>               
+</form>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+  <div class="modal" tabindex="-1"  id="ConsultarEvidenciaModal"  >
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>   
+      
+
+        <div class="modal-body">    
+          <div *ngIf="matriculaSelecionada">
+            <h5>Evidencias do {{ matriculaSelecionada.turmas.curso.curso}} do Funcionário  {{ matriculaSelecionada.funcionario.nome}}</h5>
+            <div class="row">
+
+              <div class="col-md-6 mt-3">
+             
+            </div>
+
+            <div class="col-md-5 mt-3">
+              <input type="text" class="form-control" 
+                  placeholder="Pesquisar por Evidências" />
+          </div>
+          <div class="col-md-1 mt-3">
+             
+          </div>
+        </div>
+
+            <table id="consulta_empresas" class="table table-sm table-hover mt-3">
+            <thead>
+                <tr>
+                    <th>Evidências</th>
+                    <th>Descrição</th>
+                    <th>Evidências</th>
+                    <th>Operações</th>
+
+         
+
+                </tr>
+            </thead>
+                <tbody>      
+                  <tr *ngFor="let m of matriculaSelecionada.evidencias ">
+                    <td>{{ m?.evidencias }}</td>
+                    <td>{{ m?.descricao }}</td>
+                    <td>
+                   
+
+                    <button class="btn btn-sm btn-outline-primary" 
+                    (click)="downloadEvidencias(m)"
+
+                    >
+                    Download
+                  </button>
+                      
+                      <button class="btn btn-sm btn-primary" 
+                      data-bs-toggle="modal" 
+                      data-bs-target="#uploaddaevidenciaModal"
+                      data-bs-whatever="@mdo"          		
+                       (click)="setEvidencias(matriculaSelecionada)"
+                       (click)="setEvidencias(m)"
+                      class="btn btn-primary
+                      py-1 px-md-1 border">
+                      Upload da Evidência</button>
+
+                </td>
+
+                <td>
+
+                        <button class="btn btn-sm btn-primary" 
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#editarEvidenciaModal"
+                                                data-bs-whatever="@mdo"          		
+                                                 (click)="setEvidencias(m)"
+                                                class="btn btn-primary
+                                                py-1 px-md-1 border">
+                                                Editar</button>
+
+                        <button class="btn btn-sm btn-outline-danger me-2">
+                            Excluir
+                        </button>
+                    </td>
+                </tr>
+                
+
+                </table>                                 
+      </div>   
+      <div class="text-center">
+        
+    </div>
+        </div>
+        <div class="modal-footer">
+          Quantidade de Evidencias: {{ matriculaSelecionada?.evidencias?.length || 0 }}
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+             
+        </div>                              
+        
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>                  
+      </div>
+    </div>
+  </div>
+<div>
+
+
+  <div class="modal fade" id="uploaddaevidenciaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Fazer Upload da Evidência </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <div class="modal-body">
+          <div *ngIf="mensagem" class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>{{mensagem}}</strong>
+            <button type="button" class="btn-close" aria-label="Close" (click)="mensagem = ''"></button>
+        </div>
+<form [formGroup]="formUploadEvidencia" (ngSubmit)="UploadEvidenciaSubmit()">
+<input type="hidden" formControlName="idEvidencias" [(ngModel)]="id" />
+<input type="hidden" formControlName="idMatricula" />
+
+
+<div class="mb-2">             
+</div>
+<div class="row">  
+<div class="row mb-2">
+  <div class="col-md-6">
+    <label>Envie a Evidência:</label>
+    <input type="file" class="form-control" formControlName="inserir_evidencias" (change)="onFileChange($event)" />
+    <span class="text-danger">
+      {{ arquivoMsgErro }}
+    </span>
+  </div>
+</div>
+
+
+</div>
+<div class="modal-footer">
+<div class="row mb-2">
+<div class="col-md-12">
+  <button type="button" class="btn btn-primary" 
+  
+  (click)="UploadEvidenciaSubmit()" data-bs-dismiss="modal">
+  Upload da Evidencia
+  </button>            
+</div>
+</div>
+</div>               
+</form>
+</div>
+</div>
+</div>
+</div>
+
+ 
+          </div>
+    </div>
+</div>

@@ -1,0 +1,169 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-3">
+
+    <div class="card">
+        <div class="card-body">
+          
+            <div class="modal" tabindex="-1"  id="verMatriculasModal">
+                <div class="modal-dialog modal-xl">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title"></h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">    
+                      <div *ngIf="faturamentoSelecionado">
+                        <h5>Matrículas do Faturamento de número: {{ faturamentoSelecionado.numeroFaturamento }}</h5>
+                        <h5>Empresa: {{  faturamentoSelecionado.empresa }}</h5>
+                        <h5>CNPJ: {{  faturamentoSelecionado.cnpj }}</h5>
+
+
+                        <h5>Valor Total do Faturamento: R$ {{ faturamentoSelecionado?.total || 0 }}</h5>                        <div class="row">
+                          <div class="col-md-6 mt-3">
+    
+                          </div>
+                          <div class="col-md-6 mt-3">
+                            <input type="text" class="form-control" [(ngModel)]="filtro.matriculas"
+                            placeholder="Pesquisar por Contatos" />
+                          </div>
+                        </div>
+                        <table id="myTable" class="table table-sm table-hover">
+                          <thead>
+                            <tr>
+                             
+                              <th>Matrícula</th>
+                              <th>Status</th>
+                              <th>Venda</th>
+                              <th>Turma</th>
+                              <th>Data</th>
+                              <th>Funcionário</th>
+                              <th>CPF</th>
+                              <th>Curso</th>
+                              <th>Valor</th>
+
+                            </tr>
+                          </thead>
+                          <tbody>      
+                            <tr *ngFor="let m of faturamentoSelecionado.matriculas   | paginate: { itemsPerPage: itensPorPagina, currentPage: paginaAtual } | ngxSearchPipe:filtro.matriculas" >    
+                              <td>{{ m.numeroMatricula }}</td>
+                              <td>{{ m?.status }}</td>
+                              <td>{{ m.venda }}</td>
+                              <td>{{ m.turmas?.numeroTurma }}</td>
+                              <td>{{ m.turmas?.datainicio | date: 'dd/MM/yyyy'}}</td>
+                              <td>{{ m.funcionario?.nome }}</td>
+                              <td>{{ m.funcionario?.cpf }}</td>
+                              <td>{{ m.turmas?.curso?.curso }}</td>
+                              <td>R$ {{ m?.valor }}</td>
+
+                            </tr>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                            <td>Total</td>
+                            <td><h5> R$ {{ faturamentoSelecionado?.total || 0 }}</h5></td>
+
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="text-center">
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                                    
+                        Quantidade de Alunos para esta Turma:  {{ faturamentoSelecionado?.matricula?.length || 0 }} Alunos Matriculados
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <pagination-controls 
+    (pageChange)="paginaAtual = $event"
+    previousLabel="Página anterior"
+    nextLabel="Próxima página"
+    [maxSize]="5" 
+    [itemsPerPage]="itensPorPagina" 
+    ></pagination-controls>         
+    
+    </div>   
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>  
+            <div class="row mb-2 mt-4">
+                <div class="col-md-9 mt-1">
+                    <h5>Lista de Faturamentos</h5>
+                </div>
+                <div class="col-md-3 mt-1">
+                    <a href="cadastrar-faturamentopj" class="btn btn-success">Cadastrar Faturamento</a>
+
+                </div>
+            </div>
+            <hr />
+            <div class="table-responsive mt-2">
+                <table class="table table-sm table-striped table-hover" datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Criado Em</th>
+						    <th>Empresa</th>
+						   <th>CNPJ</th>
+						    <th>Data de Inicio</th>
+						    <th>Data Fim</th>
+                            <th>Operações</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let f of faturamentopj">
+                            <td>{{f.numeroFaturamento}}</td>
+                            <td>{{f.dataHoraCriacao | date: 'dd/MM/yyyy'}}</td>
+                            <td>{{f.empresa}}</td>
+                            <td>{{f.cnpj}}</td>
+                            <td>{{f.data_inicio | date: 'dd/MM/yyyy'}}</td>
+                            <td>{{f.data_fim | date: 'dd/MM/yyyy'}}</td>
+                          
+                          
+                            <td>
+                                      
+                                <button class="btn btn-success m-1 btn-sm dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Ações
+                                </button>
+                                <ul class="dropdown-menu btn-sm border dropdown-menu-primary">
+                                    <li> <a href="/editar-faturamentopj"
+                                            class="dropdown-item btn btn-primary"
+                                            [routerLink]="['/editar-faturamentopj', f.idfaturamento]"
+                                            >Editar</a></li>
+                                            <li><a class="dropdown-item btn btn-sm btn-primary"
+                                                (click)="onDelete(f.idfaturamento, f.empresa)"
+                                                > Excluir</a>
+                                                <li> <a href="/gerar-relatorio-pessoa-juridica"
+                                                  class="dropdown-item btn btn-primary"
+                                                  [routerLink]="['/gerar-relatorio-pessoa-juridica', f.idfaturamento]"
+                                                  >Gerar Relatório</a></li>
+                                                
+											  <li><a 
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#verMatriculasModal"
+                                                 data-bs-whatever="@mdo"
+                                                class="dropdown-item btn btn-sm btn-primary" 
+                                                (click)="exibirMatriculas(f)"
+                                                >Ver Alunos Matriculados do Faturamento Pj</a></li>
+                                       
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+               
+                </table>
+            </div>
+
+ 
+        </div>
+    </div>
+

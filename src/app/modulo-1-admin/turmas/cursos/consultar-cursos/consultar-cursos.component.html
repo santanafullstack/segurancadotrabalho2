@@ -1,0 +1,314 @@
+
+<app-navbar></app-navbar>
+<div class="container mt-3">
+
+    <div class="card">
+        <div class="card-body">
+
+          <div class="modal fade" id="IncluirAvaliacaoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Insira a Avaliação do Curso </h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body">
+                  <div *ngIf="mensagem" class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong>{{mensagem}}</strong>
+                    <button type="button" class="btn-close" aria-label="Close" (click)="mensagem = ''"></button>
+                </div>
+    <form [formGroup]="formIncluirAvaliacao" (ngSubmit)="IncluirAvaliacaoSubmit()">
+      <input type="hidden" formControlName="idcurso" [(ngModel)]="id" />
+
+    
+      <div class="mb-2">             
+    </div>
+      <div class="row">  
+        <div class="row mb-2">
+          <div class="col-md-6">
+            <label>Envie a Avaliação:</label>
+            <input type="file" class="form-control"  formControlName="incluiravaliacao" (change)="onFileChange($event)" />
+            <span class="text-danger">
+              {{ arquivoMsgErro }}
+            </span>
+          </div>
+        </div>
+      
+        
+    </div>
+    <div class="modal-footer">
+      <div class="row mb-2">
+        <div class="col-md-12">
+          <button type="button" class="btn btn-primary" 
+          
+          (click)="IncluirAvaliacaoSubmit()" data-bs-dismiss="modal"
+          
+          
+          >
+            Incluir Avaliação
+          </button>            
+    </div>
+    </div>
+    </div>               
+    </form>
+  </div>
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" id="IncluirMaterialModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Insira o Material do Curso </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        <div *ngIf="mensagem" class="alert alert-info alert-dismissible fade show" role="alert">
+          <strong>{{mensagem}}</strong>
+          <button type="button" class="btn-close" aria-label="Close" (click)="mensagem = ''"></button>
+      </div>
+<form [formGroup]="formIncluirMaterial" (ngSubmit)="IncluirMaterialSubmit()">
+<input type="hidden" formControlName="idcurso" [(ngModel)]="id" />
+
+
+<div class="mb-2">             
+</div>
+<div class="row">  
+<div class="row mb-2">
+<div class="col-md-6">
+  <label>Envie a Avaliação:</label>
+  <input type="file" class="form-control"  formControlName="incluirmaterial" (change)="onFileChange1($event)" />
+  <span class="text-danger">
+    {{ arquivoMsgErro }}
+  </span>
+</div>
+</div>
+
+
+</div>
+<div class="modal-footer">
+<div class="row mb-2">
+<div class="col-md-12">
+<button type="button" class="btn btn-primary" 
+
+(click)="IncluirMaterialSubmit()" data-bs-dismiss="modal"
+
+
+>
+  Incluir Material
+</button>            
+</div>
+</div>
+</div>               
+</form>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" id="IncluirGabaritoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Insira o Gabarito da Avaliação</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        <div *ngIf="mensagem" class="alert alert-info alert-dismissible fade show" role="alert">
+          <strong>{{mensagem}}</strong>
+          <button type="button" class="btn-close" aria-label="Close" (click)="mensagem = ''"></button>
+      </div>
+<form [formGroup]="formIncluirGabarito" (ngSubmit)="IncluirGabaritoSubmit()">
+<input type="hidden" formControlName="idcurso" [(ngModel)]="id" />
+
+
+<div class="mb-2">             
+</div>
+<div class="row">  
+<div class="row mb-2">
+<div class="col-md-6">
+  <label>Envie o Gabarito da Avaliação:</label>
+  <input type="file" class="form-control"  formControlName="incluirgabarito" (change)="onFileChange2($event)" />
+  <span class="text-danger">
+    {{ arquivoMsgErro }}
+  </span>
+</div>
+</div>
+
+
+</div>
+<div class="modal-footer">
+<div class="row mb-2">
+<div class="col-md-12">
+<button type="button" class="btn btn-primary" 
+
+(click)="IncluirGabaritoSubmit()" data-bs-dismiss="modal"
+
+
+>
+  Incluir Avaliação
+</button>            
+</div>
+</div>
+</div>               
+</form>
+</div>
+</div>
+</div>
+</div>
+
+            <div class="row mb-2 mt-4">
+                <div class="col-md-9 mt-1">
+                    <h5>Nossos Cursos</h5>
+                </div>
+                <div class="col-md-3 mt-1">
+                    <a href="cadastrar-curso" class="btn btn-success">Cadastrar Cursos</a>
+
+                </div>
+            </div>
+            <hr />
+
+
+            <div class="row mb-2">
+
+                <div class="col-md-7">
+                  
+                </div>
+                <div class="col-md-5 mt-3">
+                  <input type="text" class="form-control" [(ngModel)]="filtro.curso"
+                      placeholder="Pesquisar Curso" />
+              </div>
+            </div>
+
+            <div class="table-responsive mt-2">
+                <table id="consulta_chamados" class="table table-sm table-hover">
+                  <thead>
+                    <tr>
+                      <th>Codigo</th>
+                      <th>Curso</th>
+                      <th>Certificado</th>
+                      <th>Tipo</th>
+                      <th>Operaçoes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let c of cursos | paginate: { itemsPerPage: itensPorPagina, currentPage: paginaAtual } | ngxSearchPipe:filtro.curso">
+                      <td>{{c.codigo}}</td>
+                      <td>{{c.curso}}</td>
+                      <td>{{c.modelo_certificado}}</td>
+                      <td>{{c.campo_especifico}}</td>
+                      <td>
+
+                        <button class="btn btn-success m-1 btn-sm dropdown-toggle" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Baixar
+                    </button>
+
+                    <ul class="dropdown-menu btn-sm border dropdown-menu-success">
+                   
+                      <li> <a 
+                        class="dropdown-item btn btn-primary"
+                        (click)="downloadMaterial(c)"
+                        >Material Didático</a></li>
+
+                        <li> <a 
+                          class="dropdown-item btn btn-primary"
+                        (click)="downloadAvaliacao(c)"
+                          >Avaliação</a></li>
+						  
+						     <li> <a 
+                          class="dropdown-item btn btn-primary"
+                        (click)="downloadGabarito(c)"
+                          >Gabarito da Avaliação</a></li>
+                   
+                    </ul>
+
+                        <button class="btn btn-success m-1 btn-sm dropdown-toggle" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Incluir
+                    </button>
+
+                    <ul class="dropdown-menu btn-sm border dropdown-menu-primary">
+                   
+                      <li> <a 
+                        class="dropdown-item btn btn-primary"
+                          data-bs-toggle="modal" 
+                        data-bs-target="#IncluirMaterialModal"
+                         data-bs-whatever="@mdo"
+                         (click)="setCurso(c)"
+                        >Material Didático</a></li>
+
+                        <li> <a 
+                          class="dropdown-item btn btn-primary"
+                            data-bs-toggle="modal" 
+                        data-bs-target="#IncluirAvaliacaoModal"
+                         data-bs-whatever="@mdo"
+                         (click)="setCurso(c)"
+                          >Avaliação</a></li>
+						  
+						     <li> <a 
+                          class="dropdown-item btn btn-primary"
+                               data-bs-toggle="modal" 
+                        data-bs-target="#IncluirGabaritoModal"
+                         data-bs-whatever="@mdo"
+                         (click)="setCurso(c)"
+                          >Gabarito da Avaliação</a></li>
+                   
+                    </ul>
+                        <button class="btn btn-success m-1 btn-sm dropdown-toggle" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Ações
+                    </button>
+
+                    <ul class="dropdown-menu btn-sm border dropdown-menu-primary">
+                   
+                      <li> <a 
+                        class="dropdown-item btn btn-primary"
+                        [routerLink]="['/editar-curso', c.idcurso]"
+                        >Editar</a></li>
+
+                        <li> <a 
+                          class="dropdown-item btn btn-primary"
+                          (click)="onDelete(c.idcurso, c.curso)"
+                          >Excluir</a></li>
+                   
+                    </ul>
+
+                      </td>
+                      
+                    </tr>
+                  </tbody>
+                  
+                  <tfoot>
+                    <tr>
+                      <td colspan="5">
+
+                        Quantidade de Cursos: {{(cursos).length}}
+                        <pagination-controls 
+  (pageChange)="paginaAtual = $event"
+  previousLabel="Página anterior"
+  nextLabel="Próxima página"
+  [maxSize]="5" 
+  [itemsPerPage]="itensPorPagina" 
+></pagination-controls>         
+                                                </td>
+                  </tr>
+              </tfoot>
+                </table>
+              </div>
+              
+            </div>
+
+    <!-- componente de paginação -->
+    <div class="text-center">
+       
+    </div>
+        </div>
+    </div>
+

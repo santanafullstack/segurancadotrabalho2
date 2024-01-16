@@ -1,0 +1,172 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-3">
+
+    <div class="card">
+        <div class="card-body">
+
+            <div class="modal" tabindex="-1"  id="verMatriculasModal">
+                <div class="modal-dialog modal-xl">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title"></h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">    
+                      <div *ngIf="pedidoSelecionado">
+                        <h5>Matrículas do Pedido de número: {{ pedidoSelecionado.numerodopedido }}</h5>
+                        <h5>Valor Total do Pedido: {{ pedidoSelecionado.valor }}</h5>
+                        <h5>Creditos Restantes: {{ pedidoSelecionado.creditos }}</h5>
+                        <h5>Matriculas Realizadas neste pedido: {{ pedidoSelecionado.matriculasrealizadas }}</h5>
+                        <h5>Valor Total Consumido: {{ pedidoSelecionado?.total || 0 }}</h5>
+
+                        <div class="row">
+                          <div class="col-md-6 mt-3">
+    
+                          </div>
+                          <div class="col-md-6 mt-3">
+                            <input type="text" class="form-control" [(ngModel)]="filtro.matriculas"
+                            placeholder="Pesquisar por Contatos" />
+                          </div>
+                        </div>
+                        <table id="myTable" class="table table-sm table-hover">
+                          <thead>
+                            <tr>
+                              <th>Empresa</th>
+                              <th>CNPJ</th>
+                              <th>Status</th>
+                              <th>Matrícula</th>
+                              <th>Venda</th>
+                              <th>Valor</th>
+                              <th>Particular</th>
+                              <th>CPF</th>
+                              <th>Funcionário</th>
+                              <th>CPF Funcionário</th>
+                            </tr>
+                          </thead>
+                          <tbody>      
+                            <tr *ngFor="let m of pedidoSelecionado.matricula   | paginate: { itemsPerPage: itensPorPagina, currentPage: paginaAtual } | ngxSearchPipe:filtro.matriculas" >    
+                              <td>{{ m.funcionario?.empresa?.nomefantasia }}</td>
+                              <td>{{ m.funcionario?.empresa?.cnpj }}</td> 
+                              <td>{{ m.status }}</td>
+                              <td>{{ m.numeroMatricula }}</td>
+                              <td>{{ m.venda }}</td>
+                              <td>{{ m?.valor }}</td>
+                              <td>{{ m.pessoafisica?.pessoafisica }}</td>
+                              <td>{{ m.pessoafisica?.cpf }}</td>
+                              <td>{{ m.funcionario?.nome }}</td>
+                              <td>{{ m.funcionario?.cpf }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="text-center">
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                                    
+                        Quantidade de Alunos para esta Turma:  {{ pedidoSelecionado?.matricula?.length || 0 }} Alunos Matriculados
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <pagination-controls 
+    (pageChange)="paginaAtual = $event"
+    previousLabel="Página anterior"
+    nextLabel="Próxima página"
+    [maxSize]="5" 
+    [itemsPerPage]="itensPorPagina" 
+    ></pagination-controls>         
+    
+    </div>   
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>    
+
+            <div class="row mb-2 mt-4">
+                <div class="col-md-9 mt-1">
+                    <h5>Lista de Pedidos de Compras</h5>
+                </div>
+                <div class="col-md-3 mt-1">
+                    <a href="cadastrar-pedido-de-compras" class="btn btn-success">Cadastrar Pedidos de Compras</a>
+
+                </div>
+            </div>
+            <hr />
+            <div class="table-responsive mt-2">
+                <table class="table table-sm table-striped table-hover" datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Empresa</th>
+							<th>cnpj</th>
+						    <th>PC</th>
+						   <th>venda</th>
+						    <th>NF</th>
+						    <th>R$</th>
+					        <th>creditos</th>
+							<th>matriculas</th>
+							<th>comprador</th>
+							<th>telefone</th>
+                            <th>Operações</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of pedidos">
+                            <td>{{p.dataHoraCriacao | date: 'dd/MM/yyyy'}}</td>
+                            <td>{{p.nomefantasia}}</td>
+                            <td>{{p.cnpj}}</td>
+							<td>{{p.numerodopedido}}</td>
+                            <td>{{p.venda}}</td>
+                            <td>{{p.notafiscal}}</td>
+                            <td>{{p.valor}}</td>
+                            <td>{{p.creditos}}</td>
+                            <td>{{p.matriculasrealizadas}}</td>
+                            <td>{{p.comprador}}</td>
+                            <td>{{p.telefone}}</td>
+                            <td>
+                                      
+                                <button class="btn btn-success m-1 btn-sm dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Ações
+                                </button>
+                                <ul class="dropdown-menu btn-sm border dropdown-menu-primary">
+                                    <li> <a href="/editar-pedidos-de-compras"
+                                            class="dropdown-item btn btn-primary"
+                                            [routerLink]="['/editar-pedidos-de-compras', p.idPedidos]"
+                                            >Editar</a></li>
+                                            <li><a class="dropdown-item btn btn-sm btn-primary"
+                                                (click)="onDelete(p.idPedidos, p.nomefantasia)"
+                                                > Excluir</a>
+                                                <li> <a href="cadastrar-matriculas-pedidos"
+                                                    class="dropdown-item btn btn-primary"
+                                                    [routerLink]="['/cadastrar-matriculas-pedidos', p.idPedidos]"
+        
+                                                    >Fazer Matriculas Pedidos de Compras</a></li>
+                                                    
+                                                    <li> <a href="/gerar-relatorio-pedidos-de-compras"
+                                                      class="dropdown-item btn btn-primary"
+                                                      [routerLink]="['/gerar-relatorio-pedidos-de-compras', p.idPedidos]"
+                                                      >Gerar Relatório</a></li>
+
+
+                                                    <li><a 
+                                                        data-bs-toggle="modal" 
+                                                        data-bs-target="#verMatriculasModal"
+                                                         data-bs-whatever="@mdo"
+                                                        class="dropdown-item btn btn-sm btn-primary" 
+                                                        (click)="exibirPedidos(p)"
+                                                        >Ver Alunos Matriculados do Pedido</a></li>
+                                       
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+               
+                </table>
+            </div>
+
+ 
+        </div>
+    </div>
+

@@ -1,0 +1,83 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+		
+    <div class="card mt-5">
+        <div class="card-body">
+        
+            <h5>Cadastro da Empresa</h5>
+            <p>Preencha os campos para incluir uma empresa.</p>
+            <hr/>
+            
+        <div class="text-success">
+                    <strong></strong>
+                </div>
+                
+                <div class="text-danger">
+                    <strong></strong>
+                </div>
+                <div *ngIf="mensagem" class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong>{{ mensagem }}</strong>
+                    <button type="button" class="btn-close" aria-label="Close" (click)="mensagem = ''"></button>
+                  </div>
+                  
+                  <div *ngIf="mensagemErro" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>{{ mensagemErro }}</strong>
+                    <button type="button" class="btn-close" aria-label="Close" (click)="mensagemErro = ''"></button>
+                  </div>
+                  
+                <form [formGroup]="formEmpresa" (ngSubmit)="onSubmit()">
+            
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <label>Nome da empresa:</label>
+                        <input  type="text" name="nome" id="nome" class="form-control"
+                        formControlName="razaosocial"/>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label>Nome Fantasia:</label>
+                        <input  type="text" name="nome" id="nome" class="form-control"
+                        formControlName="nomefantasia"/>
+                    </div>
+
+                    
+                    <div class="col-md-6">
+                        <label>Cnpj:</label>
+                        <input  type="text" name="valor" id="valor" class="form-control"
+                        formControlName="cnpj" 
+                        
+                        />
+                    </div>
+        
+                    <div class="col-md-6 mt-4">
+                        <select class="form-select" 
+                        formControlName="status"
+                        aria-label="Default select example">
+                            <option value="Cliente">Cliente</option>
+                            <option value="Unidade de Atendimento">Unidade de Atendimento</option>
+
+                        </select>
+                    </div>
+                    
+                
+                    
+                
+                 
+                            
+                    </div>
+                
+                <div class="row mb-2">
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-success" value="Realizar Cadastro"/>
+                    </div>
+                </div>
+               
+
+            </form>
+            <div class="col-md-12">
+                <button (click)="printPage()">Gerar PDF</button>
+            </div>
+        </div>
+    </div>
+
+</div>

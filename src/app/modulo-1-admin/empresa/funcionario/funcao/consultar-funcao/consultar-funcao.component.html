@@ -1,0 +1,67 @@
+<app-navbar></app-navbar>
+<div class="container mt-3">
+
+    <div class="card">
+        <div class="card-body">
+
+            <div class="row mb-2 mt-4">
+                <div class="col-md-9 mt-1">
+                    <h5>Lista de Funções</h5>
+                            </div>
+                                  <div class="col-md-3 mt-1">
+                                <a href="consultar-empresa" class="btn btn-primary">Voltar</a>
+
+                                        </div>
+                                                   </div>
+                                                   <div class="table-responsive mt-2">
+                                                    <table id="consulta_chamados" class="table table-sm table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Funçao</th>
+                                                                <th>CBO</th>
+                                                                <th>Operações</th>
+                                    
+                                    
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let f of funcoes | ngxSearchPipe:filtro.nome_contato">
+                                    
+                                                                <td>{{f.funcao| uppercase}}</td>
+                                                                <td>{{f.cbo}}</td>
+                                                              
+                                    
+                                                                <td>
+                                    
+                                                                    <button class="btn btn btn-primary py-1 px-md-1 border" 
+                                                                    [routerLink]="['/editar-funcao', f.idFuncao]"
+
+                                                                    >
+                                                                        Editar
+                                                                    </button>
+                                                                   
+                                                                    <button class="btn btn btn-danger me-2 py-1 px-md-1 border" 
+                                                                    (click)="onDelete(f.idFuncao, f.funcao)"
+                                                                    >
+                                                                        Excluir
+                                                                    </button>
+                                                                </td>
+                                    
+                                    
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td colspan="5">
+                                                                    Quantidade de Funções: {{(funcoes).length}}
+                                                                </td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

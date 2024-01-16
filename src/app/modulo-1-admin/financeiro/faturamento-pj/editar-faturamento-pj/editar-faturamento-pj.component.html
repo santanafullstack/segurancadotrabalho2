@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+		
+    <div class="card mt-5">
+        <div class="card-body">
+        
+            <h5>Editar Faturamento mensal da Empresa</h5>
+            <p>Preencha os campos para editar um Faturamento.</p>
+            <hr/>
+            
+        <div class="text-success">
+                    <strong></strong>
+                </div>
+                
+                <div class="text-danger">
+                    <strong></strong>
+                </div>
+                <div *ngIf="mensagem" class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong>{{mensagem}}</strong>
+                    <button type="button" class="btn-close" aria-label="Close" (click)="mensagem = ''"></button>
+                </div>
+                <form [formGroup]="formFaturamentopj" (ngSubmit)="onSubmit()">
+                     <input type="hidden" formControlName="idfaturamento" />
+
+                <div class="row mb-2">
+                    <div class="col-md-4">
+                        <label>Nome da empresa:</label>
+                        <input  type="text" name="nome" id="nome" class="form-control"
+                        formControlName="empresa"/>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>CNPJ:</label>
+                        <input  type="text" name="nome" id="nome" class="form-control"
+                        formControlName="cnpj"/>
+                    </div>
+				
+				  <div class="col-md-2"> <label>Data de Inicio</label> <input type="date"  formControlName="data_inicio" class="form-control" /></div>
+                <div class="col-md-2"> <label>Data de Fim</label><input   type="date" formControlName="data_fim"class="form-control" /></div>
+                
+			
+                <div class="row mb-2 mt-3">
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-success" value="Editar Faturamento"/>
+                    </div>
+                </div>
+            </div>
+
+
+            </form>
+            <div class="col-md-12">
+                <button (click)="printPage()">Gerar PDF</button>
+            </div>
+        </div>
+    </div>
+
+</div>
