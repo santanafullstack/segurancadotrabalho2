@@ -58,6 +58,7 @@ export class CadastrarTurmasComponent implements OnInit {
       idUnidadeDeTreinamento: ['', [Validators.required]],
       datainicio: ['', [Validators.required]],
       datafim: ['', [Validators.required]],
+      validadedocurso: ['', [Validators.required]],
       cargahoraria: ['', Validators.required],
       modalidade: ['', Validators.required],
       status: ['', Validators.required],

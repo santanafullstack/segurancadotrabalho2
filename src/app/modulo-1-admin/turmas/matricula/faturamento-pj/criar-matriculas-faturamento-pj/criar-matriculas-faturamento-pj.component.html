@@ -94,12 +94,12 @@
                           >
                             <ng-template ng-label-tmp let-item="item">
                               <div class="custom-bg" style="z-index: 1000;">
-                             Empresa: {{ item.empresa }} - CNPJ: {{ item.cnpj }} - Data de Início: {{ item.data_inicio | date:'dd/MM/yyyy' }}
+                             Empresa: {{ item.empresa?.razaosocial || 'N/A' }}- CNPJ: {{ item.empresa?.cnpj || 'N/A' }} - Data de Início: {{ item.data_inicio | date:'dd/MM/yyyy' }}
                               </div>
                             </ng-template>
                             <ng-template ng-option-tmp let-item="item">
                               <div>
-                                {{ item.empresa }} - CNPJ: {{ item.cnpj }} - Início: {{ item.data_inicio | date:'dd/MM/yyyy' }} - Fim: {{ item.data_fim | date:'dd/MM/yyyy' }}
+                                {{ item.empresa?.razaosocial || 'N/A' }} - CNPJ: {{ item.empresa?.cnpj || 'N/A' }} - Início: {{ item.data_inicio | date:'dd/MM/yyyy' }} - Fim: {{ item.data_fim | date:'dd/MM/yyyy' }}
                               </div>
                             </ng-template>
                           </ng-select>

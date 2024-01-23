@@ -117,7 +117,8 @@
                             <tr>
                            
                                 	
-                                    <td class="mt-3">Assinatura do Aluno: </td>
+                                    <td class="mt-3">Assinatura do Aluno:  <img *ngIf="l?.funcionario?.assinatura" [src]="'data:image/png;base64,' + l?.funcionario?.assinatura" />
+                                    </td>
                             
 
                             </tr>

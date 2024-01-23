@@ -93,12 +93,12 @@
   >
     <ng-template ng-label-tmp let-item="item">
       <div class="custom-bg" style="z-index: 1000;">
-       {{ item.pessoafisica }} CPF: {{ item.cpf }} - Data de Início: {{ item.data_inicio | date:'dd/MM/yyyy'}}
+        {{item?.pessoafisica?.pessoafisica}} {{item?.pessoafisica?.cpf}} Data de Início: {{ item.data_inicio | date:'dd/MM/yyyy'}}
       </div>
     </ng-template>
     <ng-template ng-option-tmp let-item="item">
       <div>
-    {{ item.pessoafisica }} - CPF: {{ item.cpf }} - Data Início: {{ item.data_inicio | date:'dd/MM/yyyy' }} - Data Fim: {{ item.data_fim | date:'dd/MM/yyyy' }}
+ {{item?.pessoafisica?.pessoafisica}} {{item?.pessoafisica?.cpf}} Data Início: {{ item.data_inicio | date:'dd/MM/yyyy' }} - Data Fim: {{ item.data_fim | date:'dd/MM/yyyy' }}
       </div>
     </ng-template>
   </ng-select>

@@ -62,11 +62,11 @@
                     <thead>
                         <tr>
                             <th>Empresa</th>
-                        
 						                <th>Matricula</th>
                             <th>Funcionario</th>
                             <th>CPF</th>
                             <th>Curso</th>
+                            <th>Vencimento</th>
                             <th>Evidências</th>
                             <th>Operações</th>
 
@@ -80,6 +80,7 @@
                             <td>{{ m.funcionario?.nome }}</td>
                             <td>{{ m.funcionario?.cpf }}</td>
                             <td>{{ m.turmas?.curso?.curso }}</td> <!-- Use o operador de navegação segura '?.' -->
+                            <td>{{ m.turmas?.validadedocurso | date: 'dd/MM/yyyy'}}</td> <!-- Use o operador de navegação segura '?.' -->
 
 
                             <td>
@@ -186,9 +187,9 @@
                                   [routerLink]="['/gerar-certificado', m.idMatricula]"                                 
                                   >Gerar Certificado</a></li>
   
-                                  <li> <a href="gerar-lista-de-presenca"
+                                  <li> <a
                                     class="dropdown-item btn btn-primary"
-                                    [routerLink]="['/gerar-lista-de-presenca', m.idMatricula]"                                 
+                                    [routerLink]="['/gerar-autorizacao', m.idMatricula]"                                 
                                     >Gerar Autorização</a></li>
   
                                      

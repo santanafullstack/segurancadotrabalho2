@@ -37,6 +37,7 @@ export class EditarTurmasComponent implements OnInit {
       idUnidadedetreinamento: ['', Validators.required],
       datainicio: ['', Validators.required],
       datafim: ['', Validators.required],
+      validadedocurso: ['', Validators.required],
       cargahoraria: ['', Validators.required],
       modalidade: ['', Validators.required],
       status: ['', Validators.required],
@@ -127,11 +128,14 @@ export class EditarTurmasComponent implements OnInit {
       // Formate as datas para o formato ISO 8601
       const dataInicio = this.formatDate(this.formEdicaoTurmas.value.datainicio);
       const dataFim = this.formatDate(this.formEdicaoTurmas.value.datafim);
-  
+      const validadedoCurso = this.formatDate(this.formEdicaoTurmas.value.validadedocurso);
+
       // Atualize as datas no objeto do formulário
       this.formEdicaoTurmas.patchValue({
         datainicio: dataInicio,
-        datafim: dataFim
+        datafim: dataFim,
+        validadedocurso: validadedoCurso
+
       });
   
       // Enviar o formulário para o endpoint

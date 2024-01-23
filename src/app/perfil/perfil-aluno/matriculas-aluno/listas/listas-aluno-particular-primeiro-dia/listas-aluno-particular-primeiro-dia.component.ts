@@ -4,11 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-lista-de-presenca-primeiro-dia',
-  templateUrl: './lista-de-presenca-primeiro-dia.component.html',
-  styleUrls: ['./lista-de-presenca-primeiro-dia.component.css']
+  selector: 'app-listas-aluno-particular-primeiro-dia',
+  templateUrl: './listas-aluno-particular-primeiro-dia.component.html',
+  styleUrls: ['./listas-aluno-particular-primeiro-dia.component.css']
 })
-export class ListaDePresencaPrimeiroDiaComponent implements OnInit{
+export class ListasAlunoParticularPrimeiroDiaComponent {
 
 
   listadepresenca: any [] = []

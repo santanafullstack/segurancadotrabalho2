@@ -94,10 +94,17 @@ import { AuthGuardsAluno } from "./guards/auth.guards.aluno";
 import { GerarCertificadoPerfilEmpresaComponent } from "./perfil/perfil-empresa/matriculas-empresa/gerar-certificado-perfil-empresa/gerar-certificado-perfil-empresa.component";
 import { GerarAutorizacaoPerfilEmpresaComponent } from "./perfil/perfil-empresa/matriculas-empresa/gerar-autorizacao-perfil-empresa/gerar-autorizacao-perfil-empresa.component";
 import { ListaDePresencaPrimeiroDiaComponent } from "./perfil/perfil-empresa/matriculas-empresa/listas-de-presenca/lista-de-presenca-primeiro-dia/lista-de-presenca-primeiro-dia.component";
-import { ListaDePresencaSegundoDiaComponent } from "./perfil/perfil-aluno/matriculas-aluno/listas-de-presenca/lista-de-presenca-segundo-dia/lista-de-presenca-segundo-dia.component";
 import { ListaDePresencaTerceiroDiaComponent } from "./perfil/perfil-empresa/matriculas-empresa/listas-de-presenca/lista-de-presenca-terceiro-dia/lista-de-presenca-terceiro-dia.component";
-import { ListaDePresencaQuartoDiaComponent } from "./perfil/perfil-aluno/matriculas-aluno/listas-de-presenca/lista-de-presenca-quarto-dia/lista-de-presenca-quarto-dia.component";
-import { ListaDePresencaQuintoDiaComponent } from "./perfil/perfil-aluno/matriculas-aluno/listas-de-presenca/lista-de-presenca-quinto-dia/lista-de-presenca-quinto-dia.component";
+import { ListaDePresencaQuartoDiaComponent } from "./perfil/perfil-empresa/matriculas-empresa/listas-de-presenca/lista-de-presenca-quarto-dia/lista-de-presenca-quarto-dia.component";
+import { GerarCertificadoPerfilAlunoComponent } from "./perfil/perfil-aluno/matriculas-aluno/gerar-certificado-perfil-aluno/gerar-certificado-perfil-aluno.component";
+import { ListaDePresencaSegundoDiaComponent } from "./perfil/perfil-empresa/matriculas-empresa/listas-de-presenca/lista-de-presenca-segundo-dia/lista-de-presenca-segundo-dia.component";
+import { ListaDePresencaQuintoDiaComponent } from "./perfil/perfil-empresa/matriculas-empresa/listas-de-presenca/lista-de-presenca-quinto-dia/lista-de-presenca-quinto-dia.component";
+import { ListasAlunoParticularPrimeiroDiaComponent } from "./perfil/perfil-aluno/matriculas-aluno/listas/listas-aluno-particular-primeiro-dia/listas-aluno-particular-primeiro-dia.component";
+import { ListasAlunoParticularSegundoDiaComponent } from "./perfil/perfil-aluno/matriculas-aluno/listas/listas-aluno-particular-segundo-dia/listas-aluno-particular-segundo-dia.component";
+import { ListasAlunoParticularTerceiroDiaComponent } from "./perfil/perfil-aluno/matriculas-aluno/listas/listas-aluno-particular-terceiro-dia/listas-aluno-particular-terceiro-dia.component";
+import { ListasAlunoParticularQuartoDiaComponent } from "./perfil/perfil-aluno/matriculas-aluno/listas/listas-aluno-particular-quarto-dia/listas-aluno-particular-quarto-dia.component";
+import { ListasAlunoParticularQuintoDiaComponent } from "./perfil/perfil-aluno/matriculas-aluno/listas/listas-aluno-particular-quinto-dia/listas-aluno-particular-quinto-dia.component";
+import { GerarAutorizacaoPerfilAlunoComponent } from "./perfil/perfil-aluno/matriculas-aluno/gerar-autorizacao-perfil-aluno/gerar-autorizacao-perfil-aluno.component";
 
 
 
@@ -275,6 +282,16 @@ const routes: Routes = [
 
 {path: 'perfil-aluno', component: PerfilAlunoComponent, canActivate: [AuthGuardsAluno]},
 {path: 'consultar-matriculas-aluno', component: ConsultarMatriculasAlunoComponent, canActivate: [AuthGuardsAluno]},
+{path: 'gerar-certificado-aluno/:id', component: GerarCertificadoPerfilAlunoComponent, canActivate: [AuthGuardsAluno]},
+{path: 'gerar-autorizacao-aluno/:id', component: GerarAutorizacaoPerfilAlunoComponent, canActivate: [AuthGuardsAluno]},
+ //listas de Presença Aluno
+ {path: 'lista-de-presenca-primeiro-dia-aluno/:id', component: ListasAlunoParticularPrimeiroDiaComponent, canActivate: [AuthGuardsAluno]},
+ {path: 'lista-de-presenca-segundo-dia-aluno/:id', component: ListasAlunoParticularSegundoDiaComponent, canActivate: [AuthGuardsAluno]},
+ {path: 'lista-de-presenca-terceiro-dia-aluno/:id', component: ListasAlunoParticularTerceiroDiaComponent, canActivate: [AuthGuardsAluno]},
+ {path: 'lista-de-presenca-quarto-dia-aluno/:id', component: ListasAlunoParticularQuartoDiaComponent, canActivate: [AuthGuardsAluno]},
+ {path: 'lista-de-presenca-quinto-dia-aluno/:id', component: ListasAlunoParticularQuintoDiaComponent , canActivate: [AuthGuardsAluno]},
+    
+
 
 {path: 'perfil-master', component: PerfilMasterComponent, canActivate: [AuthGuardsMaster]}
 

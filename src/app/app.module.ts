@@ -112,6 +112,11 @@ import { ListaDePresencaQuartoDiaComponent } from './perfil/perfil-empresa/matri
 import { ListaDePresencaQuintoDiaComponent } from './perfil/perfil-empresa/matriculas-empresa/listas-de-presenca/lista-de-presenca-quinto-dia/lista-de-presenca-quinto-dia.component';
 import { GerarCertificadoPerfilAlunoComponent } from './perfil/perfil-aluno/matriculas-aluno/gerar-certificado-perfil-aluno/gerar-certificado-perfil-aluno.component';
 import { GerarAutorizacaoPerfilAlunoComponent } from './perfil/perfil-aluno/matriculas-aluno/gerar-autorizacao-perfil-aluno/gerar-autorizacao-perfil-aluno.component';
+import { ListasAlunoParticularPrimeiroDiaComponent } from './perfil/perfil-aluno/matriculas-aluno/listas/listas-aluno-particular-primeiro-dia/listas-aluno-particular-primeiro-dia.component';
+import { ListasAlunoParticularSegundoDiaComponent } from './perfil/perfil-aluno/matriculas-aluno/listas/listas-aluno-particular-segundo-dia/listas-aluno-particular-segundo-dia.component';
+import { ListasAlunoParticularTerceiroDiaComponent } from './perfil/perfil-aluno/matriculas-aluno/listas/listas-aluno-particular-terceiro-dia/listas-aluno-particular-terceiro-dia.component';
+import { ListasAlunoParticularQuartoDiaComponent } from './perfil/perfil-aluno/matriculas-aluno/listas/listas-aluno-particular-quarto-dia/listas-aluno-particular-quarto-dia.component';
+import { ListasAlunoParticularQuintoDiaComponent } from './perfil/perfil-aluno/matriculas-aluno/listas/listas-aluno-particular-quinto-dia/listas-aluno-particular-quinto-dia.component';
 
 @NgModule({
   declarations: [
@@ -216,6 +221,11 @@ import { GerarAutorizacaoPerfilAlunoComponent } from './perfil/perfil-aluno/matr
     ListaDePresencaQuintoDiaComponent,
     GerarCertificadoPerfilAlunoComponent,
     GerarAutorizacaoPerfilAlunoComponent,
+    ListasAlunoParticularPrimeiroDiaComponent,
+    ListasAlunoParticularSegundoDiaComponent,
+    ListasAlunoParticularTerceiroDiaComponent,
+    ListasAlunoParticularQuartoDiaComponent,
+    ListasAlunoParticularQuintoDiaComponent,
   ],
   imports: [
     NgSelectModule,

@@ -73,13 +73,10 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th style="font-size: 12px;">Empresa</th>
-                                <th style="font-size: 12px;">CNPJ</th>
+                              
                                 <th style="font-size: 12px;">Aluno</th>
                                 <th style="font-size: 12px;">RG</th>
                                 <th style="font-size: 12px;"> CPF</th>
-                                <th style="font-size: 12px;">Função</th>
-                                <th style="font-size: 12px;">CBO</th>
                                 <th style="font-size: 12px;">Matricula</th>
                                 <th style="font-size: 12px;">Turma</th>
 
@@ -87,13 +84,10 @@
                         </thead>
                         <tbody>
                             <tr> 
-                                <td style="font-size: 12px;"> {{l?.funcionario?.empresa?.razaosocial}}</td>
-                                <td style="font-size: 12px;">{{l?.funcionario?.empresa?.cnpj}} </td>                      
-                                <td style="font-size: 12px;">{{l?.funcionario?.nome}}</td>
-                                <td style="font-size: 12px;">{{l?.funcionario?.rg}}</td>
-                                <td style="font-size: 12px;">{{l?.funcionario?.cpf}}</td>
-                                <td style="font-size: 12px;">{{l?.funcionario?.funcao.funcao}}</td>
-                                <td style="font-size: 12px;">{{l?.funcionario?.funcao.cbo}}</td>
+                    
+                                <td style="font-size: 12px;">{{l?.pessoafisica?.pessoafisica}}</td>
+                                <td style="font-size: 12px;">{{l?.pessoafisica?.rg}}</td>
+                                <td style="font-size: 12px;">{{l?.pessoafisica?.cpf}}</td>
                                 <td style="font-size: 12px;">{{ l?.numeroMatricula}}</td>
                                 <td style="font-size: 12px;">{{ l?.turmas?.numeroTurma}}</td>
                             </tr>
@@ -102,12 +96,11 @@
                         </tbody>    
                     </table>
                     <strong style="font-size: 14px;">ASSINATURA DO ALUNO</strong>
-
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                              
-                                <th style="font-size: 12px;">Dia {{l?.turmas?.primeirodia}}</th>
+                                <th style="font-size: 12px;">Dia {{l?.turmas?.terceirodia}}</th>
                               
 
 
@@ -117,7 +110,7 @@
                             <tr>
                            
                                 	
-                                    <td class="mt-3">Assinatura do Aluno:  <img *ngIf="l?.funcionario?.assinatura" [src]="'data:image/png;base64,' + l?.funcionario?.assinatura" />
+                                    <td class="mt-3">Assinatura do Aluno: <img *ngIf="l?.pessoafisica?.assinatura_pessoafisica" [src]="'data:image/png;base64,' + l?.pessoafisica?.assinatura_pessoafisica" />
                                     </td>
                             
 

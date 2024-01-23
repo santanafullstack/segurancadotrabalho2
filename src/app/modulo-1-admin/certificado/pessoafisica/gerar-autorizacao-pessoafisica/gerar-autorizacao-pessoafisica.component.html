@@ -57,6 +57,7 @@
 				  <div class="row">
 
                         <div class="col-md-5">
+                            <img *ngIf="a?.turmas?.instrutores[0]?.assinatura_instrutor" [src]="'data:image/png;base64,' + a?.turmas?.instrutores[0]?.assinatura_instrutor" />
                             <strong>  <hr style="background-color: black;"></strong>
                             <strong style="font-size: 10px;">RESPONSAVEL PELA {{a?.turmas?.curso?.tituloautorizacao | uppercase }}</strong> 
                             <br>
@@ -76,16 +77,17 @@
                         </div>
                     
                         <div class="col-md-4">
+                            <img *ngIf="a?.pessoafisica?.assinatura_pessoafisica" [src]="'data:image/png;base64,' + a?.pessoafisica?.assinatura_pessoafisica" />
                             <hr style="background-color: black;">
-                            <strong style="font-size: 10px;"> FUNCIONÁRIO (A) DO {{a?.turmas?.curso?.curso | uppercase}}</strong>
+                            <strong style="font-size: 10px;"> Aluno (A) DO {{a?.turmas?.curso?.curso | uppercase}}</strong>
                             <br>
-                           {{ a?.funcionario?.nome}}
+                           {{ a?.pessoafisica?.pessoafisica}}
                             <br>
-                            RG: {{ a?.funcionario?.rg}} - CPF: {{ a?.funcionario?.cpf}}
+                            RG: {{ a?.pessoafisica?.rg}} - CPF: {{ a?.pessoafisica?.cpf}}
                             <br>
-                            Função: {{ a?.funcionario?.funcao?.funcao}} - CBO: {{ a?.funcionario?.funcao?.cbo}}
+                            Matricula: {{ a?.numeroMatricula}} 
                             <br>
-                            Matricula: {{ a?.numeroMatricula}} - Turma: {{ a?.turmas?.numeroTurma}}
+                            Turma: {{ a?.turmas?.numeroTurma}}
                             <br>
                             <br>
                             <br>

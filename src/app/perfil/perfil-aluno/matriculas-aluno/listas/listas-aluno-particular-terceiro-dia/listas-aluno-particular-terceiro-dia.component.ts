@@ -3,13 +3,12 @@ import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
-
 @Component({
-  selector: 'app-lista-de-presenca-segundo-dia',
-  templateUrl: './lista-de-presenca-segundo-dia.component.html',
-  styleUrls: ['./lista-de-presenca-segundo-dia.component.css']
+  selector: 'app-listas-aluno-particular-terceiro-dia',
+  templateUrl: './listas-aluno-particular-terceiro-dia.component.html',
+  styleUrls: ['./listas-aluno-particular-terceiro-dia.component.css']
 })
-export class ListaDePresencaSegundoDiaComponent {
+export class ListasAlunoParticularTerceiroDiaComponent {
 
 
   listadepresenca: any [] = []
@@ -41,3 +40,4 @@ export class ListaDePresencaSegundoDiaComponent {
     window.print();
   }
 }
+

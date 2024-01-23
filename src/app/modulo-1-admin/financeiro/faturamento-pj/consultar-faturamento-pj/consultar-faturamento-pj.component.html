@@ -122,8 +122,8 @@
                         <tr *ngFor="let f of faturamentopj">
                             <td>{{f.numeroFaturamento}}</td>
                             <td>{{f.dataHoraCriacao | date: 'dd/MM/yyyy'}}</td>
-                            <td>{{f.empresa}}</td>
-                            <td>{{f.cnpj}}</td>
+                            <td>{{ f?.empresa?.razaosocial}}</td>
+                            <td>{{ f?.empresa?.cnpj }}</td>
                             <td>{{f.data_inicio | date: 'dd/MM/yyyy'}}</td>
                             <td>{{f.data_fim | date: 'dd/MM/yyyy'}}</td>
                           

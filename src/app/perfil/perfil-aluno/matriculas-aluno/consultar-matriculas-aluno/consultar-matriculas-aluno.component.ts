@@ -65,7 +65,7 @@ export class ConsultarMatriculasAlunoComponent implements OnInit{
 
 
   obterMatriculas(userId: string): void {
-    const endpoint = `http://localhost:8086/api/matriculas/usuario/${userId}`;
+    const endpoint = `http://localhost:8087/api/matriculas-pessoafisica/usuario/${userId}`;
 
     this.httpClient.get<any[]>(endpoint)
       .subscribe({

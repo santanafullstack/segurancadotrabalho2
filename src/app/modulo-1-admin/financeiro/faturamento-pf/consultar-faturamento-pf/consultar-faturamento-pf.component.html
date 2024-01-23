@@ -110,10 +110,10 @@
                         <tr>
                             <th>N°</th>
                             <th>Criado Em</th>
-						    <th>Pessoa Fisica</th>
-						   <th>CPF</th>
-						    <th>Data de Inicio</th>
-						    <th>Data Fim</th>
+						                <th>Pessoa Fisica</th>
+						                <th>CPF</th>
+						                <th>Data de Inicio</th>
+						                <th>Data Fim</th>
                             <th>Operações</th>
 
 
@@ -121,12 +121,12 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let f of faturamentopf">
-                            <td>{{f.numeroFaturamento}}</td>
-                            <td>{{f.dataHoraCriacao | date: 'dd/MM/yyyy'}}</td>
-                            <td>{{f.pessoafisica}}</td>
-                            <td>{{f.cpf}}</td>
-                            <td>{{f.data_inicio | date: 'dd/MM/yyyy'}}</td>
-                            <td>{{f.data_fim | date: 'dd/MM/yyyy'}}</td>
+                            <td>{{f?.numeroFaturamento}}</td>
+                            <td>{{f?.dataHoraCriacao | date: 'dd/MM/yyyy'}}</td>
+                            <td>{{ f?.pessoafisica?.pessoafisica }}</td>
+                            <td>{{ f?.pessoafisica?.cpf }}</td>
+                            <td>{{f?.data_inicio | date: 'dd/MM/yyyy'}}</td>
+                            <td>{{f?.data_fim | date: 'dd/MM/yyyy'}}</td>
                           
                           
                             <td>
