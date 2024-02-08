@@ -58,6 +58,11 @@ export class CadastrarFaturamentoPfComponent {
       whatsapp: new FormControl('', [Validators.required]),
       emailfinanceiro: new FormControl('', [Validators.required, Validators.email]),
       observacoes: new FormControl('', [Validators.required]),
+      forma_de_pagamento: new FormControl('', [Validators.required]),
+      data_de_pagamento: new FormControl('', [Validators.required]),
+      parcelas: new FormControl('', [Validators.required]),
+
+
     });
 
     this.config.notFoundText = 'Custom not found';
@@ -95,9 +100,13 @@ export class CadastrarFaturamentoPfComponent {
       // Formate as datas para o formato ISO 8601
       const dataInicio = this.formatDate(this.formFaturamentopf.value.data_inicio);
       const dataFim = this.formatDate(this.formFaturamentopf.value.data_fim);
+      const data_de_Pagamento = this.formatDate(this.formFaturamentopf.value.data_de_pagamento);
+
       this.formFaturamentopf.patchValue({
         data_inicio: dataInicio,
-        data_fim: dataFim
+        data_fim: dataFim,
+        data_de_pagamento: data_de_Pagamento
+
       });
 
       // Enviar o formulário para o endpoint

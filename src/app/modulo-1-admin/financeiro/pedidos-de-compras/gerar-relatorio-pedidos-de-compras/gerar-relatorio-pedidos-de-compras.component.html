@@ -7,7 +7,7 @@
             <div class="row mb-2 mt-4">
             
                 <div class="col-md-12 mt-1 text-center">
-                    <h5>RELATÓRIO ANALITICO DA EMPRESA {{ relatorio?.nomefantasia | uppercase}} - CNPJ: {{ relatorio?.cnpj}}
+                    <h5>RELATÓRIO ANALITICO DA EMPRESA {{ relatorio?.empresa?.razaosocial | uppercase}} - CNPJ: {{ relatorio?.empresa?.cnpj}}
                     </h5>          
                 </div>
             
@@ -27,6 +27,7 @@ Abaixo está o relatório analitico de todos os colaboradores que foram matricul
                             <th>Venda</th>
                             <th>Turma</th>
                             <th>Data</th>
+                            <th>CNPJ</th>
                             <th>Funcionário</th>
                             <th>CPF</th>
                             <th>Curso</th>
@@ -41,6 +42,7 @@ Abaixo está o relatório analitico de todos os colaboradores que foram matricul
                                 <td>{{ matricula?.venda }}</td>
                                 <td>{{ matricula?.turmas?.numeroTurma }}</td>
                                 <td>{{ matricula?.turmas?.datainicio | date: 'dd/MM/yyyy'}}</td>
+                                <td>{{ matricula?.funcionario?.empresa?.cnpj }}</td>
                                 <td>{{ matricula?.funcionario?.nome }}</td>
                                 <td>{{ matricula?.funcionario?.cpf }}</td>
                                 <td>{{ matricula?.turmas?.curso?.curso }}</td>

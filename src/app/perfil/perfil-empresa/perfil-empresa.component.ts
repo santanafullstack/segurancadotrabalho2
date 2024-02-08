@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AutenticarResponseModel } from 'src/app/models/usuarios/autenticar-response.model';
 import { Router, RouterLink } from '@angular/router';
 import { AuthenticationHelper } from 'src/app/helpers/authentication.helper';
+
+
+
 @Component({
   selector: 'app-perfil-empresa',
   templateUrl: './perfil-empresa.component.html',

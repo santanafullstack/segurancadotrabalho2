@@ -17,12 +17,22 @@ export class EditarFaturamentoPfComponent {
 
 
   constructor(private httpClient: HttpClient, private formBuilder: FormBuilder, private activatedRoute: ActivatedRoute) {
-    this.formFaturamentopf = this.formBuilder.group({
+  this.formFaturamentopf = this.formBuilder.group({
   idfaturamentopf : new FormControl('', [Validators.required]),
-  pessoafisica : new FormControl('', [Validators.required]),
-  cpf : new FormControl('', [Validators.required]),
-  data_inicio : new FormControl('', [Validators.required]),
-  data_fim : new FormControl('', [Validators.required]),
+  venda: new FormControl('', [Validators.required]),
+  notafiscal: new FormControl('', [Validators.required]),
+  valor: new FormControl('', [Validators.required]),
+  comprador: new FormControl('', [Validators.required]),
+  telefone: new FormControl('', [Validators.required]),
+  email: new FormControl('', [Validators.required, Validators.email]),
+  responsavelfinanceiro: new FormControl('', [Validators.required]),
+  telefonefinanceiro: new FormControl('', [Validators.required]),
+  whatsapp: new FormControl('', [Validators.required]),
+  emailfinanceiro: new FormControl('', [Validators.required, Validators.email]),
+  observacoes: new FormControl('', [Validators.required]),
+  forma_de_pagamento: new FormControl('', [Validators.required]),
+  data_de_pagamento: new FormControl('', [Validators.required]),
+  parcelas: new FormControl('', [Validators.required]),
     });
   }
 
@@ -49,12 +59,11 @@ export class EditarFaturamentoPfComponent {
 
      onSubmit(): void {
       if (this.formFaturamentopf.valid) {
-        // Formate as datas para o formato ISO 8601
-        const dataInicio = this.formatDate(this.formFaturamentopf.value.data_inicio);
-        const dataFim = this.formatDate(this.formFaturamentopf.value.data_fim);
+     
+        const data_de_Pagamento = this.formatDate(this.formFaturamentopf.value.data_de_pagamento);
+
           this.formFaturamentopf.patchValue({
-          data_inicio: dataInicio,
-          data_fim: dataFim
+          data_de_pagamento: data_de_Pagamento,
         });
     
         // Enviar o formulário para o endpoint

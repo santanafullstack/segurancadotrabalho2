@@ -99,6 +99,8 @@ export class CriarMatriculasFaturamentoPjComponent implements OnInit{
     valor: new FormControl(null, [Validators.required]),
     status: new FormControl('', [Validators.required]),
     tipo_de_pagamento: new FormControl('', [Validators.required]),
+    observacoes: new FormControl('', [Validators.required]),
+
   });
 
   get form(): any {

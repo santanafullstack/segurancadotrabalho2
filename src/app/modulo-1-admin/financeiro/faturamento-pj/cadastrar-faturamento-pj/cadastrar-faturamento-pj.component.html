@@ -17,8 +17,8 @@
       </div>
       <form [formGroup]="formFaturamentopj" (ngSubmit)="onSubmit()">
         <div class="row mb-2">
-          <div class="col-md-8 mt-3">
-            <label for="formFile" class="form-label">Empresa</label>
+          <div class="col-md-3 mt-3">
+            <label for="formFile" class="form-label">Digite o CNPJ da Empresa</label>
             <ng-select
             [items]="empresas"
             bindLabel="cnpj"
@@ -40,15 +40,18 @@
           </ng-select>
           
         </div>	
-          <div class="col-md-2 mt-4">
+          <div class="col-md-3 mt-4">
             <label>Data de Início</label>
             <input type="date" formControlName="data_inicio" class="form-control"/>
           </div>
-          <div class="col-md-2 mt-4">
+          <div class="col-md-3 mt-4">
             <label>Data de Fim</label>
             <input type="date" formControlName="data_fim" class="form-control"/>
           </div>
-          
+          <div class="col-md-3 mt-4">
+            <label>Data Pagamento</label>
+            <input type="date" formControlName="data_de_pagamento" class="form-control"/>
+          </div>
           <!-- Adicione os novos campos -->
           <div class="col-md-1">
             <label>Venda:</label>
@@ -58,43 +61,58 @@
             <label>Nota Fiscal:</label>
             <input type="text" class="form-control" formControlName="notafiscal"/>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-1">
             <label>Valor:</label>
             <input type="text" class="form-control" formControlName="valor"/>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label>Comprador:</label>
             <input type="text" class="form-control" formControlName="comprador"/>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label>Telefone:</label>
             <input type="text" class="form-control" formControlName="telefone"/>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label>Email:</label>
             <input type="text" class="form-control" formControlName="email"/>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label>Responsável Financeiro:</label>
             <input type="text" class="form-control" formControlName="responsavelfinanceiro"/>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label>Telefone Financeiro:</label>
             <input type="text" class="form-control" formControlName="telefonefinanceiro"/>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label>WhatsApp:</label>
             <input type="text" class="form-control" formControlName="whatsapp"/>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label>Email Financeiro:</label>
             <input type="text" class="form-control" formControlName="emailfinanceiro"/>
           </div>
-          <div class="col-md-12">
+
+          <div class="row">
+
+            <div class="col-md-3">
+              <label>Quantidade de Parcelas:</label>
+              <input type="text" class="form-control" formControlName="parcelas"/>
+            </div>
+
+            <div class="col-md-3">
+              <label>Forma de Pagamento:</label>
+              <input type="text" class="form-control" formControlName="forma_de_pagamento"/>
+            </div>
+
+
+          <div class="col-md-6">
             <label>Observações:</label>
             <textarea class="form-control" formControlName="observacoes"></textarea>
           </div>
-          
+        </div>
+
         </div>
         <div class="row mb-2 mt-3">
           <div class="col-md-12">

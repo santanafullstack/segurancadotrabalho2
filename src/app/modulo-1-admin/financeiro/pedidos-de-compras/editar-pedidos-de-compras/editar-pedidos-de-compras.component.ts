@@ -40,16 +40,22 @@ export class EditarPedidosDeComprasComponent implements OnInit{
 
  formEditarPedidos = new FormGroup({
   idPedidos : new FormControl('', [Validators.required]),
-  nomefantasia : new FormControl('', [Validators.required]),
-  cnpj : new FormControl('', [Validators.required]),
   comprador : new FormControl('', [Validators.required]),
   telefone : new FormControl('', [Validators.required]),
-  email : new FormControl('', [Validators.required]),
-  numerodopedido : new FormControl('', [Validators.required]),
-  venda : new FormControl('', [Validators.required]),
-  notafiscal : new FormControl('', [Validators.required]),
-  valor : new FormControl('', [Validators.required]),
-  creditos : new FormControl('', [Validators.required]),
+  numerodopedido: new FormControl('', [Validators.required]),
+  venda: new FormControl('', [Validators.required]),
+  notafiscal: new FormControl('', [Validators.required]),
+  valor: new FormControl('', [Validators.required]),
+  creditos: new FormControl('', [Validators.required]),
+  email: new FormControl('', [Validators.required]),
+  responsavelfinanceiro: new FormControl('', [Validators.required]),
+  telefonefinanceiro: new FormControl('', [Validators.required]),
+  whatsapp: new FormControl('', [Validators.required]),
+  emailfinanceiro: new FormControl('', [Validators.required]),
+  data_de_pagamento: new FormControl('', [Validators.required]),
+  parcelas: new FormControl('', [Validators.required]),
+  forma_de_pagamento: new FormControl('', [Validators.required]),
+  observacoes: new FormControl('', [Validators.required]),
 
        });
   
@@ -60,6 +66,9 @@ export class EditarPedidosDeComprasComponent implements OnInit{
 
 
      onSubmit(): void {
+
+      this.formatDates();
+
       this.httpClient
       .put('http://localhost:8082/api/pedidos-de-compras',
       this.formEditarPedidos.value
@@ -82,6 +91,26 @@ export class EditarPedidosDeComprasComponent implements OnInit{
 }
 
 
+formatDates(): void {
+  const dataDePagamento = this.formEditarPedidos.value.data_de_pagamento;
+
+  if (dataDePagamento !== null && dataDePagamento !== undefined) {
+    // Aqui você tem certeza de que dataDePagamento é uma string
+    this.formEditarPedidos.patchValue({
+      data_de_pagamento: this.formatDate(dataDePagamento)
+    });
+  }
+}
+
+formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  if (!isNaN(date.getTime())) {
+    return date.toISOString(); // Formatar para ISO 8601
+  } else {
+    console.error('Data inválida:', dateString);
+    return ''; // Ou outra ação apropriada
+  }
+}
 printPage() {
   window.print();
 }

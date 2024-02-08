@@ -15,8 +15,8 @@
                     <div class="modal-body">    
                       <div *ngIf="faturamentoSelecionado">
                         <h5>Matrículas do Faturamento de número: {{ faturamentoSelecionado.numeroFaturamento }}</h5>
-                        <h5>Aluno: {{  faturamentoSelecionado.pessoafisica1 }}</h5>
-                        <h5>CPF: {{  faturamentoSelecionado.cpf }}</h5>
+                        <h5>Aluno: {{  faturamentoSelecionado.pessoafisica.pessoafisica }}</h5>
+                        <h5>CPF: {{  faturamentoSelecionado.pessoafisica.cpf }}</h5>
 
 
                         <h5>Valor Total do Faturamento: R$ {{ faturamentoSelecionado?.total || 0 }}</h5>                        <div class="row">
@@ -51,8 +51,8 @@
                               <td>{{ m.venda }}</td>
                               <td>{{ m.turmas?.numeroTurma }}</td>
                               <td>{{ m.turmas?.datainicio | date: 'dd/MM/yyyy'}}</td>
-                              <td>{{ faturamentoSelecionado.pessoafisica }}</td>
-                              <td>{{ faturamentoSelecionado.cpf }}</td>
+                              <td>{{ faturamentoSelecionado?.pessoafisica?.pessoafisica }}</td>
+                              <td>{{ faturamentoSelecionado?.pessoafisica?.cpf }}</td>
                               <td>{{ m.turmas?.curso?.curso }}</td>
                               <td>R$ {{ m?.valor }}</td>
 
@@ -103,9 +103,43 @@
 
                 </div>
             </div>
+            <div class="row d-flex justify-content-center ">             
+              <div class="col-11 d-flex justify-content-center bg-light mb-5">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                  <span class="navbar-brand">Período: </span>
+                  <button class="btn btn-outline-secondary" (click)="mudarMes(-1)">&lt; Anterior</button>
+                  
+                  <!-- Adição do dropdown para selecionar o mês -->
+                  <div class="dropdown mx-3">
+                   <button class="btn btn-success m-1 dropdown-toggle" type="button" id="mesDropdown"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                          MESES  DO ANO
+                                        </button>
+                      <ul class="dropdown-menu btn-sm border dropdown-menu-primary">
+                       <li> <a class="dropdown-item" (click)="selecionarMes(0)">Janeiro</a></li>
+                      <a class="dropdown-item" (click)="selecionarMes(1)">Fevereiro</a>
+                      <a class="dropdown-item" (click)="selecionarMes(2)">Março</a>
+                      <a class="dropdown-item" (click)="selecionarMes(3)">Abril</a>
+                      <a class="dropdown-item" (click)="selecionarMes(4)">Maio</a>
+                      <a class="dropdown-item" (click)="selecionarMes(5)">Junho</a>
+                      <a class="dropdown-item" (click)="selecionarMes(6)">Julho</a>
+                      <a class="dropdown-item" (click)="selecionarMes(7)">Agosto</a>
+                      <a class="dropdown-item" (click)="selecionarMes(8)">Setembro</a>
+                      <a class="dropdown-item" (click)="selecionarMes(9)">Outubro</a>
+                      <a class="dropdown-item" (click)="selecionarMes(10)">Novembro</a>
+                      <a class="dropdown-item" (click)="selecionarMes(11)">Dezembro</a>
+      
+                      </ul>
+                  </div>
+                
+                  <span class="navbar-text mx-3">{{ periodoAtual }}</span>
+                  <button class="btn btn-outline-secondary" (click)="mudarMes(1)">Próximo &gt;</button>      
+                </nav> 
+                      </div>          
+          </div>
             <hr />
             <div class="table-responsive mt-2">
-                <table class="table table-sm table-striped table-hover" datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger">
+                <table class="table table-sm table-striped table-hover" >
                     <thead>
                         <tr>
                             <th>N°</th>
@@ -114,20 +148,26 @@
 						                <th>CPF</th>
 						                <th>Data de Inicio</th>
 						                <th>Data Fim</th>
+                            <th>Status</th>
                             <th>Operações</th>
 
 
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let f of faturamentopf">
-                            <td>{{f?.numeroFaturamento}}</td>
+                      <tr *ngFor="let f of faturamentopf" [class]="getTableRowClass(f)">
+                        <td>{{f?.numeroFaturamento}}</td>
                             <td>{{f?.dataHoraCriacao | date: 'dd/MM/yyyy'}}</td>
                             <td>{{ f?.pessoafisica?.pessoafisica }}</td>
                             <td>{{ f?.pessoafisica?.cpf }}</td>
                             <td>{{f?.data_inicio | date: 'dd/MM/yyyy'}}</td>
                             <td>{{f?.data_fim | date: 'dd/MM/yyyy'}}</td>
-                          
+                            <td [ngClass]="{'text-success': !f.faturaFechada, 'text-danger': f.faturaFechada}" style="font-size: larger; text-transform: uppercase;">
+                              <strong>{{ getStatusFatura(f) }}</strong>
+                            </td>
+                            
+                            
+                              
                           
                             <td>
                                       
@@ -136,6 +176,18 @@
                                     Ações
                                 </button>
                                 <ul class="dropdown-menu btn-sm border dropdown-menu-primary">
+                                  <li> <a href="/cadastrar-cobranca-pessoa-fisica-faturamento"
+                                    class="dropdown-item btn btn-primary"
+                                    [routerLink]="['/cadastrar-cobranca-pessoa-fisica-faturamento', f.idfaturamentopf]"
+                                    >Criar Cobrança</a></li>
+                                    <li><a 
+                                      data-bs-toggle="modal" 
+                                      data-bs-target="#verCobrancasModal"
+                                       data-bs-whatever="@mdo"
+                                      class="dropdown-item btn btn-sm btn-primary" 
+                                      (click)="exibirCobrancas(f)"
+                                      >Ver Cobranças</a></li>
+
                                     <li> <a href="/editar-faturamentopf"
                                             class="dropdown-item btn btn-primary"
                                             [routerLink]="['/editar-faturamentopf', f.idfaturamentopf]"
@@ -158,16 +210,173 @@
                                                       class="dropdown-item btn btn-primary"
                                                       [routerLink]="['/gerar-relatorio-pessoa-fisica', f.idfaturamentopf]"
                                                       >Gerar Relatório</a></li>
-                                       
+                                                      <li><a 
+                                                
+                                                        class="dropdown-item btn btn-sm btn-primary" 
+                                                        (click)="reabrirFatura(f.idfaturamentopf)"
+                                                        >Abrir Fatura</a></li>
+                                                        <li><a 
+                                                      
+                                                          class="dropdown-item btn btn-sm btn-primary" 
+                                                          (click)="fecharFatura(f.idfaturamentopf)"
+                                                          >Fechar Fatura</a></li>
                                 </ul>
                             </td>
                         </tr>
                     </tbody>
                
                 </table>
-            </div>
 
- 
+
+                <div class="modal" tabindex="-1"  id="verCobrancasModal">
+                  <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">    
+                        <div *ngIf="faturamentoPessoaFisicaSelecionado">
+                          <h5>Cobranças do Faturamento de número: {{ faturamentoPessoaFisicaSelecionado.numeroFaturamento }}</h5>
+                          <h5>Pessoa Fisica: {{  faturamentoPessoaFisicaSelecionado?.pessoafisica?.pessoafisica }}</h5>
+                          <h5>CPF: {{ faturamentoPessoaFisicaSelecionado?.pessoafisica?.cpf}}</h5>
+  
+  
+                          <h5>Valor Total do Faturamento: R$ {{ faturamentoPessoaFisicaSelecionado?.total || 0 }}</h5>                        <div class="row">
+                            <div class="col-md-6 mt-3">
+      
+                            </div>
+                            <div class="col-md-6 mt-3">
+                              <input type="text" class="form-control" [(ngModel)]="filtro.matriculas"
+                              placeholder="Pesquisar por Cobranças" />
+                            </div>
+                          </div>
+                          <table id="myTable" class="table table-sm table-hover mt-3">
+                            <thead>
+                              <tr>
+                               
+                                <th>Data</th>
+                                <th>Quem Cobrou</th>
+                                <th>Quem foi Cobrado</th>
+                                <th>Pagamento Em</th>
+                                <th>observacoes</th>
+                                <th>Operações</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>      
+                              <tr *ngFor="let c of faturamentoPessoaFisicaSelecionado.relatorio   | paginate: { itemsPerPage: itensPorPagina, currentPage: paginaAtual } | ngxSearchPipe:filtro.matriculas" >    
+                             
+                                <td>{{ c.dataHoraCriacao | date: 'dd/MM/yyyy'}}</td>
+                                <td>{{ c.responsavelCobranca}}</td>
+                                <td>{{ c.responsavelCliente}}</td>
+                                <td>{{ c.data_de_agendamento_pagamento | date: 'dd/MM/yyyy'}}</td>
+                                <td>{{ c.observacoes}}</td>
+                              <td>
+                           
+
+                                <button 
+                                
+                                data-bs-toggle="modal" 
+                                data-bs-target="#editarCobrancaModal"
+                                 data-bs-whatever="@mdo"
+                                class="btn  btn-primary me-2"
+                                (click)="exibirCobrancas(c)"
+                                (click)=" setEditarCobranca (c.idCobranca)"
+                                
+                                >
+                                    Editar
+                                </button>
+
+                             
+                                </td>   
+                              </tr>
+
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="text-center">
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                                      
+                          Quantidade de Cobrança:  {{ faturamentoPessoaFisicaSelecionado?.relatorio?.length || 0 }} cobranças realizadas
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                          <pagination-controls 
+      (pageChange)="paginaAtual = $event"
+      previousLabel="Página anterior"
+      nextLabel="Próxima página"
+      [maxSize]="5" 
+      [itemsPerPage]="itensPorPagina" 
+      ></pagination-controls>         
+      
+      </div>   
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade" id="editarCobrancaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog modal-xl">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Cobrança de Faturamento da Pessoa Fisica</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div *ngIf="mensagem" class="alert alert-info alert-dismissible fade show" role="alert">
+                            <strong>{{mensagem}}</strong>
+                            <button type="button" class="btn-close" aria-label="Close" (click)="mensagem = ''"></button>  
+                         
+                          </div>               
+            <form [formGroup]="formEditarCobranca " (ngSubmit)="onSubmit()">    
+              <input type="hidden" formControlName="idCobranca">
+
+              <div class="mb-2">      
+            </div>
+              <div class="row">  
+              <div class="col-md-5">
+                <label for="recipient-name" class="col-form-label">Responsavel Cobrança:</label>
+                <input type="text" class="form-control" id="recipient-name"
+                formControlName="responsavelCobranca">
+              </div>
+              <div class="col-md-5">
+                <label for="recipient-name" class="col-form-label">Responsavel Cliente:</label>
+                <input type="text" class="form-control" id="recipient-name"
+                formControlName="responsavelCliente">
+              </div>
+         <div class="col-md-2 mt-3">
+          <label>Reagendamento</label>
+          <input type="date" formControlName="data_de_agendamento_pagamento" class="form-control"/>
         </div>
-    </div>
+              <div class="col-md-12">
+                <label for="recipient-name" class="col-form-label">Assunto:</label>
+                <input type="text" class="form-control" id="recipient-name"
+                formControlName="assunto">
+              </div>  
+           
+          <div class="col-md-12">
+            <label>Observações:</label>
+            <textarea class="form-control" rows="5" formControlName="observacoes"></textarea>
+          </div>
+            </div>
+            <div class="modal-footer">
+              <div class="row mb-2">
+                <div class="col-md-12">
+                  <button type="button" class="btn btn-danger"
+                  (click)="onSubmit()" data-bs-dismiss="modal">
+                  Editar Cobrança
+              </button>                  
+            </div>
+            </div>
+            </div>     
+            </form>
+          </div>
+        </div> 
+      </div>
+      </div>
+    </div>                    
+
+
+            </div>
+        </div>
 

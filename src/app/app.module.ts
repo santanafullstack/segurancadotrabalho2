@@ -77,7 +77,6 @@ import { CriarMatriculasFaturamentoPjComponent } from './modulo-1-admin/turmas/m
 import { ConsultarMatriculasFaturamentoPjComponent } from './modulo-1-admin/turmas/matricula/faturamento-pj/consultar-matriculas-faturamento-pj/consultar-matriculas-faturamento-pj.component';
 import { CriarMatriculasPedidosComponent } from './modulo-1-admin/turmas/matricula/pedidos/criar-matriculas-pedidos/criar-matriculas-pedidos.component';
 import { ConsultarMatriculasPedidosComponent } from './modulo-1-admin/turmas/matricula/pedidos/consultar-matriculas-pedidos/consultar-matriculas-pedidos.component';
-import { ConsultaDeTurmasComponent } from './modulo-1-admin/turmas/consulta-de-turmas/consulta-de-turmas.component';
 import { GerarAutorizacaoPessoafisicaComponent } from './modulo-1-admin/certificado/pessoafisica/gerar-autorizacao-pessoafisica/gerar-autorizacao-pessoafisica.component';
 import { GerarCertificadoPessoafisicaComponent } from './modulo-1-admin/certificado/pessoafisica/gerar-certificado-pessoafisica/gerar-certificado-pessoafisica.component';
 import { GerarListaDePresencaPessoafisicaComponent } from './modulo-1-admin/certificado/pessoafisica/gerar-lista-de-presenca-pessoafisica/gerar-lista-de-presenca-pessoafisica.component';
@@ -117,6 +116,16 @@ import { ListasAlunoParticularSegundoDiaComponent } from './perfil/perfil-aluno/
 import { ListasAlunoParticularTerceiroDiaComponent } from './perfil/perfil-aluno/matriculas-aluno/listas/listas-aluno-particular-terceiro-dia/listas-aluno-particular-terceiro-dia.component';
 import { ListasAlunoParticularQuartoDiaComponent } from './perfil/perfil-aluno/matriculas-aluno/listas/listas-aluno-particular-quarto-dia/listas-aluno-particular-quarto-dia.component';
 import { ListasAlunoParticularQuintoDiaComponent } from './perfil/perfil-aluno/matriculas-aluno/listas/listas-aluno-particular-quinto-dia/listas-aluno-particular-quinto-dia.component';
+import { EditarMatriculaComponent } from './modulo-1-admin/turmas/matricula/editar-matricula/editar-matricula.component';
+import { CriarCobrancaEmpresaFaturamentoComponent } from './modulo-1-admin/financeiro/cobranca/empresa-faturamento/criar-cobranca-empresa-faturamento/criar-cobranca-empresa-faturamento.component';
+import { CriarCobrancaEmpresaPedidosComponent } from './modulo-1-admin/financeiro/cobranca/empresa-pedidos/criar-cobranca-empresa-pedidos/criar-cobranca-empresa-pedidos.component';
+import { CriarCobrancaPessoaFisicaFaturamentoComponent } from './modulo-1-admin/financeiro/cobranca/pessoa-fisica-faturamento/criar-cobranca-pessoa-fisica-faturamento/criar-cobranca-pessoa-fisica-faturamento.component';
+import { ConsultarTurmasPerfilEmpresaComponent } from './perfil/perfil-empresa/turmas/consultar-turmas-perfil-empresa/consultar-turmas-perfil-empresa.component';
+import { ConsultarInstrutorPerfilEmpresaComponent } from './perfil/perfil-empresa/instrutor/consultar-instrutor-perfil-empresa/consultar-instrutor-perfil-empresa.component';
+import { ConsultarTurmasPerfilAlunoComponent } from './perfil/perfil-aluno/turmas/consultar-turmas-perfil-aluno/consultar-turmas-perfil-aluno.component';
+import { ConsultarInstrutorPerfilAlunoComponent } from './perfil/perfil-aluno/instrutor/consultar-instrutor-perfil-aluno/consultar-instrutor-perfil-aluno.component';
+import { ConsultarTurmasPorUnidadesComponent } from './modulo-1-admin/turmas/consultar-turmas-por-unidades/consultar-turmas-por-unidades.component';
+
 
 @NgModule({
   declarations: [
@@ -188,7 +197,6 @@ import { ListasAlunoParticularQuintoDiaComponent } from './perfil/perfil-aluno/m
     ConsultarMatriculasFaturamentoPjComponent,
     CriarMatriculasPedidosComponent,
     ConsultarMatriculasPedidosComponent,
-    ConsultaDeTurmasComponent,
     GerarAutorizacaoPessoafisicaComponent,
     GerarCertificadoPessoafisicaComponent,
     GerarListaDePresencaPessoafisicaComponent,
@@ -226,6 +234,16 @@ import { ListasAlunoParticularQuintoDiaComponent } from './perfil/perfil-aluno/m
     ListasAlunoParticularTerceiroDiaComponent,
     ListasAlunoParticularQuartoDiaComponent,
     ListasAlunoParticularQuintoDiaComponent,
+    EditarMatriculaComponent,
+    CriarCobrancaEmpresaFaturamentoComponent,
+    CriarCobrancaEmpresaPedidosComponent,
+    CriarCobrancaPessoaFisicaFaturamentoComponent,
+    ConsultarTurmasPerfilEmpresaComponent,
+    ConsultarInstrutorPerfilEmpresaComponent,
+    ConsultarTurmasPerfilAlunoComponent,
+    ConsultarInstrutorPerfilAlunoComponent,
+    ConsultarTurmasPorUnidadesComponent,
+    
   ],
   imports: [
     NgSelectModule,

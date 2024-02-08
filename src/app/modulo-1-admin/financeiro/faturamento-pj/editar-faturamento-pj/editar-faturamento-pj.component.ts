@@ -34,20 +34,20 @@ export class EditarFaturamentoPjComponent implements OnInit {
   ) {
     this.formFaturamentopj = this.formBuilder.group({
       idfaturamento: new FormControl('', [Validators.required]),
-      idEmpresa: new FormControl('', [Validators.required]),
-      data_inicio: new FormControl('', [Validators.required]),
-      data_fim: new FormControl('', [Validators.required]),
       venda: new FormControl('', [Validators.required]),
-      notafiscal: new FormControl('', [Validators.required]),
+      notafiscal: new FormControl(''),
       valor: new FormControl('', [Validators.required]),
       comprador: new FormControl('', [Validators.required]),
       telefone: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       responsavelfinanceiro: new FormControl('', [Validators.required]),
       telefonefinanceiro: new FormControl('', [Validators.required]),
-      emailfinanceiro: new FormControl('', [Validators.required]),
       whatsapp: new FormControl('', [Validators.required]),
-      observacoes: new FormControl('', [Validators.required])
+      emailfinanceiro: new FormControl('', [Validators.required, Validators.email]),
+      observacoes: new FormControl('', [Validators.required]),
+      data_de_pagamento: new FormControl('', [Validators.required]),
+      forma_de_pagamento: new FormControl('', [Validators.required]),
+      parcelas: new FormControl('', [Validators.required]),
     });
   }
 
@@ -74,6 +74,8 @@ export class EditarFaturamentoPjComponent implements OnInit {
               telefonefinanceiro: data.telefonefinanceiro,
               emailfinanceiro: data.emailfinanceiro,
               whatsapp: data.whatsapp,
+              parcelas: data.parcelas,
+              forma_de_pagamento: data.forma_de_pagamento,
               observacoes: data.observacoes,
               idEmpresa: data.empresa.idEmpresa // Aqui estamos preenchendo o idEmpresa diretamente
             });
@@ -124,11 +126,15 @@ export class EditarFaturamentoPjComponent implements OnInit {
     // Formate as datas para o formato ISO 8601
     const dataInicio = this.formatDate(this.formFaturamentopj.value.data_inicio);
     const dataFim = this.formatDate(this.formFaturamentopj.value.data_fim);
-  
+    const data_de_Pagamento = this.formatDate(this.formFaturamentopj.value.data_de_pagamento);
+
+
+ 
     // Atualize os valores formatados de data no formulário
     this.formFaturamentopj.patchValue({
       data_inicio: dataInicio,
-      data_fim: dataFim
+      data_fim: dataFim,
+      data_de_pagamento: data_de_Pagamento
     });
   
     // Enviar o formulário para o endpoint

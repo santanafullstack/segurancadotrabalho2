@@ -193,7 +193,9 @@ export class ConsultarMatriculasFaturamentoPfComponent implements OnInit{
       venda: m.venda || '',
       valor: m.valor || null,
       status: m.status || '',
-      tipo_de_pagamento: m.tipo_de_pagamento || ''
+      tipo_de_pagamento: m.tipo_de_pagamento || '',
+      observacoes: m.tipo_de_pagamento || ''
+
     });
   }
   
@@ -212,7 +214,9 @@ export class ConsultarMatriculasFaturamentoPfComponent implements OnInit{
       venda: m.venda || '',
       valor: m.valor || null,
       status: m.status || '',
-      tipo_de_pagamento: m.tipo_de_pagamento || ''
+      tipo_de_pagamento: m.tipo_de_pagamento || '',
+      observacoes: m.tipo_de_pagamento || ''
+
     });
   }
 
@@ -229,7 +233,9 @@ export class ConsultarMatriculasFaturamentoPfComponent implements OnInit{
       venda: m.venda || '',
       valor: m.valor || null,
       status: m.status || '',
-      tipo_de_pagamento: m.tipo_de_pagamento || ''
+      tipo_de_pagamento: m.tipo_de_pagamento || '',
+      observacoes: m.tipo_de_pagamento || ''
+
     });
   }
 
@@ -252,6 +258,8 @@ export class ConsultarMatriculasFaturamentoPfComponent implements OnInit{
     valor: new FormControl(null as string | null, [Validators.required]),
     status: new FormControl('', [Validators.required]),
     tipo_de_pagamento: new FormControl('', [Validators.required]),
+    observacoes: new FormControl('', [Validators.required]),
+
   });
 
 
@@ -264,6 +272,8 @@ export class ConsultarMatriculasFaturamentoPfComponent implements OnInit{
     valor: new FormControl(null as string | null, [Validators.required]),
     status: new FormControl('', [Validators.required]),
     tipo_de_pagamento: new FormControl('', [Validators.required]),
+    observacoes: new FormControl('', [Validators.required]),
+
   });
 
 
@@ -276,6 +286,8 @@ export class ConsultarMatriculasFaturamentoPfComponent implements OnInit{
     valor: new FormControl(null as string | null, [Validators.required]),
     status: new FormControl('', [Validators.required]),
     tipo_de_pagamento: new FormControl('', [Validators.required]),
+    observacoes: new FormControl('', [Validators.required]),
+
   });
 
 

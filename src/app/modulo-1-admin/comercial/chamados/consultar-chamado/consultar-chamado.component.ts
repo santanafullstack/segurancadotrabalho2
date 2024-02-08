@@ -1,8 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { FilterPipe } from 'ngx-filter-pipe';
 import { FormsModule } from '@angular/forms';
+import { Subject } from 'rxjs';
+import * as $ from 'jquery';
+import { CadastrarTurmas } from 'src/app/models/cadastrar-turmas.model';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { ConsultarPedidos } from 'src/app/models/consultar-pedidos.model';
+import { EditarCobranca } from 'src/app/models/financeiro/editar-cobranca.model';
+import {  HttpParams } from '@angular/common/http';
 
 
 
@@ -11,9 +18,16 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './consultar-chamado.component.html',
   styleUrls: ['./consultar-chamado.component.css']
 })
-export class ConsultarChamadoComponent implements OnInit {
-
-
+export class ConsultarChamadoComponent implements OnInit  {
+  @ViewChild('content') popupview!: ElementRef;
+ 
+  meses: string[] = [
+   'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+   'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+ ];
+ 
+ anoAtual: number = 2024;
+ mesAtual: number = 0; // Janeiro é o índice 0
   chamados: any [] = []
   pagina: number = 1; //contador da paginação da consulta
   filtro: any = { nome_contato: '' }; //filtro de pesquisa na consulta
@@ -28,21 +42,56 @@ export class ConsultarChamadoComponent implements OnInit {
     }
 
 
+    
+  consultarChamados(mes: number, ano: number): void {
+    const params = new HttpParams()
+      .set('mes', (mes + 1).toString())  // Ensure to convert to string
+      .set('ano', ano.toString());
+  
+    const url = 'http://localhost:8083/api/chamados/chamados-por-mes-e-ano';
+
+    this.httpClient.get(url, { params }).subscribe({
+      next: (data: any) => {
+        this.chamados = data;
+      },
+      error: (e) => {
+        console.log(e);
+      }
+    });
+  }
+
+
     ngOnInit(): void {
 
-      this.httpClient.get('http://localhost:8083/api/chamados')
-      .subscribe({ //capturando o retorno da API
-        next: (data) => { //recebe o retorno de sucesso da API
-          //armazenar os dados na variável
-          this.chamados = data as any[];
-        },
-        error: (e) => { //recebe o retorno de erro da API
-          console.log(e);
-        }
-      });
+      this.consultarChamados(this.mesAtual, this.anoAtual);
+
       
     }
-
+    get periodoAtual(): string {
+      return `${this.meses[this.mesAtual]} de ${this.anoAtual}`;
+    }
+    
+    
+    
+    selecionarMes(mes: number): void {
+      this.mesAtual = mes;
+      this.consultarChamados(this.mesAtual, this.anoAtual);
+    }
+    
+    mudarMes(delta: number): void {
+      this.mesAtual += delta;
+    
+      if (this.mesAtual > 11) {
+        this.mesAtual = 0;
+        this.anoAtual++;
+      } else if (this.mesAtual < 0) {
+        this.mesAtual = 11;
+        this.anoAtual--;
+      }
+    
+      this.consultarChamados(this.mesAtual, this.anoAtual);
+    }
+    
     pageChange(event: any): void {
       this.pagina = event;
     }

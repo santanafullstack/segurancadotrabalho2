@@ -10,6 +10,10 @@ import { FilterPipe } from 'ngx-filter-pipe';
 import * as $ from 'jquery';
 import 'select2'; // Adicione esta importação
 import { NgSelectConfig } from '@ng-select/ng-select';
+import { EditarMatriculasPJ } from 'src/app/models/matriculas/editar-matriculas-pj.model';
+import { forkJoin } from 'rxjs';
+import { EditarMatriculasPF } from 'src/app/models/matriculas/editar-matriculas-pf.model';
+import { EditarMatriculasPedidos } from 'src/app/models/matriculas/editar-matriculas-pedidos.model';
 
 @Component({
   selector: 'app-consultar-matriculas-faturamento-pj',
@@ -43,6 +47,9 @@ export class ConsultarMatriculasFaturamentoPjComponent implements OnInit {
   itensPorPagina = 10;
   paginaAtual: number = 1;
   turma: any[] = [];
+  matriculaspj: EditarMatriculasPJ | null = null;
+  matriculaspf: EditarMatriculasPF | null = null;
+  matriculaspedidos: EditarMatriculasPedidos| null = null;
 
 
   constructor(
@@ -58,8 +65,23 @@ export class ConsultarMatriculasFaturamentoPjComponent implements OnInit {
   }
 
  
+  setMatriculasPJ(matriculas: EditarMatriculasPJ): void {
+    this.matriculaspj = matriculas;
+    this.formEdicaoMatriculasPj.patchValue(matriculas); 
+               }
+
+    setMatriculasPF(matriculas: EditarMatriculasPF): void {
+    this.matriculaspf = matriculas;
+    this.formEdicaoMatriculasPf.patchValue(matriculas); 
+                           }
+
+    setMatriculasPedidos(matriculas: EditarMatriculasPedidos): void {
+    this.matriculaspedidos = matriculas;
+    this.formEdicaoMatriculasPedidos.patchValue(matriculas); 
+          }
 
   ngAfterViewInit(): void {
+
     if (this.planoSelect) {
       const selectElement = $(this.planoSelect.nativeElement) as any;
   
@@ -105,8 +127,8 @@ export class ConsultarMatriculasFaturamentoPjComponent implements OnInit {
         theme: 'bootstrap-5',
       }).on('change', () => {
         const selectedValue = String(selectElement.val());
-        this.formEdicaoMatriculasPedidos.get('idPedidos')?.setValue(selectedValue);
-        this.formEdicaoMatriculasPedidos.get('idPedidos')?.updateValueAndValidity();
+        this.formEdicaoMatriculasPedidos.get('idMatricula')?.setValue(selectedValue);
+        this.formEdicaoMatriculasPedidos.get('idMatricula')?.updateValueAndValidity();
       });
   
       const lastOptionValue = this.pedidos.length > 0 ? this.pedidos[this.pedidos.length - 1].idPedidos : '';
@@ -118,16 +140,10 @@ export class ConsultarMatriculasFaturamentoPjComponent implements OnInit {
     }
   }
 
-
-
-
-
-  
   ngOnInit(): void {
+
+
     this.consultarMatriculas();
-
-    
-
     this.httpClient.get('http://localhost:8082/api/funcionarios/api/funcionarios/todos').subscribe({
       next: (data: any) => {
         this.funcionarios = Object.values(data) as any[];
@@ -191,63 +207,15 @@ export class ConsultarMatriculasFaturamentoPjComponent implements OnInit {
       }
     });
     
- 
   }
 
-  setTurmas(m: any): void {
-    console.log('Dados recebidos:', m);
-    this.turmas = m;
-  
-    this.formEdicaoMatriculasPj.patchValue({
-      idMatricula: m.idMatricula,
-      idTurmas: m.turmas?.idTurmas || '',
-      idFuncionario: m.funcionario || '',
-      idfaturamento: m.idfaturamento || '',
-      venda: m.venda || '',
-      valor: m.valor || null,
-      status: m.status || '',
-      tipo_de_pagamento: m.tipo_de_pagamento || ''
-    });
-  }
-  
 
-
-
-  setTurmasEditarPedidos(m: any): void {
-    console.log('Dados recebidos:', m);
-    this.turmas = m;
-  
-    this.formEdicaoMatriculasPedidos.patchValue({
-      idMatricula: m.idMatricula,
-      idTurmas: m.turmas?.idTurmas || '',
-      idFuncionario: m.funcionario || '',
-      idPedidos: m.idPedidos || '',
-      venda: m.venda || '',
-      valor: m.valor || null,
-      status: m.status || '',
-      tipo_de_pagamento: m.tipo_de_pagamento || ''
-    });
-  }
 
   selecionarMes(mes: number): void {
     this.mesAtual = mes;
     this.consultarMatriculas();
   }
-  setTurmasPf(m: any): void {
-    console.log('Dados recebidos:', m);
-    this.turmas = m;
-  
-    this.formEdicaoMatriculasPf.patchValue({
-      idMatricula: m.idMatricula,
-      idTurmas: m.turmas?.idTurmas || '',
-      idpessoafisica: m.pessoafisica || '',
-      idfaturamentopf: m.idfaturamentopf || '',
-      venda: m.venda || '',
-      valor: m.valor || null,
-      status: m.status || '',
-      tipo_de_pagamento: m.tipo_de_pagamento || ''
-    });
-  }
+
 
 
   exibirMatriculas(matricula: any) {
@@ -268,18 +236,20 @@ export class ConsultarMatriculasFaturamentoPjComponent implements OnInit {
     valor: new FormControl(null as string | null, [Validators.required]),
     status: new FormControl('', [Validators.required]),
     tipo_de_pagamento: new FormControl('', [Validators.required]),
+    observacoes: new FormControl('', [Validators.required]),
+
   });
 
 
   formEdicaoMatriculasPedidos = new FormGroup({
     idMatricula: new FormControl('', [Validators.required]),
     idTurmas: new FormControl('', [Validators.required]),
-    idFuncionario: new FormControl('', [Validators.required]),
-    idPedidos: new FormControl('', [Validators.required]),
     venda: new FormControl('', [Validators.required]),
     valor: new FormControl(null as string | null, [Validators.required]),
     status: new FormControl('', [Validators.required]),
     tipo_de_pagamento: new FormControl('', [Validators.required]),
+    observacoes: new FormControl('', [Validators.required]),
+
   });
 
 
@@ -292,6 +262,8 @@ export class ConsultarMatriculasFaturamentoPjComponent implements OnInit {
     valor: new FormControl(null as string | null, [Validators.required]),
     status: new FormControl('', [Validators.required]),
     tipo_de_pagamento: new FormControl('', [Validators.required]),
+    observacoes: new FormControl('', [Validators.required]),
+
   });
 
 
@@ -305,16 +277,25 @@ export class ConsultarMatriculasFaturamentoPjComponent implements OnInit {
 
   onSubmitformEdicaoMatriculasPj(): void {
     //enviando uma requisição PUT para a api
-    this.httpClient.put('http://localhost:8082/api/matriculas/editar-matriculas-faturamento-pj',  this.formEdicaoMatriculasPj.value)
-      .subscribe({
-        next: (data: any) => {
-          this.mensagem = `Matricula Atualizada com sucesso!`;
+  //enviando uma requisição PUT para a api
+  this.httpClient.put('http://localhost:8082/api/matriculas/editar-matriculas-faturamento-pj',  this.formEdicaoMatriculasPj.value)
+  .subscribe({
+    next: (data: any) => {
+      this.mensagem = `Matricula Atualizada com sucesso!`;
 
-        },
-        error: (e) => {
-        }
-      });
-  }
+    },
+     error: (e) => {
+          
+      console.log(e.error);
+      if (e.error && e.error.message) {
+        // Exiba a mensagem de erro da API
+        this.mensagem = e.error.message;
+      } else {
+        // Se não houver uma mensagem de erro específica da API, exiba uma mensagem genérica
+        this.mensagem = 'Erro desconhecido ao realizar a matrícula.';
+      }
+    }
+  });  }
 
 
   onSubmitformEdicaoMatriculasPf(): void {
@@ -326,16 +307,25 @@ export class ConsultarMatriculasFaturamentoPjComponent implements OnInit {
 
         },
         error: (e) => {
+          
+          console.log(e.error);
+          if (e.error && e.error.message) {
+            // Exiba a mensagem de erro da API
+            this.mensagem = e.error.message;
+          } else {
+            // Se não houver uma mensagem de erro específica da API, exiba uma mensagem genérica
+            this.mensagem = 'Erro desconhecido ao realizar a matrícula.';
+          }
         }
       });
   }
 
   onSubmitformEdicaoMatriculasPedidos(): void {
     // Extraia os controles do formulário para facilitar o acesso
-    const { idMatricula, idPedidos, ...formData } = this.formEdicaoMatriculasPedidos.value;
+    const { idMatricula, ...formData } = this.formEdicaoMatriculasPedidos.value;
   
     // Construa a URL com os IDs de pedidos e matrícula no caminho
-    const url = `http://localhost:8082/api/matriculas/editarMatricula-pedidos/${idPedidos}?idPedidos=${idPedidos}&idMatricula=${idMatricula}`;
+    const url = `http://localhost:8082/api/matriculas/${idMatricula}`;
   
     // Adicione outros dados ao corpo da requisição
     const requestBody = {

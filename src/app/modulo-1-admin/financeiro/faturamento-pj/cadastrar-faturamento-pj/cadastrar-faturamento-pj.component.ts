@@ -61,6 +61,10 @@ export class CadastrarFaturamentoPjComponent implements OnInit {
       whatsapp: new FormControl('', [Validators.required]),
       emailfinanceiro: new FormControl('', [Validators.required, Validators.email]),
       observacoes: new FormControl('', [Validators.required]),
+      data_de_pagamento: new FormControl('', [Validators.required]),
+      forma_de_pagamento: new FormControl('', [Validators.required]),
+      parcelas: new FormControl('', [Validators.required]),
+
     });
 
     this.config.notFoundText = 'Custom not found';
@@ -130,7 +134,9 @@ export class CadastrarFaturamentoPjComponent implements OnInit {
   formatDates(): void {
     this.formFaturamentopj.patchValue({
       data_inicio: this.formatDate(this.formFaturamentopj.value.data_inicio),
-      data_fim: this.formatDate(this.formFaturamentopj.value.data_fim)
+      data_fim: this.formatDate(this.formFaturamentopj.value.data_fim),
+      data_de_pagamento: this.formatDate(this.formFaturamentopj.value.data_de_pagamento)
+
     });
   }
 

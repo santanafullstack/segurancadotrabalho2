@@ -27,6 +27,7 @@
                             <th>Funcionario</th>
                             <th>CPF</th>
                             <th>Curso</th>
+                            <th>Valido Até</th>
                             <th>Evidências</th>
                             <th>Operações</th>
 
@@ -40,6 +41,8 @@
                             <td>{{ m.funcionario?.nome }}</td>
                             <td>{{ m.funcionario?.cpf }}</td>
                             <td>{{ m.turmas?.curso?.curso }}</td> 
+                            <td>{{ m.turmas?.validadedocurso | date: 'dd/MM/yyyy'}}</td> <!-- Use o operador de navegação segura '?.' -->
+
                             <td>
 
                             

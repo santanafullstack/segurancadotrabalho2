@@ -65,7 +65,6 @@ import { CriarMatriculasPedidosComponent } from "./modulo-1-admin/turmas/matricu
 import { ConsultarMatriculasPedidosComponent } from "./modulo-1-admin/turmas/matricula/pedidos/consultar-matriculas-pedidos/consultar-matriculas-pedidos.component";
 import { CriarMatriculasFaturamentoPjComponent } from "./modulo-1-admin/turmas/matricula/faturamento-pj/criar-matriculas-faturamento-pj/criar-matriculas-faturamento-pj.component";
 import { GerarAutorizacaoComponent } from "./modulo-1-admin/certificado/autorizacao/gerar-autorizacao/gerar-autorizacao.component";
-import { ConsultaDeTurmasComponent } from "./modulo-1-admin/turmas/consulta-de-turmas/consulta-de-turmas.component";
 import { MatriculasPessoaFisicaGerarDocumentosComponent } from "./modulo-1-admin/certificado/matriculas/matriculas-pessoa-fisica-gerar-documentos/matriculas-pessoa-fisica-gerar-documentos.component";
 import { MatriculasPessoaJuridicaGerarDocumentosComponent } from "./modulo-1-admin/certificado/matriculas/matriculas-pessoa-juridica-gerar-documentos/matriculas-pessoa-juridica-gerar-documentos.component";
 import { GerarCertificadoPessoafisicaComponent } from "./modulo-1-admin/certificado/pessoafisica/gerar-certificado-pessoafisica/gerar-certificado-pessoafisica.component";
@@ -105,6 +104,15 @@ import { ListasAlunoParticularTerceiroDiaComponent } from "./perfil/perfil-aluno
 import { ListasAlunoParticularQuartoDiaComponent } from "./perfil/perfil-aluno/matriculas-aluno/listas/listas-aluno-particular-quarto-dia/listas-aluno-particular-quarto-dia.component";
 import { ListasAlunoParticularQuintoDiaComponent } from "./perfil/perfil-aluno/matriculas-aluno/listas/listas-aluno-particular-quinto-dia/listas-aluno-particular-quinto-dia.component";
 import { GerarAutorizacaoPerfilAlunoComponent } from "./perfil/perfil-aluno/matriculas-aluno/gerar-autorizacao-perfil-aluno/gerar-autorizacao-perfil-aluno.component";
+import { EditarMatriculaComponent } from "./modulo-1-admin/turmas/matricula/editar-matricula/editar-matricula.component";
+import { CriarCobrancaEmpresaPedidosComponent } from "./modulo-1-admin/financeiro/cobranca/empresa-pedidos/criar-cobranca-empresa-pedidos/criar-cobranca-empresa-pedidos.component";
+import { CriarCobrancaEmpresaFaturamentoComponent } from "./modulo-1-admin/financeiro/cobranca/empresa-faturamento/criar-cobranca-empresa-faturamento/criar-cobranca-empresa-faturamento.component";
+import { CriarCobrancaPessoaFisicaFaturamentoComponent } from "./modulo-1-admin/financeiro/cobranca/pessoa-fisica-faturamento/criar-cobranca-pessoa-fisica-faturamento/criar-cobranca-pessoa-fisica-faturamento.component";
+import { ConsultarTurmasPerfilEmpresaComponent } from "./perfil/perfil-empresa/turmas/consultar-turmas-perfil-empresa/consultar-turmas-perfil-empresa.component";
+import { ConsultarInstrutorPerfilEmpresaComponent } from "./perfil/perfil-empresa/instrutor/consultar-instrutor-perfil-empresa/consultar-instrutor-perfil-empresa.component";
+import { ConsultarTurmasPerfilAlunoComponent } from "./perfil/perfil-aluno/turmas/consultar-turmas-perfil-aluno/consultar-turmas-perfil-aluno.component";
+import { ConsultarInstrutorPerfilAlunoComponent } from "./perfil/perfil-aluno/instrutor/consultar-instrutor-perfil-aluno/consultar-instrutor-perfil-aluno.component";
+import { ConsultarTurmasPorUnidadesComponent } from "./modulo-1-admin/turmas/consultar-turmas-por-unidades/consultar-turmas-por-unidades.component";
 
 
 
@@ -131,6 +139,12 @@ const routes: Routes = [
     { path: 'cadastrar-faturamento-pf', component: CadastrarFaturamentoPfComponent, canActivate: [AuthGuardsMaster]},
     { path: 'editar-faturamento-pf/:id', component: EditarFaturamentoPfComponent , canActivate: [AuthGuardsMaster]},
     { path: 'consultar-faturamento-pf', component: ConsultarFaturamentoPfComponent , canActivate: [AuthGuardsMaster]},
+    { path: 'cadastrar-cobranca-empresa-faturamento/:id', component: CriarCobrancaEmpresaFaturamentoComponent, canActivate: [AuthGuardsMaster]},
+    { path: 'cadastrar-cobranca-empresa-pedidos/:id', component: CriarCobrancaEmpresaPedidosComponent, canActivate: [AuthGuardsMaster]},
+    { path: 'cadastrar-cobranca-pessoa-fisica-faturamento/:id', component: CriarCobrancaPessoaFisicaFaturamentoComponent, canActivate: [AuthGuardsMaster]},
+
+
+
 
 
     { path: 'gerar-certificado-pessoa-fisica', component: MatriculasPessoaFisicaGerarDocumentosComponent, canActivate: [AuthGuardsMaster] },
@@ -147,10 +161,20 @@ const routes: Routes = [
     { path: 'cadastrar-turmas', component: CadastrarTurmasComponent, canActivate: [AuthGuardsMaster] },
     { path: 'editar-turmas/:id', component: EditarTurmasComponent , canActivate: [AuthGuardsMaster]},
     { path: 'consultar-turmas', component: ConsultarTurmasComponent, canActivate: [AuthGuardsMaster]},
+    { path: 'consultar-turmas-por-unidades', component: ConsultarTurmasPorUnidadesComponent, canActivate: [AuthGuardsMaster]},
+
+    { path: 'consultar-turmas-empresa', component: ConsultarTurmasPerfilEmpresaComponent, canActivate: [AuthGuardsEmpresa]},
+    { path: 'consultar-turmas-perfil-aluno', component: ConsultarTurmasPerfilAlunoComponent, canActivate: [AuthGuardsAluno]},
+
+
+
+
 
     { path: 'consultar-cursos', component: ConsultarCursosComponent, canActivate: [AuthGuardsMaster]},
     { path: 'cadastrar-curso', component: CadastrarCursoComponent , canActivate: [AuthGuardsMaster]},
     { path: 'editar-curso/:id', component: EditarCursoComponent, canActivate: [AuthGuardsMaster]},
+    { path: 'consultar-instrutor-perfil-empresa', component: ConsultarInstrutorPerfilEmpresaComponent, canActivate: [AuthGuardsEmpresa]},
+    { path: 'consultar-instrutor-perfil-aluno', component: ConsultarInstrutorPerfilAlunoComponent, canActivate: [AuthGuardsAluno]},
 
 
     { path: 'cadastrar-instrutor', component: CadastrarInstrutorComponent, canActivate: [AuthGuardsMaster]},
@@ -180,6 +204,7 @@ const routes: Routes = [
 
     { path: 'cadastrar-matriculas-faturamentopf/:id', component: CriarMatriculasFaturamentoPfComponent, canActivate: [AuthGuardsMaster] },
     { path: 'consultar-matriculas-faturamentopf', component: ConsultarMatriculasFaturamentoPfComponent, canActivate: [AuthGuardsMaster] },
+    { path: 'editar-matricula/:id', component: EditarMatriculaComponent, canActivate: [AuthGuardsMaster] },
 
     
     { path: 'cadastrar-matriculas-faturamentopj/:id', component: CriarMatriculasFaturamentoPjComponent, canActivate: [AuthGuardsMaster]},

@@ -107,13 +107,13 @@ export class LoginAdminComponent implements OnInit {
         // Redireciona com base no perfil
         switch (response.perfil.nome.toLowerCase()) {
           case 'empresa':
-            window.location.href = "/perfil-empresa";
+            window.location.href = "/consultar-turmas-empresa";
             break;
           case 'aluno particular':
-            window.location.href = "/perfil-aluno";
+            window.location.href = "/consultar-turmas-perfil-aluno";
             break;
           case 'master':
-            window.location.href = "/perfil-master";
+            window.location.href = "/consultar-chamado";
             break;
           default:
             console.error('Perfil desconhecido:', response.perfil.nome);

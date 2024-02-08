@@ -233,4 +233,59 @@ export class ConsultarTurmasComponent implements AfterViewInit {
 
     this.consultarTurmasPorMesEAno(this.mesAtual, this.anoAtual);
   }
+
+  getStatusTurma(item: any): string {
+    console.log('turmaFechada:', item.turmaFechada);
+    return item.turmaFechada ? 'Turma Fechada' : 'Turma Aberta';
+  }
+  
+
+  getStatusCor(item: any): string {
+    console.log(item.turmaFechada); // Verifique se a função está retornando os valores esperados
+    return item.turmaFechada ? 'red' : 'green';
+  }
+  
+
+  getTableRowClass(item: any): string {
+    return item.turmaFechada ? 'table-white' : 'table-white';
+}
+
+
+  abrirTurma(idTurmas: string): void {
+    this.httpClient
+      .post(`http://localhost:8082/api/turmas/abrir/${idTurmas}`, {})
+      .subscribe({
+        next: (data: any) => {
+          this.mensagem = 'Turma aberta com sucesso!';
+        },
+        error: (e) => {
+          console.log(e.error);
+          if (e.error && e.error.message) {
+            this.mensagem = e.error.message;
+          } else {
+            this.mensagem = 'Erro desconhecido ao abrir turma.';
+          }
+        }
+      });
+  }
+  
+  fecharTurma(idTurmas: string): void {
+    this.httpClient
+      .post(`http://localhost:8082/api/turmas/fechar/${idTurmas}`, {})
+      .subscribe({
+        next: (data: any) => {
+          this.mensagem = 'Turma fechada com sucesso!';
+        },
+        error: (e) => {
+          console.log(e.error);
+          if (e.error && e.error.message) {
+            this.mensagem = e.error.message;
+          } else {
+            this.mensagem = 'Erro desconhecido ao fechar turma.';
+          }
+        }
+      });
+  }
+  
+
 }

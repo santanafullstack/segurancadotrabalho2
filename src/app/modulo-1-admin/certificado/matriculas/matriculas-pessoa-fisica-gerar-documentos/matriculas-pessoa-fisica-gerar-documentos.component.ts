@@ -27,7 +27,7 @@ export class MatriculasPessoaFisicaGerarDocumentosComponent  implements OnInit{
     'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
   ];
 
-  anoAtual: number = 2023;
+  anoAtual: number = 2024;
   mesAtual: number = 0; // Janeiro é o índice 0
   pedidos: any[] = [];
   faturamentos: any[] = [];

@@ -23,6 +23,7 @@
                     <table id="myTable" class="table table-sm table-hover">
                       <thead>
                         <tr>
+                          <th>QTD</th>
                           <th>Empresa</th>
                           <th>CNPJ</th>
                           <th>Status</th>
@@ -36,7 +37,8 @@
                         </tr>
                       </thead>
                       <tbody>      
-                        <tr *ngFor="let m of turmaSelecionada.matricula   | paginate: { itemsPerPage: itensPorPagina, currentPage: paginaAtual } | ngxSearchPipe:filtro.matriculas" >    
+                        <tr *ngFor="let m of turmaSelecionada.matricula  | paginate: { itemsPerPage: itensPorPagina, currentPage: paginaAtual } | ngxSearchPipe:filtro.matriculas; index as i">    
+                          <td>{{i + 1}}</td>
                           <td>{{ m.funcionario?.empresa?.nomefantasia }}</td>
                           <td>{{ m.funcionario?.empresa?.cnpj }}</td> 
                           <td>{{ m.status }}</td>
@@ -289,15 +291,17 @@ nextLabel="Próxima página"
                                     <th>Nivel</th>
                                     <th>Status</th>
                                     <th>Modalidade</th>
+                                    <th>CERT</th>
                                     <th>Unidade</th>
-                                    <th>Cert.</th>
-                                    <th>C.h</th>
+                                    <th>C.H</th>
+                                    <th>Disponibilidade</th>
                                     <th>Matriculas</th>
                                     <th>Turmas</th>
                                 </tr>
                             </thead>
                             <tbody>
-                             <tr *ngFor="let t of turmas">
+                             <tr *ngFor="let t of turmas" [class]="getTableRowClass(t)"
+                             >
 
 
                                     <td>{{t.numeroTurma}}</td>
@@ -308,10 +312,13 @@ nextLabel="Próxima página"
                                     <td>{{t.nivel}}</td>
                                     <td>{{t.status}}</td>
                                     <td>{{t.modalidade}}</td>
-                                    <td>{{t.unidadeDeTreinamento.unidade}}</td>                                   
+                                    <td>{{t.curso.modelo_certificado}}</td>
                                     <td>{{t.unidadeDeTreinamento.unidade}}</td>
                                     <td>{{t.cargahoraria}}</td>
                                    
+   <td [ngClass]="{'text-success': !t.turmaFechada, 'text-danger': t.turmaFechada}" style="font-size: larger; text-transform: uppercase;">
+    <strong>{{ getStatusTurma(t) }}</strong>
+  </td>
                                     <td>
                                       <button class="btn btn-success m-1 btn-sm dropdown-toggle" type="button"
                                       data-bs-toggle="dropdown" aria-expanded="false">
@@ -391,6 +398,16 @@ nextLabel="Próxima página"
          
 
                                             </li>
+                                            <li><a 
+
+                                            class="dropdown-item btn btn-sm btn-primary" 
+                                            (click)="abrirTurma(t.idTurmas)"
+                                            >Abrir Turmas</a></li>
+                                            <li><a 
+                                          
+                                              class="dropdown-item btn btn-sm btn-primary" 
+                                              (click)=" fecharTurma(t.idTurmas)"
+                                              >Fechar Turmas</a></li>
                                         </ul>
                                     </td>
                                 </tr>

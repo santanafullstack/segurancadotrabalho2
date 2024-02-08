@@ -69,7 +69,7 @@ export class CriarMatriculasFaturamentoPfComponent implements OnInit{
         console.log(e);
       }
     });
-    this.httpClient.get('http://localhost:8082/api/faturamentopf').subscribe({
+    this.httpClient.get('http://localhost:8089/api/relatório-financeiro/consultar-faturamento-pessoa-fisica').subscribe({
       next: (data: any) => {
         this.faturamentos = Object.values(data) as any[];
       },
@@ -104,6 +104,7 @@ formFaturamentoPf = new FormGroup({
   valor: new FormControl(null, [Validators.required]), // Change this to null (number)
   status: new FormControl('', [Validators.required]),
   tipo_de_pagamento: new FormControl('', [Validators.required]),
+  observacoes: new FormControl('', [Validators.required]),
 
 });
 

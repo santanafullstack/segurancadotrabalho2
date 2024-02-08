@@ -1,0 +1,118 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+  <div class="card mt-5">
+    <div class="card-body">
+      <form [formGroup]="formConsultarTurmas" (ngSubmit)="consultarTurmas()">
+       
+        <div class="row">
+          <div class="col-md-6 mt-3">
+            <label for="fim" class="form-label">Unidade de Treinmento</label>
+            <ng-select
+              [items]="unidades"
+              bindLabel="cnpj"
+              bindValue="idUnidadedetreinamento"
+              class="form-select custom-ng-select"
+              formControlName="unidadeId"
+              [ngClass]="{'is-invalid': formConsultarTurmas.get('idUnidadeDeTreinamento')?.invalid && formConsultarTurmas.get('idUnidadeDeTreinamento')?.touched}">
+              <ng-template ng-label-tmp let-item="item">
+                <div class="custom-bg" style="z-index: 1000;">
+                  {{ item.unidadedetreinamento | uppercase }}
+                  {{ item.cnpj | uppercase }}
+                  {{ item.unidade | uppercase }}
+                </div>
+              </ng-template>
+              <ng-template ng-option-tmp let-item="item">
+                <div>
+                  {{ item.unidadedetreinamento | uppercase }}
+                  {{ item.cnpj | uppercase }}
+                  {{ item.unidade | uppercase }}
+                </div>
+              </ng-template>
+            </ng-select>
+          </div>
+        
+          <div class="col-md-2 mt-3">
+            <label for="fim" class="form-label">Data de Inicio</label>
+            <input type="datetime-local" class="form-control" formControlName="inicio" id="inicio">
+          </div>
+        
+          <div class="col-md-2 mt-3">
+            <label for="fim" class="form-label">Data de Fim</label>
+            <input type="datetime-local" class="form-control" formControlName="fim" id="fim">
+          </div>
+          <div class="col-md-2 mt-5">
+            <button type="submit" class="btn btn-success">Buscar</button>
+          </div>
+        </div>
+
+      </form>
+      
+    </div>
+  </div>
+
+  <div class="card mt-5" id="card-to-print">
+    <div class="card-body text-center">
+      <strong>LISTA GERAL DE TURMAS </strong>
+      <div class="table-responsive mt-3">
+        <table class="table table-sm table-striped table-hover">
+          <ng-container *ngIf="turmas.length > 0; else noData">
+            <thead>
+              <tr>
+                <th style="font-size: 12px;">Nº</th>
+                <th style="font-size: 12px;">Data</th>
+                <th style="font-size: 12px;">Curso</th>
+                <th style="font-size: 12px;">Tipo</th>
+                <th style="font-size: 12px;">Nível</th>
+                <th style="font-size: 12px;">Modalidade</th>
+                <th style="font-size: 12px;">Tur</th>
+                <th style="font-size: 12px;">Mat</th>
+                <th style="font-size: 12px;">Observaçoes</th>
+                <th style="font-size: 12px;">Empresa</th>
+                <th style="font-size: 12px;">CNPJ</th>
+                <th style="font-size: 12px;">Aluno</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Se existirem turmas, itere sobre elas -->
+              <ng-container *ngFor="let t of turmas; let i = index">
+                <ng-container *ngIf="t.matricula.length > 0">
+                  <tr>
+                    <td style="font-size: 12px;">{{ i + 1 }}</td>
+                    <td style="font-size: 12px;">{{t.datainicio | date: 'dd/MM/yyyy'}} a {{t.datafim | date: 'dd/MM/yyyy'}}</td>
+                    <td style="font-size: 12px;">{{ t.curso?.curso || 'N/A' }}</td>
+                    <td style="font-size: 12px;">{{ t.tipo || 'N/A' }}</td>
+                    <td style="font-size: 12px;">{{ t.nivel || 'N/A' }}</td>
+                    <td style="font-size: 12px;">{{ t.modalidade || 'N/A' }}</td>
+                    <td style="font-size: 12px;">{{ t.numeroTurma || 'N/A' }}</td>
+                    <td style="font-size: 12px;">{{ t.matricula[0]?.numeroMatricula || 'N/A' }}</td> 
+                    <td style="font-size: 12px;">{{ t.matricula[0]?.observacoes || 'N/A' }}</td> 
+                    <td style="font-size: 12px;">{{ t.matricula[0]?.funcionario?.empresa?.razaosocial || 'N/A' }}</td>
+                    <td style="font-size: 12px;">{{ t.matricula[0]?.funcionario?.empresa?.cnpj || 'N/A' }}</td>
+                    <td style="font-size: 12px;">{{ t.matricula[0]?.funcionario?.nome }}{{ t.matricula[0]?.pessoafisica?.pessoafisica}}</td> 
+                  </tr>
+                </ng-container>
+              </ng-container>
+            </tbody>
+          </ng-container>
+          <!-- Se não houver turmas, exiba uma mensagem -->
+          <ng-template #noData>
+            <tbody>
+              <tr>
+                <td colspan="11">Não há dados disponíveis.</td>
+              </tr>
+            </tbody>
+          </ng-template>
+        </table>
+      </div>
+      <div class="row">
+
+        <div class="col-md-12 mt-1 mb-1 center">
+            <button (click)="printPage()">Gerar Lista Geral</button>
+        </div>
+    
+    </div>  
+</div>
+</div>
+</div>
+

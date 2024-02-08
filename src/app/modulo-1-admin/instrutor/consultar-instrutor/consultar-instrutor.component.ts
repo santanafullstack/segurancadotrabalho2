@@ -240,7 +240,7 @@ this.formEditarFormacao.patchValue(formacoes);
                       this.httpClient.post('http://localhost:8082/api/formacao', this.formCadastrarFormacao.value)
                       .subscribe({
                         next: (data: any) => {
-                          this.mensagem = `Contato Atualizada com sucesso!`;
+                          this.mensagem = `Formação cadastrada com sucesso !`;
                             this.formCadastrarFormacao.reset();       
                                            },
                         error: (e) => {
@@ -253,7 +253,7 @@ this.formEditarFormacao.patchValue(formacoes);
                       this.httpClient.put('http://localhost:8082/api/formacao', this.formEditarFormacao.value)
                       .subscribe({
                         next: (data: any) => {
-                          this.mensagem = `Contato Atualizada com sucesso!`;
+                          this.mensagem = `Formação Atualizada com sucesso !`;
                             this.formEditarFormacao.reset();       
                                            },
                         error: (e) => {
