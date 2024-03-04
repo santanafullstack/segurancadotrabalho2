@@ -26,8 +26,8 @@ export class ConsultarChamadoComponent implements OnInit  {
    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
  ];
  
- anoAtual: number = 2024;
- mesAtual: number = 0; // Janeiro é o índice 0
+ anoAtual: number = (new Date()).getFullYear();
+ mesAtual: number = (new Date()).getMonth();
   chamados: any [] = []
   pagina: number = 1; //contador da paginação da consulta
   filtro: any = { nome_contato: '' }; //filtro de pesquisa na consulta

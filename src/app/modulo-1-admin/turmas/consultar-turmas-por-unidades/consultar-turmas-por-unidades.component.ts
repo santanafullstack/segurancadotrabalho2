@@ -97,6 +97,9 @@ export class ConsultarTurmasPorUnidadesComponent implements OnInit {
     }
   }
   
+  calcularTotalLinhasPorTurma(turma: any): number {
+    return turma.matricula.length > 0 ? turma.matricula.length : 1;
+  }
   
 
   

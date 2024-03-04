@@ -40,7 +40,7 @@
         <div class="modal-footer">
           <div class="row mb-2">
             <div class="col-md-12">
-              <button type="button" class="btn btn-primary" 
+              <button type="button" class="btn btn-success" 
               
               (click)="IncluirAssinaturaSubmit()" data-bs-dismiss="modal">
                 Incluir Assinatura
@@ -69,10 +69,11 @@
                 <table class="table table-sm table-striped table-hover" datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger">
                     <thead>
                         <tr>
-                            <th>Data</th>
+                          <th>QTD</th>
                             <th>Pessoa Fisica</th>
-						    <th>CPF</th>
-						   <th>Telefone</th>
+						                <th>Telefone</th>
+                           <th>Usuário</th>
+                           <th>Senha</th>
                            <th>Assinatura</th>
                             <th>Operações</th>
 
@@ -80,11 +81,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let p of pessoafisica">
-                            <td>{{p.dataHoraCriacao | date: 'dd/MM/yyyy'}}</td>
+                        <tr *ngFor="let p of pessoafisica, index as i">
+                          <td>{{i + 1}}</td>
                             <td>{{p.pessoafisica}}</td>
-							<td>{{p.cpf}}</td>
                             <td>{{p.telefone_1}}</td>
+                            <td>{{p.email}}</td>
+                            <td>{{p.senha_sistema}}</td>
+
+
                             <td>    <button class="btn btn-sm btn-outline-danger me-2"
                                 data-bs-toggle="modal" 
                                 data-bs-target="#IncluirAssinaturaModal"
@@ -100,12 +104,16 @@
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Ações
                                 </button>
-                                <ul class="dropdown-menu btn-sm border dropdown-menu-primary">
+                                <ul class="dropdown-menu btn-sm border dropdown-menu-success">
+                                  <li> <a href="/cartao-de-acesso-cliente-pessoafisica"
+                                    class="dropdown-item btn btn-success"
+                                    [routerLink]="['/cartao-de-acesso-cliente-pessoafisica', p.idpessoafisica]"
+                                    >Gerar Cartão de Acesso</a></li>
                                     <li> <a href="/editar-pessoa-fisica"
-                                            class="dropdown-item btn btn-primary"
+                                            class="dropdown-item btn btn-success"
                                             [routerLink]="['/editar-pessoa-fisica', p.idpessoafisica]"
                                             >Editar</a></li>
-                                            <li><a class="dropdown-item btn btn-sm btn-primary"
+                                            <li><a class="dropdown-item btn btn-sm btn-success"
                                                 (click)="onDelete(p.idpessoafisica, p.pessoafisica)"
                                                 > Excluir</a>
                                        

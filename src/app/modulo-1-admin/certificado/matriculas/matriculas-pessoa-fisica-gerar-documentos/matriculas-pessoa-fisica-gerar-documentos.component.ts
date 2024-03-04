@@ -26,9 +26,8 @@ export class MatriculasPessoaFisicaGerarDocumentosComponent  implements OnInit{
     'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
     'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
   ];
-
-  anoAtual: number = 2024;
-  mesAtual: number = 0; // Janeiro é o índice 0
+  anoAtual: number = (new Date()).getFullYear();
+  mesAtual: number = (new Date()).getMonth();
   pedidos: any[] = [];
   faturamentos: any[] = [];
   faturamentopf: any[] = [];
@@ -211,14 +210,14 @@ export class MatriculasPessoaFisicaGerarDocumentosComponent  implements OnInit{
 
     formCadastrarEvidencias = new FormGroup({
     idMatricula: new FormControl('', [Validators.required]),
-    evidencias: new FormControl('', [Validators.required]),
+    nome: new FormControl('', [Validators.required]),
     descricao: new FormControl('', [Validators.required]),
        });
 
       formEditarEvidencias = new FormGroup({
       idMatricula: new FormControl('', [Validators.required]),
       idEvidencias: new FormControl('', [Validators.required]),
-      evidencias: new FormControl('', [Validators.required]),
+      nome: new FormControl('', [Validators.required]),
       descricao: new FormControl('', [Validators.required]),
           });
 
@@ -229,7 +228,20 @@ export class MatriculasPessoaFisicaGerarDocumentosComponent  implements OnInit{
             arquivo: new FormControl<null>(null)
             // Permitindo string ou null
           });
+      
           
+          setMatriculas(matriculas: ConsultarMatriculas): void {
+            this.matricula = matriculas;
+            this.formEditarEvidencias.patchValue(matriculas);  
+            this.formUploadEvidencia.patchValue(matriculas);  
+            this.formCadastrarEvidencias.patchValue(matriculas);  
+            this.EditarMatriculas.patchValue(matriculas);                      
+            }
+
+            EditarMatriculas = new FormGroup({
+              idMatricula: new FormControl('', [Validators.required]),
+              status: new FormControl('', [Validators.required]),
+            });
 
   get form(): any {
     return this.formCadastrarEvidencias.controls;
@@ -237,6 +249,7 @@ export class MatriculasPessoaFisicaGerarDocumentosComponent  implements OnInit{
     return this.formUploadEvidencia.controls;
     return this.formIncluirUsuario.controls;
     return this.IncluirUsuarios.controls;
+    return this.EditarMatriculas.controls;
   }
 
 
@@ -273,7 +286,7 @@ EditarEvidenciaSubmit(): void {
 
   .subscribe({
     next: (data: any) => {
-      this.mensagem = `Evidência cadastrada com sucesso!`;
+      this.mensagem = `Evidência editada com sucesso!`;
 
     },
     error: (e) => {
@@ -325,7 +338,7 @@ if (this.inserir_evidencias) {
     .put('http://localhost:8082/api/evidencias/incluir-evidencia', formData)
     .subscribe(
       (data: any) => {
-        this.mensagem = `Proficiência atualizada com sucesso!`;
+        this.mensagem = `Upload da Evidência realizado com sucesso!`;
         this.formUploadEvidencia.reset();
       },
       (error) => {
@@ -432,6 +445,28 @@ excluirUsuarioMatricula(idMatricula: string, idUsuario: string): void {
     }
   );
 }
+
+
+onSubmit(): void {
+  this.httpClient
+  .put('http://localhost:8082/api/matriculas/editar-matriculas-cliente', this.EditarMatriculas.value)
+
+  .subscribe({
+    next: (data: any) => {
+      this.mensagem = `Status da Matricula Alterado com Sucesso!`;
+      
+
+    },
+    error: (e) => {
+
+      console.log(e.error);
+
+    }
+  })
+
+
+}
+
 }
   
 

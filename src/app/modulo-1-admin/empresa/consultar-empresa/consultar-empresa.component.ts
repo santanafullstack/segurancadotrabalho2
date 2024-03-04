@@ -297,7 +297,7 @@
       this.httpClient.post('http://localhost:8081/api/contato', this.formCadastrarContato.value)
         .subscribe({
           next: (data: any) => {
-            this.mensagem = `Contato Atualizada com sucesso!`;
+            this.mensagem = `Contato cadastrado com sucesso!`;
               this.formCadastrarContato.reset();       
                              },
           error: (e) => {

@@ -5,6 +5,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CadastrarCurso } from 'src/app/models/cadastrar-curso.model';
 import { HttpHeaders } from '@angular/common/http';
 
+
+
+
 @Component({
   selector: 'app-consultar-cursos',
   templateUrl: './consultar-cursos.component.html',
@@ -22,11 +25,10 @@ export class ConsultarCursosComponent implements OnInit {
   incluiravaliacao: File | null = null;
   incluirmaterial: File | null = null;
   incluirgabarito: File | null = null;
-
   id: string = ''; // Inicialize o id
   mensagem: string = ''
   curso: CadastrarCurso | null = null;
-
+  cursoSelecionado: any = null;
  
     constructor(
       private httpClient: HttpClient,
@@ -35,7 +37,11 @@ export class ConsultarCursosComponent implements OnInit {
     ) {
     }
 
+    exibirCursos(curso: any): void {
+      this. cursoSelecionado = curso;
+    }
 
+    
     ngOnInit(): void {
       this.httpClient.get('http://localhost:8082/api/cursos'
       )

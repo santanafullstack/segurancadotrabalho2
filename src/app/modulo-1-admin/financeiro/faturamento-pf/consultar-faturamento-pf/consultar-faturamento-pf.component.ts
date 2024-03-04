@@ -22,8 +22,8 @@ export class ConsultarFaturamentoPfComponent  implements OnInit{
     'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
   ];
 
-  anoAtual: number = 2024;
-  mesAtual: number = 0; // Janeiro é o índice 0
+  anoAtual: number = (new Date()).getFullYear();
+  mesAtual: number = (new Date()).getMonth();
   faturamento: ConsultarFaturamentoPf| null = null;
   faturamentoSelecionado: any = null;
   faturamentopf: any [] = []
@@ -57,13 +57,9 @@ export class ConsultarFaturamentoPfComponent  implements OnInit{
   }
 
   consultarFaturamento(mes: number, ano: number): void {
-    const params = new HttpParams()
-      .set('mes', (mes + 1).toString())  // Ensure to convert to string
-      .set('ano', ano.toString());
+    const url = `http://localhost:8089/api/relatório-financeiro/api/relatorio-financeiro/faturamento/mes-ano?mes=${mes + 1}&ano=${ano}`;
   
-    const url = 'http://localhost:8089/api/relatório-financeiro/consultar-faturamento-por-mes-e-ano';
-  
-    this.httpClient.get(url, { params }).subscribe({
+    this.httpClient.get(url).subscribe({
       next: (data: any) => {
         this.faturamentopf = data;
       },
@@ -72,7 +68,8 @@ export class ConsultarFaturamentoPfComponent  implements OnInit{
       }
     });
   }
-
+  
+  
   setEditarCobranca(editarCobranca: EditarCobranca): void {
     this.editarCobranca = editarCobranca;
     this.formEditarCobranca.patchValue(this.faturamentoPessoaFisicaSelecionado);

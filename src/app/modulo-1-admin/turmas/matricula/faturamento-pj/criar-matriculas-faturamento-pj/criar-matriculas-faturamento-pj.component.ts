@@ -71,7 +71,7 @@ export class CriarMatriculasFaturamentoPjComponent implements OnInit{
       }
     });
 
-    this.httpClient.get('http://localhost:8082/api/faturamento').subscribe({
+    this.httpClient.get('http://localhost:8089/api/relatório-financeiro-empresa/faturamento-empresa-abertos').subscribe({
       next: (data: any) => {
         this.faturamentos = Object.values(data) as any[];
       },

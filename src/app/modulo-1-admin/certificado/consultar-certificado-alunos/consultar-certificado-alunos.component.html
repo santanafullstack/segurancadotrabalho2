@@ -14,11 +14,11 @@
                 <br>
 
 
-            <p class="text-black" style="font-size: 14px;"> A JB SERVIÇOS DE CONSULTORIA E ASSESSORIA EMPRESARIAL LTDA-ME, inscrita no CNPJ:
+            <p class="text-black" Align="justify" style="font-size: 14px;"> A JB SERVIÇOS DE CONSULTORIA E ASSESSORIA EMPRESARIAL LTDA-ME, inscrita no CNPJ:
                 25.108.808.0001-18 tendo sua sede na Rua Moncorvo Filho, 99 - Loja A - Centro do Rio de Janeiro, Certifica
                 que {{c?.funcionario?.nome}} (a) inscrito (a) no RG: {{c?.funcionario?.rg}} e no CPF: {{c?.funcionario?.cpf}} funcionário (a) da Empresa 
                 {{c?.funcionario?.empresa?.razaosocial}} sendo esta inscrita no CNPJ: {{c?.funcionario?.empresa.cnpj}} desenvolvendo este (a) a função de
-                {{c?.funcionario?.funcao.funcao}} participou do {{c?.turmas?.curso?.curso}} {{c?.turmas?.nivel}} {{c?.turmas?.descricao}} {{c?.turmas?.tipo}}
+                {{c?.funcionario?.funcao.funcao}} participou do {{c?.turmas?.curso?.curso}} {{c?.turmas?.nivel}} {{c?.turmas?.descricao}} {{c?.turmas?.tipo}} {{c?.turmas?.curso?.campo_especifico}} 
                 tendo este a carga Horária de {{c?.turmas?.cargahoraria}}. O Curso teve seu inicio no dia {{c?.turmas?.datainicio  | date: 'dd/MM/yyyy'}}
                 e teve o seu Término no dia {{c?.turmas?.datafim | date: 'dd/MM/yyyy'}}, sendo ele válido até o dia {{ c.turmas?.validadedocurso | date: 'dd/MM/yyyy'}} tendo ele a vigência de {{ c.turmas?.validade}}. O Curso foi realizado nos dias {{c?.turmas?.diasespecificos}}
                 na Unidade de Treinamento  {{c?.turmas?.unidadeDeTreinamento?.unidadedetreinamento}} inscrita no CNPJ: {{c?.turmas?.unidadeDeTreinamento?.cnpj}} e localizada na {{c?.turmas?.unidadeDeTreinamento?.endereco?.logradouro}},
@@ -76,7 +76,6 @@
                     </div>
 
                     <div class="col-md-3" style="flex: 0 0 auto; min-width: 0; font-size: 12px;">
-                        <br>
 
                         <strong> {{c?.turmas?.unidadeDeTreinamento?.endereco?.localidade}},
                             {{c?.turmas?.dia}}
@@ -85,7 +84,6 @@
 
 
                         </strong>
-                        <br>
 
                     </div>
                     <br>
@@ -112,7 +110,7 @@
 
                         </div>
                         <div class="col-md-3" style="flex: 0 0 auto; min-width: 0; font-size: 12px;">
-                            <img *ngIf="c?.turmas?.instrutores[1]?.assinatura_instrutor" [src]="'data:image/png;base64,' + c?.turmas?.instrutores[0]?.assinatura_instrutor" />
+                            <img *ngIf="c?.turmas?.instrutores[1]?.assinatura_instrutor" [src]="'data:image/png;base64,' + c?.turmas?.instrutores[1]?.assinatura_instrutor" />
                             <strong>  <hr style="background-color: black;"> </strong>
                             <strong>Instrutor (a)</strong> 
                             <br>
@@ -132,7 +130,7 @@
                     
                         <div class="col-md-3" style="flex: 0 0 auto; min-width: 0; font-size: 12px;">
                             
-                            <img *ngIf="c?.turmas?.instrutores[2]?.assinatura_instrutor" [src]="'data:image/png;base64,' + c?.turmas?.instrutores[1]?.assinatura_instrutor" />
+                            <img *ngIf="c?.turmas?.instrutores[2]?.assinatura_instrutor" [src]="'data:image/png;base64,' + c?.turmas?.instrutores[2]?.assinatura_instrutor" />
                             <hr style="background-color: black;">
                             <strong>Instrutor (a)</strong> 
                             <br>
@@ -151,7 +149,7 @@
                         </div>
                         <div class="col-md-3" style="flex: 0 0 auto; min-width: 0; font-size: 12px;">
                             
-                            <img *ngIf="c?.turmas?.instrutores[3]?.assinatura_instrutor" [src]="'data:image/png;base64,' + c?.turmas?.instrutores[1]?.assinatura_instrutor" />
+                            <img *ngIf="c?.turmas?.instrutores[3]?.assinatura_instrutor" [src]="'data:image/png;base64,' + c?.turmas?.instrutores[3]?.assinatura_instrutor" />
                             <hr style="background-color: black;">
                             <strong>Instrutor (a)
                             <br>
@@ -210,7 +208,7 @@
     </div>
     <div class="row">
 
-        <div class="col-12 p-3" style="font-size: 14px;">
+        <div class="col-12 p-3" Align="justify"  style="font-size: 14px;">
            <P>{{c?.turmas?.curso.conteudo}}</P>
         </div>
 

@@ -28,7 +28,7 @@ export class CriarMatriculasFaturamentoPfComponent implements OnInit{
     private config: NgSelectConfig
   ) {
 
-    this.config.notFoundText = 'Custom not found';
+    this.config.notFoundText = 'Não encontrado';
     this.config.appendTo = 'body';
     this.config.bindValue = 'value';
   }
@@ -69,7 +69,7 @@ export class CriarMatriculasFaturamentoPfComponent implements OnInit{
         console.log(e);
       }
     });
-    this.httpClient.get('http://localhost:8089/api/relatório-financeiro/consultar-faturamento-pessoa-fisica').subscribe({
+    this.httpClient.get('http://localhost:8089/api/relatório-financeiro/pessoa-fisica-aberto').subscribe({
       next: (data: any) => {
         this.faturamentos = Object.values(data) as any[];
       },

@@ -42,7 +42,7 @@ export class CriarChamadoComponent {
 
       onSubmit(): void {
         this.httpClient
-        .post('http://localhost:8083/api/chamados',
+        .post('http://jesse3488.c35.integrator.host/chamados',
         this.formChamado.value
        
 

@@ -41,6 +41,7 @@ export class EditarTurmasComponent implements OnInit {
       cargahoraria: ['', Validators.required],
       modalidade: ['', Validators.required],
       status: ['', Validators.required],
+      instrutor: ['', Validators.required],
       descricao: ['', Validators.required],
       diasespecificos: ['', Validators.required],
       tipo: ['', Validators.required],
@@ -54,10 +55,11 @@ export class EditarTurmasComponent implements OnInit {
       terceirodia: ['', Validators.required],
       quartodia: ['', Validators.required],
       quintodia: ['', Validators.required],
+      observacoes: ['', Validators.required],
 
     });
 
-    this.config.notFoundText = 'Custom not found';
+    this.config.notFoundText = 'Não encontrado';
     this.config.appendTo = 'body';
     this.config.bindValue = 'value';
   }
@@ -193,7 +195,9 @@ export class EditarTurmasComponent implements OnInit {
     { value: 'Segurança em Trabalhos em Altura' },
     { value: 'Segurança e Saúde no Trabalho em Empresas de Abate e Processamento de Carnes e Derivados' },
     { value: 'Segurança e Saúde em Plataformas de Petróleo' },
-    { value: 'Atividades de Limpeza Urbana e Manejo de Resíduos Sólidos' }
+    { value: 'Atividades de Limpeza Urbana e Manejo de Resíduos Sólidos' },
+    { value: 'Gestão da Saúde e Segurança do Trabalho' }
+
   ];
 
   descricaoOptionsCargaHoraria = [
@@ -266,5 +270,18 @@ mesOptions = [
   'Dezembro'
 ];
 anoOptions = Array.from({ length: 100 }, (_, index) => String(2022 + index));
+
+
+customMatchFn(term: string, item: any) {
+  // Implemente a lógica de correspondência personalizada aqui
+  return item.cnpj.toLowerCase().includes(term.toLowerCase());
+}	
+
+customMatchFn1(term: string, item: any) {
+  // Implemente a lógica de correspondência personalizada aqui
+  return item.curso.toLowerCase().includes(term.toLowerCase());
+}	
+
+
 
 }  

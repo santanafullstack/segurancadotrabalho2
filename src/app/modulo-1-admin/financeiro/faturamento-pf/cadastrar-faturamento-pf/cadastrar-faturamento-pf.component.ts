@@ -97,7 +97,6 @@ export class CadastrarFaturamentoPfComponent {
 
   onSubmit(): void {
     if (this.formFaturamentopf.valid) {
-      // Formate as datas para o formato ISO 8601
       const dataInicio = this.formatDate(this.formFaturamentopf.value.data_inicio);
       const dataFim = this.formatDate(this.formFaturamentopf.value.data_fim);
       const data_de_Pagamento = this.formatDate(this.formFaturamentopf.value.data_de_pagamento);
@@ -130,9 +129,7 @@ export class CadastrarFaturamentoPfComponent {
           }
         });
 
-    } else {
-      // Realize alguma ação ou exiba uma mensagem de erro se o formulário for inválido
-    }
+    } 
   }
 
 

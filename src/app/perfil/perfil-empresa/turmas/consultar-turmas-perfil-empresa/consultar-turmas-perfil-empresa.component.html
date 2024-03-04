@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-body">
 
-          <div class="modal" tabindex="-1"  id="verMatriculasModal">
+          <div class="modal" tabindex="-1"  id="verCursosModal">
             <div class="modal-dialog modal-xl">
               <div class="modal-content">
                 <div class="modal-header">
@@ -12,62 +12,48 @@
                 </div>
                 <div class="modal-body">    
                   <div *ngIf="turmaSelecionada">
-                    <h5>Matrículas da Turma de Número {{ turmaSelecionada.numeroTurma }}, do {{ turmaSelecionada.curso.curso }}</h5>
-                    <div class="row">
-                      <div class="col-md-6 mt-3">
+                    <strong> Turma {{ turmaSelecionada.numeroTurma }}</strong>
+                    <hr>
 
-                      </div>
-                     
-                    </div>
-                    <table id="myTable" class="table table-sm table-hover">
-                      <thead>
-                        <tr>
-                          <th>QTD</th>
-                          <th>Empresa</th>
-                          <th>CNPJ</th>
-                          <th>Status</th>
-                          <th>Matrícula</th>
-                          <th>Venda</th>
-                          <th>Valor</th>
-                          <th>Particular</th>
-                          <th>CPF</th>
-                          <th>Funcionário</th>
-                          <th>CPF Funcionário</th>
-                        </tr>
-                      </thead>
-                      <tbody>      
-                        <tr *ngFor="let m of turmaSelecionada.matricula  | paginate: { itemsPerPage: itensPorPagina, currentPage: paginaAtual } | ngxSearchPipe:filtro.matriculas; index as i">    
-                          <td>{{i + 1}}</td>
-                          <td>{{ m.funcionario?.empresa?.nomefantasia }}</td>
-                          <td>{{ m.funcionario?.empresa?.cnpj }}</td> 
-                          <td>{{ m.status }}</td>
-                          <td>{{ m.numeroMatricula }}</td>
-                          <td>{{ m.venda }}</td>
-                          <td>{{ m?.valor }}</td>
-                          <td>{{ m.pessoafisica?.pessoafisica }}</td>
-                          <td>{{ m.pessoafisica?.cpf }}</td>
-                          <td>{{ m.funcionario?.nome }}</td>
-                          <td>{{ m.funcionario?.cpf }}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+                    <strong>{{ turmaSelecionada.curso.curso }} {{ turmaSelecionada.curso.descricao }} {{ turmaSelecionada.tipo }} {{ turmaSelecionada.nivel }} carga horária de {{ turmaSelecionada.cargahoraria }}</strong>
+                   <hr>
+                
+                  <strong>Horários</strong>
+                  <p>Todos os nossos cursos na unidade Rio de Janeiro iniciam as 8:00 Horas. Temos um Intervalo de 10:00 as 10:20 e paramos
+                    para o almoço de 12:00 as 13:00 e Voltamos até o Horário das 17:00 Horas  </p>
+
+                    <p>Todos os nossos cursos na unidade São Paulo iniciam as 9:00 Horas. Temos um Intervalo de 10:00 as 10:20 e paramos
+                      para o almoço de 12:00 as 13:00 e Voltamos até o Horário das 17:30 Horas  </p>
+
+                      <p>Todos os nossos cursos na Empresa Parceira iniciam as 9:00 Horas. Temos um Intervalo de 10:00 as 10:20 e paramos
+                        para o almoço de 12:00 as 13:00 e Voltamos até o Horário das 17:30 Horas  </p>
+                 <hr>
+                    <strong>Conteúdo Programático do Curso</strong>
+                    <p>{{ turmaSelecionada.curso.conteudo}}</p>
+                    <hr>
+                    <strong>Instrutor {{ turmaSelecionada.instrutor}}</strong>
+                    <hr>
+                    <strong>Data do Curso: Curso iniciando no dia {{turmaSelecionada.datainicio | date: 'dd/MM/yyyy'}} tendo seu
+                      término no dia {{turmaSelecionada.datafim | date: 'dd/MM/yyyy'}}  </strong>
+                    
+                    <hr>
+                    <strong>Validade do Curso de {{turmaSelecionada.validade}}. Curso Vigente até o dia {{turmaSelecionada.validadedocurso | date: 'dd/MM/yyyy'}} </strong>
+                 
+                    <hr>
+
+                    <strong>Local do Curso: O Curso será realizado na {{turmaSelecionada.unidadeDeTreinamento.unidadedetreinamento}} {{turmaSelecionada.unidadeDeTreinamento.unidade}} 
+                      na  {{turmaSelecionada.unidadeDeTreinamento.endereco.logradouro }}, {{turmaSelecionada.unidadeDeTreinamento.endereco.numero }} {{turmaSelecionada.unidadeDeTreinamento.endereco.complemento }}
+                      {{turmaSelecionada.unidadeDeTreinamento.endereco.bairro }}
+                      {{turmaSelecionada.unidadeDeTreinamento.endereco.localidade }}
+                      {{turmaSelecionada.unidadeDeTreinamento.endereco.uf}}       
+                      Cep: {{turmaSelecionada.unidadeDeTreinamento.endereco.cep }}     </strong>
+                    
+                    <hr>
+
                   <div class="text-center">
                   </div>
                 </div>
-                <div class="modal-footer">
-                  			  
-                    Quantidade de Alunos para esta Turma:  {{ turmaSelecionada?.matricula?.length || 0 }} Alunos Matriculados
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <pagination-controls 
-(pageChange)="paginaAtual = $event"
-previousLabel="Página anterior"
-nextLabel="Próxima página"
-[maxSize]="5" 
-[itemsPerPage]="itensPorPagina" 
-></pagination-controls>         
-
-</div>   
+        
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                 </div>
               </div>
@@ -77,145 +63,8 @@ nextLabel="Próxima página"
 
           
 
-          <div class="modal" tabindex="-1"  id="ConsultarInstrutores"  >
-            <div class="modal-dialog modal-xl">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title"></h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>                
-                <div class="modal-body">    
-                  <div *ngIf="turmaSelecionada">
-                    <h5>Instrutores da Turma do  {{ turmaSelecionada.curso.curso }}</h5>
-                    <table id="consulta_empresas" class="table table-sm table-hover">
-                    <thead>
-                        <tr>
-                            <th>Instrutor</th>
-                            <th>RG</th>
-                            <th>CPF</th>
-                            <th>Curso</th>
+        
 
-                        </tr>
-                    </thead>
-                        <tbody>      
-                          <tr *ngFor="let it of turmaSelecionada.instrutores let i = index" >    
-                              <td>{{ it.instrutor }}</td>
-                              <td>{{ it.rg}}</td>
-                              <td>{{ it.cpf}}</td>
-                              <td>{{ turmaSelecionada.curso.curso }}</td>
-
-
-                              <td>
-                           
-
-                              </td>                                               
-                        </table>                                 
-              </div>   
-       
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                </div>                  
-              </div>
-            </div>
-          </div>
-
-
-          <div class="modal fade" id="incluirInstrutor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar Instrutores a esta Turma</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <div *ngIf="mensagem" class="alert alert-info alert-dismissible fade show" role="alert">
-                    <strong>{{ mensagem }}</strong>
-                    <button type="button" class="btn-close" aria-label="Close" (click)="mensagem = ''"></button>
-                  </div>
-                 
-                 
-                  <form [formGroup]="formIncluirInstrutor" (ngSubmit)="IncluirInstrutorSubmit()">
-                    <input type="hidden" formControlName="idTurmas" />       
-                    <div formArrayName="instrutores">
-                      <div *ngFor="let item of formInstrutores.controls; let i = index">
-                        <div class="row mb-2" [formGroupName]="i">
-                          <div class="col-md-8">
-                            <label for="formFile" class="form-label">Instrutor</label>
-                            <select class="form-select" formControlName="idinstrutor">
-                                <option [value]="i.idinstrutor" *ngFor="let i of instrutores">
-                                  {{ i.instrutor| uppercase }}
-                                  {{ i.rg| uppercase }}
-                                  {{ i.cpf | uppercase }} 
-                                </option>
-                              </select>
-                        </div>	
-
-                        
-
-                            <div class="col-md-4">
-                              <div class="mt-4">
-                                <button
-                                  type="button"
-                                  class="btn btn-outline-danger"
-                                  (click)="removerInstrutor(i)"
-                                >
-                                  Remover
-                                </button>
-                              </div>
-                            </div>
-
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="mt-4">
-                        <button
-                          class="btn btn-outline-primary"
-                          type="button"
-                          (click)="adicionarIntrutor()"
-                        >
-                          Adicionar Instrutor
-                        </button>
-                        &nbsp;
-                        <button
-                          type="button"
-                          class="btn btn-outline-danger"
-                          [disabled]="formInstrutores.length == 0"
-                          (click)="removerUltimoInstrutor()"
-                        >
-                          Remover último Instrutor
-                        </button>
-
-                        <button
-                        class="btn btn-outline-primary m-1"
-                        type="button"
-                        (click)="IncluirInstrutorSubmit()"
-                      >
-                        Salvar Instrutores
-                      </button>
-
-                      </div>
-                    </div>
-
-
-                    <div class="modal-footer">
-                      <div class="row mb-2">
-                        <div class="col-md-12">
-                      
-                        </div>
-                      </div>
-                    </div>
-                  
-                  </form>
-
-
-
-                </div>
-              </div>
-            </div>
-          </div>
-          
             <div>
                 <div class="row mb-2 mt-4">
 
@@ -282,10 +131,15 @@ nextLabel="Próxima página"
                                     <th>Modalidade</th>
                                     <th>Unidade</th>
                                     <th>C.H</th>
+                                    <th>Status</th>
+                                    <th>Operaçoes</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                             <tr *ngFor="let t of turmas, index as i">
+
+                              <tr *ngFor="let t of turmas | paginate: { itemsPerPage: itensPorPagina, currentPage: paginaAtual }, index as i" [class]="getTableRowClass(t)">
+ 
                                 <td> {{i+1}}</td>
                                     <td>Nº {{t.numeroTurma}}</td>
                                     <td>{{t.datainicio | date: 'dd/MM/yyyy'}}</td>
@@ -297,8 +151,53 @@ nextLabel="Próxima página"
                                     <td>{{t.modalidade}}</td>
                                     <td>{{t.unidadeDeTreinamento.unidade}}</td>                                   
                                     <td>{{t.cargahoraria}}</td>
-                                   
+                    
+   <td [ngClass]="{'text-success': !t.turmaFechada, 'text-danger': t.turmaFechada}" style="font-size: larger; text-transform: uppercase;">
+    <strong>{{ getStatusTurma(t) }}</strong> </td>
+
+    <td>
+
+      <button class="btn btn-success m-1 btn-sm dropdown-toggle" type="button"
+      data-bs-toggle="dropdown" aria-expanded="false">
+    Ações
+  </button>
+
+
+  <ul class="dropdown-menu btn-sm border dropdown-menu-success">
+
+
+
+      
+
+<li><a  class="dropdown-item btn btn-success" 
+
+data-bs-toggle="modal" 
+      data-bs-target="#verCursosModal"
+       data-bs-whatever="@mdo"
+        (click)="exibirInstrutores(t)"   
+
+>Ver Ementa do Curso</a></li>
+
+<li><a  class="dropdown-item btn btn-success" 
+
+[routerLink]="['/criar-matricula-meu-funcionario', t.idTurmas]"
+
+        (click)="exibirInstrutores(t)"   
+
+>Fazer Matriculas</a></li>
+
+
+         
+          
+
+  </ul>
+
+
+
+    </td>
+
                                   
+
 
 
                   
@@ -321,15 +220,21 @@ nextLabel="Próxima página"
                                 </script>
                             </tbody>
                              
-                  <tfoot>
-                    <tr>
-                      <td colspan="5">
-
-                        Quantidade de Turmas: {{(turmas).length}}
-                     
-                                                </td>
-                  </tr>
-              </tfoot>
+                            <tfoot>
+                              <tr>
+                                <td colspan="5">
+                  
+                                Quantidade de Turmas: {{(turmas).length}}
+                                <pagination-controls 
+                      (pageChange)="paginaAtual = $event"
+                      previousLabel="Página anterior"
+                      nextLabel="Próxima página"
+                      [maxSize]="5" 
+                      [itemsPerPage]="itensPorPagina" 
+                    ></pagination-controls>         
+                                            </td>
+                              </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>

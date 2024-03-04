@@ -14,11 +14,11 @@
                     </div>
                     <div class="modal-body">    
                       <div *ngIf="pedidoSelecionado">
-                        <h5>Matrículas do Pedido de número: {{ pedidoSelecionado.numerodopedido }}</h5>
-                        <h5>Valor Total do Pedido: {{ pedidoSelecionado.valor }}</h5>
-                        <h5>Creditos Restantes: {{ pedidoSelecionado.creditos }}</h5>
-                        <h5>Matriculas Realizadas neste pedido: {{ pedidoSelecionado.matriculasrealizadas }}</h5>
-                        <h5>Valor Total Consumido: {{ pedidoSelecionado?.total || 0 }}</h5>
+                       <p> <strong>Matrículas do Pedido de número: {{ pedidoSelecionado.numerodopedido }}</strong></p>
+                       <p> <strong>Valor Total do Pedido: R$ {{ pedidoSelecionado.valor }},00</strong></p>
+                       <p> <strong>Creditos Restantes: {{ pedidoSelecionado.creditos }}</strong></p>
+                       <p> <strong>Matriculas Realizadas neste pedido: {{ pedidoSelecionado.matriculasrealizadas }}</strong></p>
+                       <p> <strong>Valor Total Consumido: {{ pedidoSelecionado?.total || 0 }}</strong></p>
 
                         <div class="row">
                           <div class="col-md-6 mt-3">
@@ -141,7 +141,7 @@
 							<th>matriculas</th>
 							<th>comprador</th>
 							<th>telefone</th>
-              <th>Status</th>
+              <th>Status do Pedido</th>
 
                             <th>Operações</th>
 

@@ -125,6 +125,28 @@ import { ConsultarInstrutorPerfilEmpresaComponent } from './perfil/perfil-empres
 import { ConsultarTurmasPerfilAlunoComponent } from './perfil/perfil-aluno/turmas/consultar-turmas-perfil-aluno/consultar-turmas-perfil-aluno.component';
 import { ConsultarInstrutorPerfilAlunoComponent } from './perfil/perfil-aluno/instrutor/consultar-instrutor-perfil-aluno/consultar-instrutor-perfil-aluno.component';
 import { ConsultarTurmasPorUnidadesComponent } from './modulo-1-admin/turmas/consultar-turmas-por-unidades/consultar-turmas-por-unidades.component';
+import { ConsultarEmpresasComponent } from './perfil/perfil-empresa/empresa-cliente/consultar-empresas/consultar-empresas.component';
+import { CadastrarFuncionarioPerfilempresaComponent } from './perfil/perfil-empresa/funcionariosempresa/cadastrar-funcionario-perfilempresa/cadastrar-funcionario-perfilempresa.component';
+import { EditarFuncionarioPerfilempresaComponent } from './perfil/perfil-empresa/funcionariosempresa/editar-funcionario-perfilempresa/editar-funcionario-perfilempresa.component';
+import { CadastrarFuncaoPerfilempresaComponent } from './perfil/perfil-empresa/funcionariosempresa/cadastrar-funcao-perfilempresa/cadastrar-funcao-perfilempresa.component';
+import { ConsultarFuncaoPerfilempresaComponent } from './perfil/perfil-empresa/funcionariosempresa/consultar-funcao-perfilempresa/consultar-funcao-perfilempresa.component';
+import { TurmasCriarMatriculaPerfilEmpresaComponent } from './perfil/perfil-empresa/turmas-criar-matricula-perfil-empresa/turmas-criar-matricula-perfil-empresa.component';
+import { ConsultarFaturamentoPerfilEmpresaComponent } from './perfil/perfil-empresa/financeiro/consultar-faturamento-perfil-empresa/consultar-faturamento-perfil-empresa.component';
+import { GerarRelatorioFaturamentoPerfilEmpresaComponent } from './perfil/perfil-empresa/financeiro/gerar-relatorio-faturamento-perfil-empresa/gerar-relatorio-faturamento-perfil-empresa.component';
+import { PedidosDeComprasPerfilEmpresaComponent } from './perfil/perfil-empresa/financeiro/pedidos-de-compras-perfil-empresa/pedidos-de-compras-perfil-empresa.component';
+import { GerarRelatoriosPedidosDeComprasPerfilEmpresaComponent } from './perfil/perfil-empresa/financeiro/gerar-relatorios-pedidos-de-compras-perfil-empresa/gerar-relatorios-pedidos-de-compras-perfil-empresa.component';
+import { FazerMatriculasPedidosDeComprasPerfilEmpresaComponent } from './perfil/perfil-empresa/financeiro/fazer-matriculas-pedidos-de-compras-perfil-empresa/fazer-matriculas-pedidos-de-compras-perfil-empresa.component';
+import { GerarAcessoClienteEmpresaComponent } from './modulo-1-admin/empresa/gerar-acesso-cliente-empresa/gerar-acesso-cliente-empresa.component';
+import { GerarAcessoClientePessoafisicaComponent } from './modulo-1-admin/pessoa-fisica/gerar-acesso-cliente-pessoafisica/gerar-acesso-cliente-pessoafisica.component';
+import { ConsultarDadosAlunoParticularComponent } from './perfil/perfil-aluno/dados-aluno/consultar-dados-aluno-particular/consultar-dados-aluno-particular.component';
+import { ConsultarFaturamentoAlunoComponent } from './perfil/perfil-aluno/dados-aluno/consultar-faturamento-aluno/consultar-faturamento-aluno.component';
+import { RelatorioFaturamentoAlunoComponent } from './perfil/perfil-aluno/dados-aluno/relatorio-faturamento-aluno/relatorio-faturamento-aluno.component';
+import { CriarMatriculasAlunoParticularComponent } from './perfil/perfil-aluno/dados-aluno/criar-matriculas-aluno-particular/criar-matriculas-aluno-particular.component';
+import { EditarMatriculasAlunoParticularComponent } from './perfil/perfil-aluno/dados-aluno/editar-matriculas-aluno-particular/editar-matriculas-aluno-particular.component';
+import { GerarCertificadoSemSerAssinadoComponent } from './modulo-1-admin/certificado/gerar-certificado-sem-ser-assinado/gerar-certificado-sem-ser-assinado.component';
+import { ConsultarCursosEmpresaComponent } from './perfil/perfil-empresa/consultar-cursos-empresa/consultar-cursos-empresa.component';
+import { ConsultarCursosAlunoComponent } from './perfil/perfil-aluno/consultar-cursos-aluno/consultar-cursos-aluno.component';
+import { GerarCertificadoSemAssinarPessoaFisicaComponent } from './modulo-1-admin/certificado/gerar-certificado-sem-assinar-pessoa-fisica/gerar-certificado-sem-assinar-pessoa-fisica.component';
 
 
 @NgModule({
@@ -243,6 +265,29 @@ import { ConsultarTurmasPorUnidadesComponent } from './modulo-1-admin/turmas/con
     ConsultarTurmasPerfilAlunoComponent,
     ConsultarInstrutorPerfilAlunoComponent,
     ConsultarTurmasPorUnidadesComponent,
+    ConsultarEmpresasComponent,
+    CadastrarFuncionarioPerfilempresaComponent,
+    EditarFuncionarioPerfilempresaComponent,
+    CadastrarFuncaoPerfilempresaComponent,
+
+    ConsultarFuncaoPerfilempresaComponent,
+     TurmasCriarMatriculaPerfilEmpresaComponent,
+     ConsultarFaturamentoPerfilEmpresaComponent,
+     GerarRelatorioFaturamentoPerfilEmpresaComponent,
+     PedidosDeComprasPerfilEmpresaComponent,
+     GerarRelatoriosPedidosDeComprasPerfilEmpresaComponent,
+     FazerMatriculasPedidosDeComprasPerfilEmpresaComponent,
+     GerarAcessoClienteEmpresaComponent,
+     GerarAcessoClientePessoafisicaComponent,
+     ConsultarDadosAlunoParticularComponent,
+     ConsultarFaturamentoAlunoComponent,
+     RelatorioFaturamentoAlunoComponent,
+     CriarMatriculasAlunoParticularComponent,
+     EditarMatriculasAlunoParticularComponent,
+     GerarCertificadoSemSerAssinadoComponent,
+     ConsultarCursosEmpresaComponent,
+     ConsultarCursosAlunoComponent,
+     GerarCertificadoSemAssinarPessoaFisicaComponent,
     
   ],
   imports: [

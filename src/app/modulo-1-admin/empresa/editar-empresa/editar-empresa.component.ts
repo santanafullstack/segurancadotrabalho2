@@ -1,7 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators} from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+import { AuthenticationHelper } from 'src/app/helpers/authentication.helper';
+import * as CryptoJS from 'crypto-js';
+import { environment } from 'src/environments/environment.development';
+import * as $ from 'jquery';
+import 'select2'; // Adicione esta importação
+import { NgSelectConfig } from '@ng-select/ng-select';
+
 
 @Component({
   selector: 'app-editar-empresa',
@@ -9,7 +16,12 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./editar-empresa.component.css']
 })
 export class EditarEmpresaComponent {
+  
+  @ViewChild('planoSelect') planoSelect!: ElementRef;
+
+  usuarios: any [] = []
   mensagem: string = '';
+  mensagemErro: string = '';
 
   contatos: any [] = []
 
@@ -33,7 +45,14 @@ export class EditarEmpresaComponent {
           console.log(e);
         }
       })
-
+      this.httpClient.get('http://localhost:8088/api/usuarios/consultar-usuarios').subscribe({
+        next: (data: any) => {
+          this.usuarios = Object.values(data) as any[];
+        },
+        error: (e) => {
+          console.log(e);
+        }
+      });   
   }
 
  
@@ -44,7 +63,11 @@ formEdicao = new FormGroup({
   nomefantasia: new FormControl('', [Validators.required]),
   cnpj: new FormControl('', [Validators.required]),
   status: new FormControl('', [Validators.required]),
-
+  responsavel_sistema: new FormControl('', [Validators.required]),
+  email_usuario: new FormControl('', [Validators.required]),
+  senha_sistema: new FormControl('', [Validators.required]),
+  telefone_responsavel: new FormControl('', [Validators.required]),
+  id: new FormControl('', [Validators.required]),
 
     });
 
@@ -66,4 +89,8 @@ formEdicao = new FormGroup({
           });
       }
 
+      customMatchFn(term: string, item: any) {
+        // Implemente a lógica de correspondência personalizada aqui
+        return item.email.toLowerCase().includes(term.toLowerCase());
+      }
 }

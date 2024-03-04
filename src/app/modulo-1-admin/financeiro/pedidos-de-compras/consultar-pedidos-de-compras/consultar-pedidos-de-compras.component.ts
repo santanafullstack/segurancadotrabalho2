@@ -22,9 +22,8 @@ export class ConsultarPedidosDeComprasComponent implements OnInit, AfterViewInit
   'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
 ];
 
-anoAtual: number = 2024;
-mesAtual: number = 0; // Janeiro é o índice 0
-
+anoAtual: number = (new Date()).getFullYear();
+mesAtual: number = (new Date()).getMonth();
  mensagem: string = '';
  pedido: ConsultarPedidos | null = null;
  pedidoSelecionado: any = null;
@@ -133,7 +132,7 @@ mesAtual: number = 0; // Janeiro é o índice 0
   
   getStatusFatura(item: any): string {
     console.log('pedidoFechado:', item.pedidoFechado);
-    return item.pedidoFechado ? 'Fatura Fechada' : 'Fatura Aberta';
+    return item.pedidoFechado ? 'Pedido Fechado' : 'Pedido Aberto';
   }
   
 

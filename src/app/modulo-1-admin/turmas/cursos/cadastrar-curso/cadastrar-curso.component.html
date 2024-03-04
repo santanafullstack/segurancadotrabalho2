@@ -10,7 +10,7 @@
             <p>Preencha os campos para incluir o curso </p>
         </div>
         <div class="col-md-2">
-            <a href="consultar-cursos" class="btn btn-primary">Voltar</a>
+            <a href="consultar-cursos" class="btn btn-success">Voltar</a>
         </div>
 
     </div>
@@ -94,10 +94,26 @@
 
            
             
-             <div class="col-md-12 mt-3" >
+             <div class="col-md-6 mt-3" >
                 <label>Texto Especifico:</label>
                 <input   type="text" name="valor" id="valor" class="form-control" formControlName="campo_especifico"/>
             </div>
+
+            <div class="col-md-2 mt-3" >
+                <label>Valor Formação:</label>
+                <input   type="text" name="valor" id="valor" class="form-control" formControlName="valorFormacao"/>
+            </div>
+    
+            <div class="col-md-2 mt-3" >
+                <label>Valor Reciclagem:</label>
+                <input   type="text" name="valor" id="valor" class="form-control" formControlName="valorReciclagem"/>
+            </div>
+
+            <div class="col-md-2 mt-3" >
+                <label>Valor EAD:</label>
+                <input   type="text" name="valor" id="valor" class="form-control" formControlName="valorEad"/>
+            </div>
+
         </div>
         <div class="row">
             <div class="col-md-12 mt-3" >
@@ -125,7 +141,18 @@
                <textarea class="form-control" id="exampleTextarea" rows="10" formControlName="conteudodaautorizacao"></textarea>
           </div>
         </div>
+        <div class="row">
 
+            <div class="col-md-6 mt-3" >
+                   <label>Composição Orçamentaria:</label>                      
+                  <textarea class="form-control" id="exampleTextarea" rows="10" formControlName="composicaoOrcamentaria"></textarea>
+             </div>
+             
+               <div class="col-md-6 mt-3" >
+                   <label>Observações Gerais:</label>                      
+                  <textarea class="form-control" id="exampleTextarea" rows="10" formControlName="observacoesGerais"></textarea>
+             </div>
+       </div>
 
         <div class="row mb-2 mt-4">
             <div class="col-md-12">

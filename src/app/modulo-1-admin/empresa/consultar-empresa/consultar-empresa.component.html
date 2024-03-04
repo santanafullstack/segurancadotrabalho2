@@ -39,7 +39,7 @@
                   <div class="modal-footer">
                   <div class="row mb-2">
                   <div class="col-md-12">
-                  <button type="button" class="btn btn-primary" (click)="IncluirAssinaturaSubmit()" data-bs-dismiss="modal">
+                  <button type="button" class="btn btn-success" (click)="IncluirAssinaturaSubmit()" data-bs-dismiss="modal">
                     Incluir Assinatura
                   </button>            
                   </div>
@@ -139,7 +139,7 @@
                                           <td>{{ f.cbo }}</td>
                                           <td>
                                 
-                                            <button class="btn btn-primary btn-sm dropdown-toggle"
+                                            <button class="btn btn-success btn-sm dropdown-toggle"
                                             type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                           Incluir        
                                           </button>
@@ -150,7 +150,7 @@
                                               <li><a class="dropdown-item active" href="#">Carta de Anuência</a></li>
 
                                             </ul>
-                                            <button class="btn btn-primary py- px-md-3 border btn-sm dropdown-toggle"
+                                            <button class="btn btn-success py- px-md-3 border btn-sm dropdown-toggle"
                                             type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                           Consultar         
                                           </button>
@@ -164,22 +164,22 @@
 
                                           <td>
                                 
-                                            <button class="btn btn-primary btn-sm dropdown-toggle"
+                                            <button class="btn btn-success btn-sm dropdown-toggle"
                                             type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                           Incluir        
                                           </button>
-                                            <ul class="dropdown-menu py-2 px-md-1 border dropdown-menu-primary">
+                                            <ul class="dropdown-menu py-2 px-md-1 border dropdown-menu-success">
                                               <li><a class="dropdown-item" href="#">Ordem de Serviço</a></li>
                                               <li><a class="dropdown-item" href="#">Exame Ocupacional</a></li>
                                               <li><a class="dropdown-item active" href="#">Ficha de EPI</a></li>
                                               <li><a class="dropdown-item active" href="#">Carta de Anuência</a></li>
 
                                             </ul>
-                                            <button class="btn btn-primary py- px-md-3 border btn-sm dropdown-toggle"
+                                            <button class="btn btn-success py- px-md-3 border btn-sm dropdown-toggle"
                                             type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                           Consultar         
                                           </button>
-                                            <ul class="dropdown-menu dropdown-menu-primary">
+                                            <ul class="dropdown-menu dropdown-menu-success">
                                               <li><a class="dropdown-item" href="#">Ordem de Serviço</a></li>
                                               <li><a class="dropdown-item" href="#">Exame Ocupacional</a></li>
                                               <li><a class="dropdown-item active" href="#">Ficha de EPI</a></li>
@@ -187,22 +187,22 @@
                                             </ul>
                                           </td>
                                           <td>                    
-                                            <button class="btn btn-primary btn-sm dropdown-toggle"
+                                            <button class="btn btn-success btn-sm dropdown-toggle"
                                             type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                           Incluir        
                                           </button>
-                                            <ul class="dropdown-menu py-2 px-md-1 border dropdown-menu-primary">
+                                            <ul class="dropdown-menu py-2 px-md-1 border dropdown-menu-success">
                                               <li><a class="dropdown-item" href="#">Ordem de Serviço</a></li>
                                               <li><a class="dropdown-item" href="#">Exame Ocupacional</a></li>
                                               <li><a class="dropdown-item active" href="#">Ficha de EPI</a></li>
                                               <li><a class="dropdown-item active" href="#">Carta de Anuência</a></li>
 
                                             </ul>
-                                            <button class="btn btn-primary py- px-md-3 border btn-sm dropdown-toggle"
+                                            <button class="btn btn-success py- px-md-3 border btn-sm dropdown-toggle"
                                             type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                           Consultar         
                                           </button>
-                                            <ul class="dropdown-menu dropdown-menu-primary">
+                                            <ul class="dropdown-menu dropdown-menu-success">
                                               <li><a class="dropdown-item" href="#">Ordem de Serviço</a></li>
                                               <li><a class="dropdown-item" href="#">Exame Ocupacional</a></li>
                                               <li><a class="dropdown-item active" href="#">Ficha de EPI</a></li>
@@ -211,7 +211,7 @@
                                           </td>
 
                                           <td>
-                                <button class="btn btn-sm btn-primary" 
+                                <button class="btn btn-sm btn-success" 
                                       data-bs-toggle="modal" 
                                       (click)="setEditarFuncao(f)"
                                       (click)="setEmpresa(empresaSelecionada)"
@@ -251,6 +251,11 @@
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>                
                         <div class="modal-body">    
+
+                          <div class="col-md-12 mt-1">
+                            <a href="https://www.iloveimg.com/pt/redimensionar-imagem#resize-options,pixels" class="btn btn-success">Clique aqui para Acertar a Assinatura para 68 x 36 pixels aproximadamente</a>
+                        </div>
+                        
                           <div *ngIf="empresaSelecionada">
                             <h5>Funcionarios da Empresa {{ empresaSelecionada.razaosocial }}</h5>
                             <table id="consulta_empresas" class="table table-sm table-hover">
@@ -258,7 +263,7 @@
                                 <tr>               
                                     <th>Nome</th>
                                     <th>CPF</th>
-                                    <th>Funçaõ</th>    
+                                    <th>Função</th>    
                                     <th>CBO</th>  
                                     <th>Assinatura</th>
                                     <th>Operaçoes</th>
@@ -286,7 +291,7 @@
 
                                             <td>
 
-                                            <button class="btn btn-sm btn-primary" 
+                                            <button class="btn btn-sm btn-success" 
                                             data-bs-toggle="modal" 
                                             data-bs-target="#editarFuncionarioModal"
                                             data-bs-whatever="@mdo"
@@ -298,7 +303,7 @@
                                             py-1 px-md-1 border">
                                            
                                             Editar</button>
-                                            <button class="btn btn-sm btn-primary" 
+                                            <button class="btn btn-sm btn-success" 
                                             (click)="FuncionarioDelete (f.idFuncionario)"
                                             class="btn btn-danger py-1 px-md-1 border">Excluir</button>
                                   </td>
@@ -339,17 +344,28 @@
                       <table id="consulta_empresas" class="table table-sm table-hover" datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger">
                             <thead>
                                 <tr>
-                                    <th>Nome Fantasia</th>
+                                  <th>QTD</th>
+                                    <th>Empresa</th>
                                     <th>Cnpj</th>
+                                    <th>Responsavel  </th>
+                                    <th>Usuario</th>
+                                    <th>Senha</th>
+                                    <th>Telefone</th>
                                     <th>Operações</th>
                                    
 
                                 </tr>
                             </thead>
                             <tbody>        
-                                <tr *ngFor="let e of empresas">    
+                                <tr *ngFor="let e of empresas, index as i"> 
+                                  <td>{{i + 1}}</td>   
                                     <td>{{e.nomefantasia}}</td>
                                         <td>{{e.cnpj}}</td>
+                                        <td>{{e.responsavel_sistema}}</td>
+                                        <td>{{e.email_usuario}}</td>
+                                        <td>{{e.senha_sistema}}</td>
+                                        <td>{{e.telefone_responsavel}}</td>
+
                                         <td>
 
                                        
@@ -367,12 +383,18 @@
                                   </button>
 
 
-                                  <ul class="dropdown-menu btn-sm border dropdown-menu-primary">
+                                  <ul class="dropdown-menu btn-sm border dropdown-menu-success">
 								  
 					
+                                    <li><a href="/cartao-de-acesso-cliente-empresa"  class="dropdown-item btn btn-danger" 
+                                      [routerLink]="['/cartao-de-acesso-cliente-empresa', e.idEmpresa]">
+                                      Gerar Cartão de Acesso</a></li>
+
+                                      
+
 								     <li><a href="/editar-empresa"  class="dropdown-item btn btn-danger" 
                         [routerLink]="['/editar-empresa', e.idEmpresa]">Editar Empresa</a></li>
-                        <li><a class="dropdown-item btn btn-sm btn-primary" 
+                        <li><a class="dropdown-item btn btn-sm btn-success" 
                            (click)="EmpresaDelete (e.idEmpresa)">
                               Excluir Empresa</a></li>
 
@@ -380,7 +402,7 @@
 								   [routerLink]="['/cadastrar-funcionario', e.idEmpresa]"
                                   (click)="setEmpresa(empresaSelecionada)"
                                   (click)="setFuncionario (empresaSelecionada)"
-                                  class="dropdown-item btn btn-sm btn-primary" 
+                                  class="dropdown-item btn btn-sm btn-success" 
 
                                   >                               
                                             Cadastrar Funcionário</a></li>
@@ -391,19 +413,18 @@
                               data-bs-toggle="modal" 
                               data-bs-target="#incluirFuncaoModal"
                               data-bs-whatever="@mdo"
-                              class="dropdown-item btn btn-sm btn-primary" 
+                              class="dropdown-item btn btn-sm btn-success" 
 
 								  
 								  >                               
                   Cadastrar Funcão</a></li>
 											
 											    <li> <a 							
-							  (click)="setEmpresa(e)"
-                              (click)="exibirFuncionarios(e)"
+							                (click)="setEmpresa(e)"
                               data-bs-toggle="modal" 
-                              data-bs-target="#incluirFuncaoModal"
+                              data-bs-target="#CadastrarContatoModal"
                               data-bs-whatever="@mdo"
-                              class="dropdown-item btn btn-sm btn-primary" 
+                              class="dropdown-item btn btn-sm btn-success" 
 
 								  
 								  >                               
@@ -417,7 +438,7 @@
                                     data-bs-toggle="modal" 
                                     data-bs-target="#funcionarioModal"
                                     data-bs-whatever="@mdo"
-                                    class="dropdown-item btn btn-sm btn-primary"                 
+                                    class="dropdown-item btn btn-sm btn-success"                 
                         
                                                >                               
                                                Consultar Funcionário</a></li>
@@ -426,7 +447,7 @@
                        data-bs-toggle="modal" 
                                     data-bs-target="#ConsultarFuncaoModal"
                                     data-bs-whatever="@mdo"
-                                    class="dropdown-item btn btn-sm btn-primary" 
+                                    class="dropdown-item btn btn-sm btn-success" 
   
                         
                         >                               
@@ -437,7 +458,7 @@
                             data-bs-target="#contatoModal"
                             data-bs-whatever="@mdo"
                             (click)="exibirContatos(e)"
-                            class="dropdown-item btn btn-sm btn-primary" 
+                            class="dropdown-item btn btn-sm btn-success" 
   
                             
                             >
@@ -465,7 +486,7 @@
             
 
 
-                          <div class="modal fade" id="empresaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal fade" id="CadastrarContatoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                                 <div class="modal-content">
                                   <div class="modal-header">
@@ -506,7 +527,7 @@
                       <div class="modal-footer">
                         <div class="row mb-2">
                           <div class="col-md-12">
-                            <button type="button" class="btn btn-danger"
+                            <button type="button" class="btn btn-success"
                             (click)="CadastroSubmit()" data-bs-dismiss="modal">
                             Incluir Contato
                         </button>                  
@@ -647,7 +668,7 @@
             <div class="modal-footer">
               <div class="row mb-2">
                 <div class="col-md-12">
-                  <button type="button" class="btn btn-danger"
+                  <button type="button" class="btn btn-success"
                   (click)="EditarFuncionarioSubmit()" 
                   data-bs-dismiss="modal">
                   Editar Funcionário

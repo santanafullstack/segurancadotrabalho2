@@ -39,7 +39,7 @@
                                    <div class="col-md-6 text-center" style="flex: 0 0 auto; min-width: 0; font-size: 12px;">
                                     
 
-                                    <img *ngIf="c?.pessoafisica?.assinatura_pessoafisica" [src]="'data:image/png;base64,' + c?.pessoafisica?.assinatura_pessoafisica" />
+                                    <img *ngIf="c?.pessoafisica?.assinaturaPessoaFisica" [src]="'data:image/png;base64,' + c?.pessoafisica?.assinaturaPessoaFisica" />
     
                                 <hr style="background-color: black;">
                                 <strong> Aluno (a) do {{c?.turmas?.curso?.curso}}</strong>
@@ -114,7 +114,7 @@
     
                             </div>
                             <div class="col-md-3" style="flex: 0 0 auto; min-width: 0; font-size: 12px;">
-                                <img *ngIf="c?.turmas?.instrutores[1]?.assinatura_instrutor" [src]="'data:image/png;base64,' + c?.turmas?.instrutores[0]?.assinatura_instrutor" />
+                                <img *ngIf="c?.turmas?.instrutores[1]?.assinatura_instrutor" [src]="'data:image/png;base64,' + c?.turmas?.instrutores[1]?.assinatura_instrutor" />
                                 <strong>  <hr style="background-color: black;"> </strong>
                                 <strong>Instrutor (a)</strong> 
                                 <br>
@@ -134,7 +134,7 @@
                         
                             <div class="col-md-3" style="flex: 0 0 auto; min-width: 0; font-size: 12px;">
                                 
-                                <img *ngIf="c?.turmas?.instrutores[2]?.assinatura_instrutor" [src]="'data:image/png;base64,' + c?.turmas?.instrutores[1]?.assinatura_instrutor" />
+                                <img *ngIf="c?.turmas?.instrutores[2]?.assinatura_instrutor" [src]="'data:image/png;base64,' + c?.turmas?.instrutores[2]?.assinatura_instrutor" />
                                 <hr style="background-color: black;">
                                 <strong>Instrutor (a)</strong> 
                                 <br>
@@ -153,7 +153,7 @@
                             </div>
                             <div class="col-md-3" style="flex: 0 0 auto; min-width: 0; font-size: 12px;">
                                 
-                                <img *ngIf="c?.turmas?.instrutores[3]?.assinatura_instrutor" [src]="'data:image/png;base64,' + c?.turmas?.instrutores[1]?.assinatura_instrutor" />
+                                <img *ngIf="c?.turmas?.instrutores[3]?.assinatura_instrutor" [src]="'data:image/png;base64,' + c?.turmas?.instrutores[3]?.assinatura_instrutor" />
                                 <hr style="background-color: black;">
                                 <strong>Instrutor (a)
                                 <br>
@@ -167,7 +167,6 @@
                                 <br>
                                 {{ c?.turmas?.instrutores[3]?.formacoes[1]?.conselho }}  {{ c?.turmas?.instrutores[3]?.formacoes[1]?.registro }} {{ c?.turmas?.instrutores[3]?.formacoes[1]?.estado }}
                             </strong> 
-                            <br>
                             <br>
 
     

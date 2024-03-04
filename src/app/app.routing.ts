@@ -113,15 +113,36 @@ import { ConsultarInstrutorPerfilEmpresaComponent } from "./perfil/perfil-empres
 import { ConsultarTurmasPerfilAlunoComponent } from "./perfil/perfil-aluno/turmas/consultar-turmas-perfil-aluno/consultar-turmas-perfil-aluno.component";
 import { ConsultarInstrutorPerfilAlunoComponent } from "./perfil/perfil-aluno/instrutor/consultar-instrutor-perfil-aluno/consultar-instrutor-perfil-aluno.component";
 import { ConsultarTurmasPorUnidadesComponent } from "./modulo-1-admin/turmas/consultar-turmas-por-unidades/consultar-turmas-por-unidades.component";
+import { ConsultarEmpresasComponent } from "./perfil/perfil-empresa/empresa-cliente/consultar-empresas/consultar-empresas.component";
+import { CadastrarFuncionarioPerfilempresaComponent } from "./perfil/perfil-empresa/funcionariosempresa/cadastrar-funcionario-perfilempresa/cadastrar-funcionario-perfilempresa.component";
+import { EditarFuncionarioPerfilempresaComponent } from "./perfil/perfil-empresa/funcionariosempresa/editar-funcionario-perfilempresa/editar-funcionario-perfilempresa.component";
+import { CadastrarFuncaoPerfilempresaComponent } from "./perfil/perfil-empresa/funcionariosempresa/cadastrar-funcao-perfilempresa/cadastrar-funcao-perfilempresa.component";
+import { ConsultarFuncaoPerfilempresaComponent } from "./perfil/perfil-empresa/funcionariosempresa/consultar-funcao-perfilempresa/consultar-funcao-perfilempresa.component";
+import { TurmasCriarMatriculaPerfilEmpresaComponent } from "./perfil/perfil-empresa/turmas-criar-matricula-perfil-empresa/turmas-criar-matricula-perfil-empresa.component";
+import { ConsultarFaturamentoPerfilEmpresaComponent } from "./perfil/perfil-empresa/financeiro/consultar-faturamento-perfil-empresa/consultar-faturamento-perfil-empresa.component";
+import { GerarRelatorioFaturamentoPerfilEmpresaComponent } from "./perfil/perfil-empresa/financeiro/gerar-relatorio-faturamento-perfil-empresa/gerar-relatorio-faturamento-perfil-empresa.component";
+import { PedidosDeComprasPerfilEmpresaComponent } from "./perfil/perfil-empresa/financeiro/pedidos-de-compras-perfil-empresa/pedidos-de-compras-perfil-empresa.component";
+import { GerarRelatoriosPedidosDeComprasPerfilEmpresaComponent } from "./perfil/perfil-empresa/financeiro/gerar-relatorios-pedidos-de-compras-perfil-empresa/gerar-relatorios-pedidos-de-compras-perfil-empresa.component";
+import { FazerMatriculasPedidosDeComprasPerfilEmpresaComponent } from "./perfil/perfil-empresa/financeiro/fazer-matriculas-pedidos-de-compras-perfil-empresa/fazer-matriculas-pedidos-de-compras-perfil-empresa.component";
+import { GerarAcessoClienteEmpresaComponent } from "./modulo-1-admin/empresa/gerar-acesso-cliente-empresa/gerar-acesso-cliente-empresa.component";
+import { GerarAcessoClientePessoafisicaComponent } from "./modulo-1-admin/pessoa-fisica/gerar-acesso-cliente-pessoafisica/gerar-acesso-cliente-pessoafisica.component";
+import { ConsultarDadosAlunoParticularComponent } from "./perfil/perfil-aluno/dados-aluno/consultar-dados-aluno-particular/consultar-dados-aluno-particular.component";
+import { ConsultarFaturamentoAlunoComponent } from "./perfil/perfil-aluno/dados-aluno/consultar-faturamento-aluno/consultar-faturamento-aluno.component";
+import { RelatorioFaturamentoAlunoComponent } from "./perfil/perfil-aluno/dados-aluno/relatorio-faturamento-aluno/relatorio-faturamento-aluno.component";
+import { CriarMatriculasAlunoParticularComponent } from "./perfil/perfil-aluno/dados-aluno/criar-matriculas-aluno-particular/criar-matriculas-aluno-particular.component";
+import { GerarCertificadoSemSerAssinadoComponent } from "./modulo-1-admin/certificado/gerar-certificado-sem-ser-assinado/gerar-certificado-sem-ser-assinado.component";
+import { ConsultarCursosEmpresaComponent } from "./perfil/perfil-empresa/consultar-cursos-empresa/consultar-cursos-empresa.component";
+import { ConsultarCursosAlunoComponent } from "./perfil/perfil-aluno/consultar-cursos-aluno/consultar-cursos-aluno.component";
+import { GerarCertificadoSemAssinarPessoaFisicaComponent } from "./modulo-1-admin/certificado/gerar-certificado-sem-assinar-pessoa-fisica/gerar-certificado-sem-assinar-pessoa-fisica.component";
 
 
 
 const routes: Routes = [
 
     { path: '', pathMatch: 'full', redirectTo: 'acessar-conta' }, /* rota raiz */
-    { path: 'recuperar-senha', component: PasswordAdminComponent },
+    { path: 'recuperar-senha', component: PasswordAdminComponent, canActivate: [AuthGuardsMaster]},
     { path: 'acessar-conta', component: LoginAdminComponent },
-    { path: 'registrar-conta', component: RegisterAdminComponent },
+    { path: 'registrar-conta', component: RegisterAdminComponent , canActivate: [AuthGuardsMaster]},
 
     { path: 'dashboard', component: DashboardComponent },
 
@@ -129,6 +150,7 @@ const routes: Routes = [
     { path: 'consultar-empresa', component: ConsultarEmpresaComponent, canActivate: [AuthGuardsMaster]  },
     { path: 'consultar-contatos/:id', component: ConsultarContatosComponent , canActivate: [AuthGuardsMaster]},
     { path: 'editar-empresa/:id', component: EditarEmpresaComponent, canActivate: [AuthGuardsMaster] },
+    {path: 'cartao-de-acesso-cliente-empresa/:id', component: GerarAcessoClienteEmpresaComponent, canActivate: [AuthGuardsMaster]},
 
 
     { path: 'cadastrar-pessoa-fisica', component: CadastrarPessoaFisicaComponent, canActivate: [AuthGuardsMaster] },
@@ -149,6 +171,8 @@ const routes: Routes = [
 
     { path: 'gerar-certificado-pessoa-fisica', component: MatriculasPessoaFisicaGerarDocumentosComponent, canActivate: [AuthGuardsMaster] },
     { path: 'gerar-certificado-pessoa-juridica', component: MatriculasPessoaJuridicaGerarDocumentosComponent , canActivate: [AuthGuardsMaster]},
+    { path: 'gerar-certificado-pessoa-juridica-sem-assinar/:id', component: GerarCertificadoSemSerAssinadoComponent  , canActivate: [AuthGuardsMaster]},
+
 
 
 
@@ -256,7 +280,11 @@ const routes: Routes = [
 
 
     {path: 'gerar-certificado-pessoa-fisica/:id', component: GerarCertificadoPessoafisicaComponent, canActivate: [AuthGuardsMaster]},
+    {path: 'gerar-certificado-pessoa-fisica-sem-ser-assinado/:id', component: GerarCertificadoSemAssinarPessoaFisicaComponent, canActivate: [AuthGuardsMaster]},
+
     {path: 'gerar-autorizacao-pessoa-fisica/:id', component: GerarAutorizacaoPessoafisicaComponent, canActivate: [AuthGuardsMaster]},
+
+
 
 
 
@@ -285,15 +313,24 @@ const routes: Routes = [
 {path: 'gerar-relatorio-pedidos-de-compras/:id', component: GerarRelatorioPedidosDeComprasComponent, canActivate: [AuthGuardsMaster]},
 
 
-
-
-
-
 {path: 'perfil-empresa', component: PerfilEmpresaComponent, canActivate: [AuthGuardsEmpresa]},
 {path: 'consultar-matriculas-empresa', component: ConsultarMatriculasEmpresaComponent, canActivate: [AuthGuardsEmpresa]},
 {path: 'gerar-certificado-funcionario/:id', component: GerarCertificadoPerfilEmpresaComponent, canActivate: [AuthGuardsEmpresa]},
 {path: 'gerar-autorizacao-funcionario/:id', component: GerarAutorizacaoPerfilEmpresaComponent, canActivate: [AuthGuardsEmpresa]},
-   //listas de Presença Pessoa Juridica
+{path: 'minha-empresa', component: ConsultarEmpresasComponent, canActivate: [AuthGuardsEmpresa]},
+{path: 'cadastro-funcionario-minha-empresa/:id', component: CadastrarFuncionarioPerfilempresaComponent, canActivate: [AuthGuardsEmpresa]},
+{path: 'editar-funcionario-minha-empresa/:id', component: EditarFuncionarioPerfilempresaComponent, canActivate: [AuthGuardsEmpresa]},
+{path: 'cadastrar-funcao-minha-empresa', component: CadastrarFuncaoPerfilempresaComponent, canActivate: [AuthGuardsEmpresa]},
+{path: 'consultar-funcao-minha-empresa', component: ConsultarFuncaoPerfilempresaComponent, canActivate: [AuthGuardsEmpresa]},
+{path: 'criar-matricula-meu-funcionario/:id', component: TurmasCriarMatriculaPerfilEmpresaComponent, canActivate: [AuthGuardsEmpresa]},
+{path: 'faturamentos-da-minha-empresa', component: ConsultarFaturamentoPerfilEmpresaComponent, canActivate: [AuthGuardsEmpresa]},
+{path: 'gerar-relatorio-faturamento-minha-empresa/:id', component: GerarRelatorioFaturamentoPerfilEmpresaComponent, canActivate: [AuthGuardsEmpresa]},
+{path: 'pedidos-de-compras-minha-empresa', component: PedidosDeComprasPerfilEmpresaComponent, canActivate: [AuthGuardsEmpresa]},
+{path: 'gerar-relatorio-pedidos-minha-empresa/:id', component: GerarRelatoriosPedidosDeComprasPerfilEmpresaComponent, canActivate: [AuthGuardsEmpresa]},
+{path: 'fazer-matriculas-pedidos-minha-empresa/:id', component: FazerMatriculasPedidosDeComprasPerfilEmpresaComponent, canActivate: [AuthGuardsEmpresa]},
+{path: 'consultar-cursos-empresa', component: ConsultarCursosEmpresaComponent, canActivate: [AuthGuardsEmpresa]},
+
+//listas de Presença Pessoa Juridica
 {path: 'lista-de-presenca-primeiro-dia-funcionario/:id', component: ListaDePresencaPrimeiroDiaComponent, canActivate: [AuthGuardsEmpresa]},
 {path: 'lista-de-presenca-segundo-dia-funcionario/:id', component: ListaDePresencaSegundoDiaComponent, canActivate: [AuthGuardsEmpresa]},
 {path: 'lista-de-presenca-terceiro-dia-funcionario/:id', component: ListaDePresencaTerceiroDiaComponent, canActivate: [AuthGuardsEmpresa]},
@@ -315,7 +352,13 @@ const routes: Routes = [
  {path: 'lista-de-presenca-terceiro-dia-aluno/:id', component: ListasAlunoParticularTerceiroDiaComponent, canActivate: [AuthGuardsAluno]},
  {path: 'lista-de-presenca-quarto-dia-aluno/:id', component: ListasAlunoParticularQuartoDiaComponent, canActivate: [AuthGuardsAluno]},
  {path: 'lista-de-presenca-quinto-dia-aluno/:id', component: ListasAlunoParticularQuintoDiaComponent , canActivate: [AuthGuardsAluno]},
-    
+ {path: 'cartao-de-acesso-cliente-pessoafisica/:id', component: GerarAcessoClientePessoafisicaComponent, canActivate: [AuthGuardsMaster]},
+ {path: 'dados-aluno', component: ConsultarDadosAlunoParticularComponent, canActivate: [AuthGuardsAluno]},
+ {path: 'consultar-faturamento-aluno', component: ConsultarFaturamentoAlunoComponent, canActivate: [AuthGuardsAluno]},
+ {path: 'relatorio-faturamento-aluno/:id', component: RelatorioFaturamentoAlunoComponent, canActivate: [AuthGuardsAluno]},
+ {path: 'criar-matriculas-aluno-particular/:id', component: CriarMatriculasAlunoParticularComponent, canActivate: [AuthGuardsAluno]},
+ {path: 'consultar-cursos-aluno', component: ConsultarCursosAlunoComponent, canActivate: [AuthGuardsAluno]},
+
 
 
 {path: 'perfil-master', component: PerfilMasterComponent, canActivate: [AuthGuardsMaster]}

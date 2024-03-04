@@ -15,7 +15,7 @@
                 <br>
 
     
-                <p  class="text-black" style=" font-size: 14px;">A JB SERVIÇOS DE CONSULTORIA E ASSESSORIA EMPRESARIAL LTDA-ME, inscrita no CNPJ:
+                <p  class="text-black" Align="justify"  style=" font-size: 14px;">A JB SERVIÇOS DE CONSULTORIA E ASSESSORIA EMPRESARIAL LTDA-ME, inscrita no CNPJ:
                     25.108.808.0001-18 tendo sua sede na Rua Moncorvo Filho, 99 - Loja A - Centro do Rio de Janeiro, Certifica
                     que {{c?.pessoafisica?.pessoafisica}} inscrito (a) no RG: {{c?.pessoafisica?.rg}} e no CPF: {{c?.pessoafisica?.cpf}}       
                     participou do {{c?.turmas?.curso?.curso}} {{c?.turmas?.nivel}} {{c?.turmas?.descricao}} {{c?.turmas?.tipo}}
@@ -39,7 +39,7 @@
                                    <div class="col-md-6 text-center" style="flex: 0 0 auto; min-width: 0; font-size: 12px;">
                                     
 
-                                    <img *ngIf="c?.pessoafisica?.assinatura_pessoafisica" [src]="'data:image/png;base64,' + c?.pessoafisica?.assinatura_pessoafisica" />
+                                    <img *ngIf="c?.pessoafisica?.assinaturaPessoaFisica" [src]="'data:image/png;base64,' + c?.pessoafisica?.assinaturaPessoaFisica" />
     
                                 <hr style="background-color: black;">
                                 <strong> Aluno (a) do {{c?.turmas?.curso?.curso}}</strong>
@@ -77,7 +77,7 @@
     
                         </div>
     
-                        <div class="col-md-3" style="flex: 0 0 auto; min-width: 0; font-size: 12px;">
+                        <div class="col-md-3 mb-5" style="flex: 0 0 auto; min-width: 0; font-size: 12px;">
                             <br>
 
                             <strong> {{c?.turmas?.unidadeDeTreinamento?.endereco?.localidade}},
@@ -114,7 +114,7 @@
     
                             </div>
                             <div class="col-md-3" style="flex: 0 0 auto; min-width: 0; font-size: 12px;">
-                                <img *ngIf="c?.turmas?.instrutores[1]?.assinatura_instrutor" [src]="'data:image/png;base64,' + c?.turmas?.instrutores[0]?.assinatura_instrutor" />
+                                <img *ngIf="c?.turmas?.instrutores[1]?.assinatura_instrutor" [src]="'data:image/png;base64,' + c?.turmas?.instrutores[1]?.assinatura_instrutor" />
                                 <strong>  <hr style="background-color: black;"> </strong>
                                 <strong>Instrutor (a)</strong> 
                                 <br>
@@ -134,7 +134,7 @@
                         
                             <div class="col-md-3" style="flex: 0 0 auto; min-width: 0; font-size: 12px;">
                                 
-                                <img *ngIf="c?.turmas?.instrutores[2]?.assinatura_instrutor" [src]="'data:image/png;base64,' + c?.turmas?.instrutores[1]?.assinatura_instrutor" />
+                                <img *ngIf="c?.turmas?.instrutores[2]?.assinatura_instrutor" [src]="'data:image/png;base64,' + c?.turmas?.instrutores[2]?.assinatura_instrutor" />
                                 <hr style="background-color: black;">
                                 <strong>Instrutor (a)</strong> 
                                 <br>
@@ -153,7 +153,7 @@
                             </div>
                             <div class="col-md-3" style="flex: 0 0 auto; min-width: 0; font-size: 12px;">
                                 
-                                <img *ngIf="c?.turmas?.instrutores[3]?.assinatura_instrutor" [src]="'data:image/png;base64,' + c?.turmas?.instrutores[1]?.assinatura_instrutor" />
+                                <img *ngIf="c?.turmas?.instrutores[3]?.assinatura_instrutor" [src]="'data:image/png;base64,' + c?.turmas?.instrutores[3]?.assinatura_instrutor" />
                                 <hr style="background-color: black;">
                                 <strong>Instrutor (a)
                                 <br>
@@ -178,8 +178,7 @@
                       </div>
                     </div>
             </div>
-            <br>
-            <br>
+          
            
            
             <div class="container  mx-auto mb-20">
@@ -210,7 +209,7 @@
         </div>
         <div class="row">
     
-            <div class="col-12 p-3" style="font-size: 14px;">
+            <div class="col-12 p-3" Align="justify"  style="font-size: 14px;">
                <P>{{c?.turmas?.curso.conteudo}}</P>
             </div>
     

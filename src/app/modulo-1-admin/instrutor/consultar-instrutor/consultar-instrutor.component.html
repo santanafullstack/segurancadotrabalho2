@@ -44,7 +44,7 @@
     <div class="modal-footer">
       <div class="row mb-2">
         <div class="col-md-12">
-          <button type="button" class="btn btn-primary" 
+          <button type="button" class="btn btn-success" 
           
           (click)="IncluirAssinaturaSubmit()" data-bs-dismiss="modal">
             Incluir Assinatura
@@ -98,7 +98,7 @@
       <div class="row mb-2">
         <div class="col-md-12">
           
-          <button type="button" class="btn btn-primary"
+          <button type="button" class="btn btn-success"
           (click)="IncluirProficienciaSubmit()"
           
           data-bs-dismiss="modal"
@@ -154,7 +154,7 @@
     <div class="modal-footer">
       <div class="row mb-2">
         <div class="col-md-12">
-          <button type="button" class="btn btn-primary"
+          <button type="button" class="btn btn-success"
           (click)="EditarProficienciaSubmit()" data-bs-dismiss="modal">
           Incluir Proficiência
       </button>                  
@@ -215,19 +215,19 @@
                                     (click)="downloadProficiencia(p)">
                                     Dowload da Proficiência </button>
 
-                                    <button class="btn btn-primary m-1 btn-sm dropdown-toggle" type="button"
+                                    <button class="btn btn-success m-1 btn-sm dropdown-toggle" type="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Ações
                                 </button>
 
-                                <ul class="dropdown-menu btn-sm border dropdown-menu-primary">
+                                <ul class="dropdown-menu btn-sm border dropdown-menu-success">
                                   
                                   <li> 
                                     
                                     <a 											
             data-bs-toggle="modal" 
             data-bs-target="#EdiçãoDeProficienciaModal"
-            class="dropdown-item btn btn-sm btn-primary"  		
+            class="dropdown-item btn btn-sm btn-success"  		
             (click)="setProficiencia(instrutorSelecionado)"
             (click)="setInstrutor(p)"
                     >               
@@ -238,7 +238,7 @@
                                     
                         <a 											
 data-bs-toggle="modal" 
-class="dropdown-item btn btn-sm btn-primary"  		
+class="dropdown-item btn btn-sm btn-success"  		
 (click)="ProficienciaDelete
 (p.idProficiencia, p.proficiencia)"
         >               
@@ -249,7 +249,7 @@ class="dropdown-item btn btn-sm btn-primary"
             <a 											
 data-bs-toggle="modal" 
 data-bs-target="#editarproficienciaModal"
-class="dropdown-item btn btn-sm btn-primary"  		
+class="dropdown-item btn btn-sm btn-success"  		
 (click)="setProficiencia(instrutorSelecionado)"
 (click)="setInstrutor(p)"
 
@@ -323,7 +323,7 @@ nextLabel="Próxima página"
     <div class="modal-footer">
       <div class="row mb-2">
         <div class="col-md-12">
-          <button type="button" class="btn btn-primary"
+          <button type="button" class="btn btn-success"
           (click)="CadastrarProficienciaSubmit()" data-bs-dismiss="modal"
           
           
@@ -390,13 +390,13 @@ nextLabel="Próxima página"
                                           <td>{{ f.registro }}</td>
                                           <td>{{ f.estado }}</td>
                                               <td>   
-                                                <button class="btn btn-sm btn-primary" 
+                                                <button class="btn btn-sm btn-success" 
                                                 data-bs-toggle="modal" 
                                                 data-bs-target="#editarformacaoModal"
                                                 data-bs-whatever="@mdo"          		
                                                  (click)="setFormacao(instrutorSelecionado)"
                                                  (click)="setInstrutor(f)"
-                                                class="btn btn-primary
+                                                class="btn btn-success
                                                 py-1 px-md-1 border">
                                                 Editar</button>
                                           <button class="btn btn-sm btn-outline-danger me-2"
@@ -471,7 +471,7 @@ nextLabel="Próxima página"
                     <div class="modal-footer">
                       <div class="row mb-2">
                         <div class="col-md-12">
-                          <button type="button" class="btn btn-primary"
+                          <button type="button" class="btn btn-success"
                           (click)="CadastroFormacaoSubmit()" data-bs-dismiss="modal">
                           Incluir Formação
                       </button>                  
@@ -527,7 +527,7 @@ nextLabel="Próxima página"
         <div class="modal-footer">
           <div class="row mb-2">
             <div class="col-md-12">
-              <button type="button" class="btn btn-primary"
+              <button type="button" class="btn btn-success"
               (click)="EditarFormacaoSubmit()" data-bs-dismiss="modal">
               Editar Formação
           </button>                  
@@ -550,12 +550,12 @@ nextLabel="Próxima página"
                     <a href="cadastrar-instrutor" class="btn btn-success">Cadastrar Instrutor</a>
                 </div>
 
+                <div class="col-md-7 mt-4 ">
+                  <a href="https://www.iloveimg.com/pt/redimensionar-imagem#resize-options,pixels" class="btn btn-success">Clique aqui para Acertar a Assinatura para 68 x 36 pixels aproximadamente</a>
+              </div>
 
-            <div class="col-md-7 mt-3">
-               
-            </div>
-
-            <div class="col-md-5 mt-5">
+            <div class="col-md-5 mt-4
+            ">
               <input type="text" class="form-control" [(ngModel)]="filtro.instrutor"
                   placeholder="Pesquisar por Instrutor" />
           </div>
@@ -596,14 +596,14 @@ nextLabel="Próxima página"
                                             data-bs-toggle="dropdown" aria-expanded="false">
                                             Ações
                                         </button>
-                                        <ul class="dropdown-menu btn-sm border dropdown-menu-primary">
+                                        <ul class="dropdown-menu btn-sm border dropdown-menu-success">
                                             <li> <a href="/editar-instrutor"
-                                                    class="dropdown-item btn btn-primary"
+                                                    class="dropdown-item btn btn-success"
                                                     [routerLink]="['/editar-instrutor', i.idinstrutor]"
                                                     >Editar</a></li>
                                             <li><a 
                                                 
-                                                class="dropdown-item btn btn-sm btn-primary"
+                                                class="dropdown-item btn btn-sm btn-success"
                                                 (click)="onDelete(i.idinstrutor, i.instrutor)"
                                                 > Excluir</a>
                                                 <li><a
@@ -611,13 +611,13 @@ nextLabel="Próxima página"
                                                     data-bs-target="#cadastrarformacaoModal"
                                                      data-bs-whatever="@mdo"
                                                     (click)="setFormacao(i)"
-                                                    class="dropdown-item btn btn-sm btn-primary"
+                                                    class="dropdown-item btn btn-sm btn-success"
                                                     >Incluir Formação</a>
                                                     <li><a 
                                                         data-bs-toggle="modal" 
                                                         data-bs-target="#formacaoModal"
                                                          data-bs-whatever="@mdo"
-                                                        class="dropdown-item btn btn-sm btn-primary"
+                                                        class="dropdown-item btn btn-sm btn-success"
                                                         (click)="exibirFormacao(i)"
                                                         >Ver Formação</a> 
                                                       
@@ -627,7 +627,7 @@ nextLabel="Próxima página"
                                                           data-bs-target="#cadastrarproficienciaModal"
                                                            data-bs-whatever="@mdo"
                                                           (click)="setProficiencia(i)"
-                                                          class="dropdown-item btn btn-sm btn-primary"
+                                                          class="dropdown-item btn btn-sm btn-success"
                                                           >Incluir Proficiencia</a>
       
                                                          
@@ -637,9 +637,9 @@ nextLabel="Próxima página"
                                                             data-bs-toggle="modal" 
                                                             data-bs-target="#proficienciaModal"
                                                              data-bs-whatever="@mdo"
-                                                            class="dropdown-item btn btn-sm btn-primary"
+                                                            class="dropdown-item btn btn-sm btn-success"
                                                             (click)="exibirFormacao(i)"
-                                                            class="dropdown-item btn btn-sm btn-primary">Ver Proficiência</a>
+                                                            class="dropdown-item btn btn-sm btn-success">Ver Proficiência</a>
                                             </li>
                                         </ul>
                             </td>

@@ -1,0 +1,175 @@
+
+<app-perfil-empresa></app-perfil-empresa>
+
+<div class="container mt-3">
+  <div class="card">
+    <div class="card-body">
+      <h5>Minha Empresa</h5>
+    
+      <div class="modal fade" id="IncluirAssinaturaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Incluir Assinatura do Instrutor </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <div class="modal-body">
+              <div *ngIf="mensagem" class="alert alert-info alert-dismissible fade show" role="alert">
+                <strong>{{mensagem}}</strong>
+                <button type="button" class="btn-close" aria-label="Close" (click)="mensagem = ''"></button>
+            </div>
+      <form [formGroup]="formIncluirAssinatura" (ngSubmit)="IncluirAssinaturaSubmit()">
+      <input type="hidden" formControlName="idFuncionario" [(ngModel)]="idFuncionario" />
+      
+      
+      <div class="mb-2">             
+      </div>
+      <div class="row">  
+      <div class="row mb-2">
+      <div class="col-md-6">
+        <label>Envie a Assinatura do Instrutor:</label>
+        <input type="file" class="form-control" (change)="onFileChange1($event)" />
+        <span class="text-danger">
+          {{ arquivoMsgErro }}
+        </span>
+      </div>
+      </div>
+      
+      
+      </div>
+      <div class="modal-footer">
+      <div class="row mb-2">
+      <div class="col-md-12">
+      <button type="button" class="btn btn-success" (click)="IncluirAssinaturaSubmit()" data-bs-dismiss="modal">
+        Incluir Assinatura
+      </button>            
+      </div>
+      </div>
+      </div>               
+      </form>
+      </div>
+      </div>
+      </div>
+      </div>
+      
+
+      <div class="table-responsive mt-2">
+        <table class="table table-sm table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>CNPJ</th>
+              <th>Responsável</th>
+              <th>Usuário</th>
+              <th>Senha</th>
+              <th>Operações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let e of empresas | paginate: { itemsPerPage: itensPorPagina, currentPage: paginaAtual } | ngxSearchPipe: filtro.nome_contato">
+              <td>{{ e.razaosocial }}</td>
+              <td>{{ e.cnpj }}</td>
+              <td>{{ e.responsavel_sistema }}</td>
+              <td>{{ e.email_usuario }}</td>
+              <td>{{ e.senha_sistema }}</td>
+              <td>
+                <button class="btn btn-success m-1 btn-sm dropdown-toggle" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+              Ações
+            </button>
+
+
+            <ul class="dropdown-menu btn-sm border dropdown-menu-succes">
+
+<li><a href="/cadastro-funcionario-minha-empresa"  class="dropdown-item btn btn-danger" 
+  [routerLink]="['/cadastro-funcionario-minha-empresa', e.idEmpresa]">Cadastrar Funcionário</a></li>
+               
+<li><a href="/cadastrar-funcao-minha-empresa"  class="dropdown-item btn btn-success" 
+  >Cadastrar Funcão</a></li>       
+  
+  
+  <li><a href="/consultar-funcao-minha-empresa"  class="dropdown-item btn btn-success" 
+    >Consultar Funcão</a></li>   
+
+            </ul>
+         
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row mb-2 mt-4">
+        <div class="col-md-6">
+          <a href="https://www.iloveimg.com/pt/redimensionar-imagem#resize-options,pixels" class="btn btn-success">Clique aqui para Acertar a Assinatura para 68 x 36 pixels aproximadamente</a>
+        </div>
+        <div class="col-6">
+          <input type="text" class="form-control" [(ngModel)]="filtro.nome_contato" placeholder="Pesquisar pelo Funcionario" />
+        </div>
+      </div>
+      
+
+      <div class="table-responsive mt-4">
+        <table class="table table-sm table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Funcionario</th>
+              <th>CPF</th>
+              <th>RG</th>
+              <th>Funçao</th>
+              <th>CBO</th>
+              <th>Status</th>
+              <th>Operações</th>
+
+
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let e of empresas | paginate: { itemsPerPage: itensPorPagina, currentPage: paginaAtual } | ngxSearchPipe: filtro.nome_contato">
+              <tr *ngFor="let funcionario of e.funcionarios">
+                <td>{{ funcionario.nome }}</td>
+                <td>{{ funcionario.cpf }}</td>
+                <td>{{ funcionario.rg}}</td>
+                <td>{{ funcionario.funcao.funcao}}</td>
+                <td>{{ funcionario.funcao.cbo}}</td>
+                <td>{{ funcionario.status}}</td>
+
+                <td>
+
+                  <button class="btn btn-sm btn-outline-danger me-2"
+                  data-bs-toggle="modal" 
+                  data-bs-target="#IncluirAssinaturaModal"
+                   data-bs-whatever="@mdo"
+                  (click)="setFuncionario(funcionario)"                 
+                  
+                  > 
+                  Incluir Assinatura </button>
+
+                  <button class="btn btn-success m-1 btn-sm dropdown-toggle" type="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                Ações
+              </button>
+  
+  
+              <ul class="dropdown-menu btn-sm border dropdown-menu-succes">
+  
+  <li><a href="/editar-funcionario-minha-empresa"  class="dropdown-item btn btn-danger" 
+    [routerLink]="['/editar-funcionario-minha-empresa',  funcionario.idFuncionario]">Editar Funcionário</a></li>
+                 
+              
+  
+              </ul>
+
+                </td>
+
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+        Quantidade de Funcionários: {{ getTotalFuncionarios() }}
+        <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Página anterior" nextLabel="Próxima página" [maxSize]="10" [itemsPerPage]="itensPorPagina"></pagination-controls>
+      </div>
+      </div>
+    </div>
+  </div>

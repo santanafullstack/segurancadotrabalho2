@@ -62,6 +62,7 @@ export class CadastrarTurmasComponent implements OnInit {
       cargahoraria: ['', Validators.required],
       modalidade: ['', Validators.required],
       status: ['', Validators.required],
+      instrutor: ['', Validators.required],
       descricao: ['', Validators.required],
       diasespecificos: ['', Validators.required],
       tipo: ['', Validators.required],
@@ -75,6 +76,8 @@ export class CadastrarTurmasComponent implements OnInit {
       terceirodia: ['', Validators.required],
       quartodia: ['', Validators.required],
       quintodia: ['', Validators.required],
+      observacoes: ['', Validators.required],
+
     });
 
     this.config.notFoundText = 'Custom not found';
@@ -112,11 +115,14 @@ export class CadastrarTurmasComponent implements OnInit {
       // Formate as datas para o formato ISO 8601
       const dataInicio = this.formatDate(this.formTurmas.value.datainicio);
       const dataFim = this.formatDate(this.formTurmas.value.datafim);
-  
+      const validadeDoCurso = this.formatDate(this.formTurmas.value.validadedocurso);
+
       // Atualize as datas no objeto do formulário
       this.formTurmas.patchValue({
         datainicio: dataInicio,
-        datafim: dataFim
+        datafim: dataFim,
+        validadedocurso: validadeDoCurso
+
       });
   
       // Enviar o formulário para o endpoint
@@ -176,7 +182,9 @@ export class CadastrarTurmasComponent implements OnInit {
     { value: 'Segurança em Trabalhos em Altura' },
     { value: 'Segurança e Saúde no Trabalho em Empresas de Abate e Processamento de Carnes e Derivados' },
     { value: 'Segurança e Saúde em Plataformas de Petróleo' },
-    { value: 'Atividades de Limpeza Urbana e Manejo de Resíduos Sólidos' }
+    { value: 'Atividades de Limpeza Urbana e Manejo de Resíduos Sólidos' },
+    { value: 'Gestão da Saúde e Segurança do Trabalho' }
+
   ];
 
   CargaHoraria = [
@@ -247,5 +255,17 @@ mesOptions = [
   'Dezembro'
 ];
 anoOptions = Array.from({ length: 100 }, (_, index) => String(2022 + index));
+
+
+
+customMatchFn(term: string, item: any) {
+  // Implemente a lógica de correspondência personalizada aqui
+  return item.cnpj.toLowerCase().includes(term.toLowerCase());
+}	
+
+customMatchFn1(term: string, item: any) {
+  // Implemente a lógica de correspondência personalizada aqui
+  return item.curso.toLowerCase().includes(term.toLowerCase());
+}	
 
 }  

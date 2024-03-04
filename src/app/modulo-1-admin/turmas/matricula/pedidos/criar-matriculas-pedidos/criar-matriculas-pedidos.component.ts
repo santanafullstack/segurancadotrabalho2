@@ -75,7 +75,7 @@ export class CriarMatriculasPedidosComponent implements OnInit {
   }
 
   private loadData(): void {
-    this.httpClient.get('http://localhost:8082/api/turmas').subscribe({
+    this.httpClient.get('http://localhost:8085/api/turmas/abertas').subscribe({
       next: (data: any) => {
         this.turmas = Object.values(data) as any[];
       },
@@ -84,7 +84,7 @@ export class CriarMatriculasPedidosComponent implements OnInit {
       }
     });
 
-    this.httpClient.get('http://localhost:8082/api/pedidos-de-compras').subscribe({
+    this.httpClient.get('http://localhost:8089/api/relatório-financeiro-empresa/pedidos-empresa-abertos').subscribe({
       next: (data: any) => {
         this.pedidos = Object.values(data) as any[];
       },

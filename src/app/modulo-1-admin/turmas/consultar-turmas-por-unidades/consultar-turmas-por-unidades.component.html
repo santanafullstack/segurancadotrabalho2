@@ -53,56 +53,70 @@
 
   <div class="card mt-5" id="card-to-print">
     <div class="card-body text-center">
-      <strong>LISTA GERAL DE TURMAS </strong>
+      <strong>LISTA GERAL DE TURMAS - P = Presente e F = Falta </strong>
       <div class="table-responsive mt-3">
         <table class="table table-sm table-striped table-hover">
-          <ng-container *ngIf="turmas.length > 0; else noData">
-            <thead>
+         
+         
+         
+         
+          <thead>
               <tr>
                 <th style="font-size: 12px;">Nº</th>
                 <th style="font-size: 12px;">Data</th>
                 <th style="font-size: 12px;">Curso</th>
-                <th style="font-size: 12px;">Tipo</th>
-                <th style="font-size: 12px;">Nível</th>
-                <th style="font-size: 12px;">Modalidade</th>
-                <th style="font-size: 12px;">Tur</th>
+                <th style="font-size: 12px;">Turma</th>
                 <th style="font-size: 12px;">Mat</th>
                 <th style="font-size: 12px;">Observaçoes</th>
-                <th style="font-size: 12px;">Empresa</th>
-                <th style="font-size: 12px;">CNPJ</th>
+                <th style="font-size: 12px;">Empresa e CNPJ</th>
+                <th style="font-size: 12px;">Usuario</th>
                 <th style="font-size: 12px;">Aluno</th>
+                <th style="font-size: 12px;">Status</th>
+
+
               </tr>
             </thead>
             <tbody>
-              <!-- Se existirem turmas, itere sobre elas -->
-              <ng-container *ngFor="let t of turmas; let i = index">
-                <ng-container *ngIf="t.matricula.length > 0">
-                  <tr>
+              <ng-container *ngFor="let t of turmas;">
+                <ng-container *ngIf="t.matricula && t.matricula.length > 0">
+                  <tr *ngFor="let matricula of t.matricula  let i = index">
                     <td style="font-size: 12px;">{{ i + 1 }}</td>
-                    <td style="font-size: 12px;">{{t.datainicio | date: 'dd/MM/yyyy'}} a {{t.datafim | date: 'dd/MM/yyyy'}}</td>
-                    <td style="font-size: 12px;">{{ t.curso?.curso || 'N/A' }}</td>
-                    <td style="font-size: 12px;">{{ t.tipo || 'N/A' }}</td>
-                    <td style="font-size: 12px;">{{ t.nivel || 'N/A' }}</td>
-                    <td style="font-size: 12px;">{{ t.modalidade || 'N/A' }}</td>
+                    <td style="font-size: 12px;">{{ t.datainicio | date: 'dd/MM/yyyy' }} a {{ t.datafim | date: 'dd/MM/yyyy' }}</td>
+                    <td style="font-size: 12px;">{{ t.curso?.curso || 'N/A' }}
+                    {{ t.tipo || 'N/A' }}
+                    {{ t.nivel || 'N/A' }}
+                    {{ t.modalidade || 'N/A' }} Instrutor {{ t.instrutor || 'N/A' }}</td>
                     <td style="font-size: 12px;">{{ t.numeroTurma || 'N/A' }}</td>
-                    <td style="font-size: 12px;">{{ t.matricula[0]?.numeroMatricula || 'N/A' }}</td> 
-                    <td style="font-size: 12px;">{{ t.matricula[0]?.observacoes || 'N/A' }}</td> 
-                    <td style="font-size: 12px;">{{ t.matricula[0]?.funcionario?.empresa?.razaosocial || 'N/A' }}</td>
-                    <td style="font-size: 12px;">{{ t.matricula[0]?.funcionario?.empresa?.cnpj || 'N/A' }}</td>
-                    <td style="font-size: 12px;">{{ t.matricula[0]?.funcionario?.nome }}{{ t.matricula[0]?.pessoafisica?.pessoafisica}}</td> 
+                    <td style="font-size: 12px;">{{ matricula.numeroMatricula || 'N/A' }}</td>
+                    <td style="font-size: 12px;">{{ matricula.observacoes || 'N/A' }}</td>
+                    <td style="font-size: 12px;">{{ matricula.funcionario?.empresa?.razaosocial || 'N/A' }}
+                    {{ matricula.funcionario?.empresa?.cnpj || 'N/A' }}</td>
+                    <td style="font-size: 12px;">{{ matricula.funcionario?.empresa?.email_usuario || 'N/A' }}
+                      
+                      {{ matricula.funcionario?.empresa?.responsavel_sistema || 'N/A' }}
+                      {{ matricula.funcionario?.empresa?.telefone_responsavel || 'N/A' }}
+
+                      </td>
+
+                    <td style="font-size: 12px;">{{ matricula.funcionario?.nome }}{{ matricula?.pessoafisica?.pessoafisica }} CPF: {{ matricula.funcionario?.cpf }}{{ matricula?.pessoafisica?.cpf }}</td>
+                    <td style="font-size: 12px;">{{ matricula.status || 'N/A' }}</td>
+
+                  </tr>
+                </ng-container>
+                <ng-container *ngIf="!(t.matricula && t.matricula.length > 0)">
+                  <tr>
+                    <td colspan="12">Nenhuma matrícula encontrada para a turma {{ t.numeroTurma || 'N/A' }}</td>
                   </tr>
                 </ng-container>
               </ng-container>
             </tbody>
-          </ng-container>
-          <!-- Se não houver turmas, exiba uma mensagem -->
-          <ng-template #noData>
+            
+            
             <tbody>
               <tr>
                 <td colspan="11">Não há dados disponíveis.</td>
               </tr>
             </tbody>
-          </ng-template>
         </table>
       </div>
       <div class="row">

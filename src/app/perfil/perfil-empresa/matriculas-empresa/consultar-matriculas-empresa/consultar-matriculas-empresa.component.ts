@@ -80,6 +80,9 @@ export class ConsultarMatriculasEmpresaComponent implements OnInit{
         }
       });
   }
+
+
+  
   decryptData(data: string, key: string): string {
     try {
       const bytes = CryptoJS.AES.decrypt(data, key);
@@ -91,6 +94,9 @@ export class ConsultarMatriculasEmpresaComponent implements OnInit{
     }
 
   }
+
+
+  
   exibirEvidencias(matricula: any) {
     this.matriculaSelecionada = matricula;
   }
@@ -100,8 +106,25 @@ export class ConsultarMatriculasEmpresaComponent implements OnInit{
     this.evidencias = evidencias;
     this.formEditarEvidencias.patchValue(evidencias);  
     this.formUploadEvidencia.patchValue(evidencias);  
+    this.EditarMatriculas.patchValue(evidencias);  
+
             
     }
+
+    setMatriculas(matriculas: ConsultarMatriculas): void {
+      this.matricula = matriculas;
+      this.formEditarEvidencias.patchValue(matriculas);  
+      this.formUploadEvidencia.patchValue(matriculas);  
+      this.EditarMatriculas.patchValue(matriculas);  
+      this.formCadastrarEvidencias.patchValue(matriculas);  
+
+              
+      }
+
+      setMatricula(matriculas: ConsultarMatriculas): void {
+        this.matricula = matriculas;
+        this.formCadastrarEvidencias.patchValue(matriculas);                  
+        }
 
 
     setCadastrar(evidencias: CadastrarEvidencias): void {
@@ -110,16 +133,24 @@ export class ConsultarMatriculasEmpresaComponent implements OnInit{
               
       }
 
+      EditarMatriculas = new FormGroup({
+        idMatricula: new FormControl('', [Validators.required]),
+        status: new FormControl('', [Validators.required]),
+      });
+    
+  
+
+
     formCadastrarEvidencias = new FormGroup({
     idMatricula: new FormControl('', [Validators.required]),
-    evidencias: new FormControl('', [Validators.required]),
+    nome: new FormControl('', [Validators.required]),
     descricao: new FormControl('', [Validators.required]),
        });
 
       formEditarEvidencias = new FormGroup({
       idMatricula: new FormControl('', [Validators.required]),
       idEvidencias: new FormControl('', [Validators.required]),
-      evidencias: new FormControl('', [Validators.required]),
+      nome: new FormControl('', [Validators.required]),
       descricao: new FormControl('', [Validators.required]),
           });
 
@@ -136,29 +167,35 @@ export class ConsultarMatriculasEmpresaComponent implements OnInit{
     return this.formCadastrarEvidencias.controls;
     return this.formEditarEvidencias.controls;
     return this.formUploadEvidencia.controls;
+    return this.EditarMatriculas.controls;
+
   }
 
 
  
 
   CadastrarEvidenciaSubmit(): void {
+
     this.httpClient
     .post('http://localhost:8082/api/evidencias',
     this.formCadastrarEvidencias.value  
-
+  
    )
-
+  
     .subscribe({
       next: (data: any) => {
         this.mensagem = `Evidência cadastrada com sucesso!`;
-
+  
       },
       error: (e) => {
-
+  
         console.log(e.error);
-
+  
       }
     })
+   
+
+ 
 
   
 }
@@ -285,8 +322,24 @@ private downloadFile(data: any, fileName: string) {
 
 
 
+onSubmit(): void {
+  this.httpClient
+  .put('http://localhost:8082/api/matriculas/editar-matriculas-cliente', this.EditarMatriculas.value)
+
+  .subscribe({
+    next: (data: any) => {
+      this.mensagem = `Conclusão do curso informada com  sucesso!`;
+
+    },
+    error: (e) => {
+
+      console.log(e.error);
+
+    }
+  })
 
 
+}
 
 }
   

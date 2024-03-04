@@ -44,8 +44,13 @@ export class EditarCursoComponent implements OnInit{
     tituloautorizacao: new FormControl('', [Validators.required]),
     itemdaautorizacao: new FormControl('', [Validators.required]),
     conteudodaautorizacao: new FormControl('', [Validators.required]),
-    
-      });
+    valorFormacao: new FormControl('', [Validators.required]),
+    valorReciclagem: new FormControl('', [Validators.required]),
+    composicaoOrcamentaria: new FormControl('', [Validators.required]),
+    observacoesGerais: new FormControl('', [Validators.required]),
+    valorEad: new FormControl('', [Validators.required]),
+ 
+  });
 
       get form(): any {
         return this.formEditarCurso.controls;

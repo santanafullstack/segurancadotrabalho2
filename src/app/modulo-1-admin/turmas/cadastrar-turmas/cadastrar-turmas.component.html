@@ -9,9 +9,7 @@
                     <h5>Cadastrar Turmas</h5>
                     <p>Preencha os campos para incluir uma Turma.</p>
                 </div>
-                <div class="col-md-2 mt-1">
-                    <a href="consultar-unidade" class="btn btn-primary">Cadastar Unidade</a>
-                </div>
+              
             </div>
             <div *ngIf="mensagem" class="alert alert-info alert-dismissible fade show" role="alert">
                 <strong>{{mensagem}}</strong>
@@ -29,7 +27,7 @@
                     <label for="formFile" class="form-label">Unidade</label>
                     <ng-select
                     [items]="unidades"
-                    bindLabel="idUnidadedetreinamento"
+                    bindLabel="cnpj"
                     bindValue="idUnidadedetreinamento"
                     class="form-select custom-ng-select"
                     formControlName="idUnidadeDeTreinamento"
@@ -64,7 +62,7 @@
               <div class="col-md-8 mt-3">
                 <ng-select
                 [items]="cursos"
-                bindLabel="idcurso"
+                bindLabel="curso"
                 bindValue="idcurso"
                 class="form-select custom-ng-select"
                 formControlName="idCurso"
@@ -112,6 +110,8 @@
                   <option value="Básico">Básico</option>
                   <option value="Operador">Operador</option>
                   <option value="Resgate em Altura">Resgate em Altura</option>
+                  <option value="Resgate Técnico Industrial em Espaço Confinado">Resgate Técnico Industrial em Espaço Confinado</option>
+                  <option value="Resgate Técnico Industrial em Altura">Resgate Técnico Industrial em Altura</option>
                   <option value="Resgate em Espaço Confinado">Resgate em Espaço Confinado</option>
                   <option value="Trabalhador Autorizado e Vigia">Trabalhador Autorizado e Vigia</option>
                   <option value="Operador de Motoserra">Operador de Motoserra</option>
@@ -288,7 +288,7 @@
                     </select>
                 </div> 
                 
-                  <div class="col-md-4 mt-4">
+                  <div class="col-md-2 mt-4">
                 <select class="form-select" 
                 formControlName="validade"
                 aria-label="Default select example">
@@ -298,6 +298,13 @@
                     <option value="3 Anos"> 3 Anos </option>
                 </select>
             </div>
+
+            <div class="col-md-2 mt-4">
+              <input placeholder="Principais Instrutores" 
+              formControlName="instrutor"
+              type="text" name="nome" id="nome"
+                  class="form-control" />
+          </div>
         </div>
 
         <div class="row mt-3 text-danger">
@@ -344,6 +351,14 @@
                      type="text" name="nome" id="nome"
                          class="form-control" />
                  </div>
+                 <div class="row">
+
+                 <div class="col-md-12 mt-3" >
+                  <label>Observações Gerais:</label>                      
+                 <textarea class="form-control" id="exampleTextarea" rows="5" formControlName="observacoes"></textarea>
+            </div>
+          </div>
+
      </div>
             
                       

@@ -4,6 +4,62 @@
     <div class="card">
         <div class="card-body">
 
+          <div class="modal" tabindex="-1"  id="verCursosModal">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title"></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">    
+                  <div *ngIf="turmaSelecionada">
+                    <strong> Valor do Curso Formação: {{ turmaSelecionada.curso.valorFormacao }} por Aluno. Valor do Curso Reciclagem:  {{ turmaSelecionada.curso.valorReciclagem }} por Aluno.   </strong>
+                    <hr>
+                    <strong> Turma {{ turmaSelecionada.numeroTurma }}  {{ turmaSelecionada.curso.curso }} {{ turmaSelecionada.curso.descricao }} {{ turmaSelecionada.tipo }} {{ turmaSelecionada.nivel }} carga horária de {{ turmaSelecionada.cargahoraria }}</strong>
+                    <hr>
+
+                    <p>   <strong>  Observações Gerais :</strong> {{ turmaSelecionada.observacoes }}  </p> 
+
+                
+                 
+                  <p> <strong>Horários:</strong> Todos os nossos cursos na unidade Rio de Janeiro iniciam as 8:00 Horas. Temos um Intervalo de 10:00 as 10:20 e paramos
+                    para o almoço de 12:00 as 13:00 e Voltamos até o Horário das 17:00 Horas. Todos os nossos cursos na unidade São Paulo iniciam as 9:00 Horas. Temos um Intervalo de 10:00 as 10:20 e paramos
+                      para o almoço de 12:00 as 13:00. No Turno da tarde é das 13:10 até as 17:30 Horas. Nas Empresas Parceiras iniciamos as 9:00 Horas. Temos um Intervalo de 10:00 as 10:20 e paramos
+                        para o almoço de 12:00 as 13:00 e Voltamos até o Horário das 17:30 Horas  </p>
+                 <hr>
+                    <p><strong>Conteúdo Programático do Curso: </strong> {{ turmaSelecionada.curso.conteudo}}</p>
+
+                    <hr>
+                    <strong>Instrutor {{ turmaSelecionada.instrutor}}</strong>
+                    <hr>
+                    <strong>Data do Curso: Curso iniciando no dia {{turmaSelecionada.datainicio | date: 'dd/MM/yyyy'}} tendo seu
+                      término no dia {{turmaSelecionada.datafim | date: 'dd/MM/yyyy'}}  </strong>
+                    
+                    <hr>
+                    <strong>Validade do Curso de {{turmaSelecionada.validade}}. Curso Vigente até o dia {{turmaSelecionada.validadedocurso | date: 'dd/MM/yyyy'}} </strong>
+                 
+                    <hr>
+
+                    <strong>Local do Curso: O Curso será realizado na {{turmaSelecionada.unidadeDeTreinamento.unidadedetreinamento}} {{turmaSelecionada.unidadeDeTreinamento.unidade}} 
+                      na  {{turmaSelecionada.unidadeDeTreinamento.endereco.logradouro }}, {{turmaSelecionada.unidadeDeTreinamento.endereco.numero }} {{turmaSelecionada.unidadeDeTreinamento.endereco.complemento }}
+                      {{turmaSelecionada.unidadeDeTreinamento.endereco.bairro }}
+                      {{turmaSelecionada.unidadeDeTreinamento.endereco.localidade }}
+                      {{turmaSelecionada.unidadeDeTreinamento.endereco.uf}}       
+                      Cep: {{turmaSelecionada.unidadeDeTreinamento.endereco.cep }}     </strong>
+                    
+                    <hr>
+
+                  <div class="text-center">
+                  </div>
+                </div>
+        
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
           <div class="modal" tabindex="-1"  id="verMatriculasModal">
             <div class="modal-dialog modal-xl">
               <div class="modal-content">
@@ -13,7 +69,7 @@
                 </div>
                 <div class="modal-body">    
                   <div *ngIf="turmaSelecionada">
-                    <h5>Matrículas da Turma de Número {{ turmaSelecionada.numeroTurma }}, do {{ turmaSelecionada.curso.curso }}</h5>
+                    <strong>Matrículas da Turma de Número {{ turmaSelecionada.numeroTurma }}, do {{ turmaSelecionada.curso.curso }}</strong>
                     <div class="row">
                       <div class="col-md-6 mt-3">
 
@@ -30,25 +86,25 @@
                           <th>Matrícula</th>
                           <th>Venda</th>
                           <th>Valor</th>
-                          <th>Particular</th>
+                          <th>Aluno</th>
                           <th>CPF</th>
-                          <th>Funcionário</th>
-                          <th>CPF Funcionário</th>
+                          <th>Observações</th>
+
                         </tr>
                       </thead>
                       <tbody>      
                         <tr *ngFor="let m of turmaSelecionada.matricula  | paginate: { itemsPerPage: itensPorPagina, currentPage: paginaAtual } | ngxSearchPipe:filtro.matriculas; index as i">    
                           <td>{{i + 1}}</td>
-                          <td>{{ m.funcionario?.empresa?.nomefantasia }}</td>
-                          <td>{{ m.funcionario?.empresa?.cnpj }}</td> 
-                          <td>{{ m.status }}</td>
+                          <td>{{ m.funcionario?.empresa?.nomefantasia || 'Aluno Particular' }}  </td>
+                          <td>{{ m.funcionario?.empresa?.cnpj  || 'Aluno Particular' }}</td> 
+                          <td>{{  turmaSelecionada.status }}</td>
                           <td>{{ m.numeroMatricula }}</td>
                           <td>{{ m.venda }}</td>
                           <td>{{ m?.valor }}</td>
-                          <td>{{ m.pessoafisica?.pessoafisica }}</td>
-                          <td>{{ m.pessoafisica?.cpf }}</td>
-                          <td>{{ m.funcionario?.nome }}</td>
-                          <td>{{ m.funcionario?.cpf }}</td>
+                          <td>{{ m.funcionario?.nome }} {{ m.pessoafisica?.pessoafisica }}</td>
+                          <td>{{ m.funcionario?.cpf }} {{ m.pessoafisica?.cpf }}</td>
+                          <td>{{ m?.observacoes }} </td>
+
                         </tr>
                       </tbody>
                     </table>
@@ -283,6 +339,7 @@ nextLabel="Próxima página"
                         <table class="table table-sm table-striped table-hover" datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger">
                             <thead>
                                 <tr>
+                                    <th>QTD</th>
                                     <th>Nº</th>
                                     <th>Inicio</th>
                                     <th>Fim</th>
@@ -300,11 +357,11 @@ nextLabel="Próxima página"
                                 </tr>
                             </thead>
                             <tbody>
-                             <tr *ngFor="let t of turmas" [class]="getTableRowClass(t)"
+                             <tr *ngFor="let t of turmas  | paginate: { itemsPerPage: itensPorPagina, currentPage: paginaAtual }, index as i" [class]="getTableRowClass(t)"
                              >
 
-
-                                    <td>{{t.numeroTurma}}</td>
+                                     <td>{{i + 1}}</td>
+                                    <td>Turma: {{t.numeroTurma}}</td>
                                     <td>{{t.datainicio | date: 'dd/MM/yyyy'}}</td>
                                     <td>{{t.datafim | date: 'dd/MM/yyyy'}}</td>
                                     <td>{{t.curso.curso}}</td>
@@ -354,6 +411,13 @@ nextLabel="Próxima página"
                                                 class="dropdown-item btn btn-sm btn-primary" 
                                                 (click)="exibirMatriculas(t)"
                                                 >Ver Alunos Matriculados</a></li>
+
+                                                <li><a 
+                                                  data-bs-toggle="modal" 
+                                                  data-bs-target="#verCursosModal"
+                                                   data-bs-whatever="@mdo"
+                                                   class="dropdown-item btn btn-sm btn-primary" 
+                                                  (click)="exibirInstrutores(t)"> Ver Ementa do Curso </a></li>
 
                                   </ul>
                                
@@ -428,15 +492,21 @@ nextLabel="Próxima página"
                                 </script>
                             </tbody>
                              
-                  <tfoot>
-                    <tr>
-                      <td colspan="5">
-
-                        Quantidade de Turmas: {{(turmas).length}}
-                     
-                                                </td>
-                  </tr>
-              </tfoot>
+                            <tfoot>
+                              <tr>
+                                <td colspan="5">
+                  
+                                Quantidade de Turmas: {{(turmas).length}}
+                                <pagination-controls 
+                      (pageChange)="paginaAtual = $event"
+                      previousLabel="Página anterior"
+                      nextLabel="Próxima página"
+                      [maxSize]="5" 
+                      [itemsPerPage]="itensPorPagina" 
+                    ></pagination-controls>         
+                                            </td>
+                              </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>

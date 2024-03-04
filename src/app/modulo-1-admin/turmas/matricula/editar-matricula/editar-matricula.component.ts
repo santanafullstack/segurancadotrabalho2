@@ -31,7 +31,7 @@ export class EditarMatriculaComponent implements OnInit {
 
   ) {
 
-    this.config.notFoundText = 'Custom not found';
+    this.config.notFoundText = 'Não encontrado';
     this.config.appendTo = 'body';
     this.config.bindValue = 'value';
   }
@@ -52,7 +52,7 @@ export class EditarMatriculaComponent implements OnInit {
         }
       })
 
-      this.httpClient.get('http://localhost:8085/api/turmas/consultar-todas-turmas')
+      this.httpClient.get('http://localhost:8085/api/turmas/abertas')
       .subscribe({ //capturando o retorno da API
         next: (data) => { //recebe o retorno de sucesso da API
           //armazenar os dados na variável

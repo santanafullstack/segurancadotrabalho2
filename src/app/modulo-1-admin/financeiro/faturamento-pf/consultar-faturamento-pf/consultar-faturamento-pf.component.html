@@ -14,12 +14,14 @@
                     </div>
                     <div class="modal-body">    
                       <div *ngIf="faturamentoSelecionado">
-                        <h5>Matrículas do Faturamento de número: {{ faturamentoSelecionado.numeroFaturamento }}</h5>
-                        <h5>Aluno: {{  faturamentoSelecionado.pessoafisica.pessoafisica }}</h5>
-                        <h5>CPF: {{  faturamentoSelecionado.pessoafisica.cpf }}</h5>
+                        <strong>Matrículas do Faturamento de Número:  {{ faturamentoSelecionado.numeroFaturamento }} </strong>
+                        <p><strong> Responsável pela Fatura: {{faturamentoSelecionado?.pessoaFisica?.pessoafisica}} </strong>
+                        <strong> CPF: {{  faturamentoSelecionado?.pessoaFisica?.cpf }} </strong> </p>                     
 
 
-                        <h5>Valor Total do Faturamento: R$ {{ faturamentoSelecionado?.total || 0 }}</h5>                        <div class="row">
+                        <p>  <strong> Valor Total do Faturamento: R$ {{ faturamentoSelecionado?.total || 0 }} </strong> </p>
+                                           
+                           <div class="row">
                           <div class="col-md-6 mt-3">
     
                           </div>
@@ -45,14 +47,14 @@
                             </tr>
                           </thead>
                           <tbody>      
-                            <tr *ngFor="let m of faturamentoSelecionado.matriculas   | paginate: { itemsPerPage: itensPorPagina, currentPage: paginaAtual } | ngxSearchPipe:filtro.matriculas" >    
-                              <td>{{ m.numeroMatricula }}</td>
+                            <tr *ngFor="let m of faturamentoSelecionado.matriculas  | paginate: { itemsPerPage: itensPorPagina, currentPage: paginaAtual } | ngxSearchPipe:filtro.matriculas" >    
+                              <td>{{ m?.numeroMatricula }}</td>
                               <td>{{ m?.status }}</td>
                               <td>{{ m.venda }}</td>
                               <td>{{ m.turmas?.numeroTurma }}</td>
                               <td>{{ m.turmas?.datainicio | date: 'dd/MM/yyyy'}}</td>
-                              <td>{{ faturamentoSelecionado?.pessoafisica?.pessoafisica }}</td>
-                              <td>{{ faturamentoSelecionado?.pessoafisica?.cpf }}</td>
+                              <td>{{ m?.pessoafisica?.pessoafisica }}</td>
+                              <td>{{ m?.pessoafisica?.cpf }}</td>
                               <td>{{ m.turmas?.curso?.curso }}</td>
                               <td>R$ {{ m?.valor }}</td>
 
@@ -148,7 +150,7 @@
 						                <th>CPF</th>
 						                <th>Data de Inicio</th>
 						                <th>Data Fim</th>
-                            <th>Status</th>
+                            <th>Status da Fatura</th>
                             <th>Operações</th>
 
 
@@ -158,10 +160,10 @@
                       <tr *ngFor="let f of faturamentopf" [class]="getTableRowClass(f)">
                         <td>{{f?.numeroFaturamento}}</td>
                             <td>{{f?.dataHoraCriacao | date: 'dd/MM/yyyy'}}</td>
-                            <td>{{ f?.pessoafisica?.pessoafisica }}</td>
-                            <td>{{ f?.pessoafisica?.cpf }}</td>
-                            <td>{{f?.data_inicio | date: 'dd/MM/yyyy'}}</td>
-                            <td>{{f?.data_fim | date: 'dd/MM/yyyy'}}</td>
+                            <td>{{ f?.pessoaFisica?.pessoafisica }}</td>
+                            <td>{{ f?.pessoaFisica?.cpf }}</td>
+                            <td>{{f?.dataInicio | date: 'dd/MM/yyyy'}}</td>
+                            <td>{{f?.dataFim | date: 'dd/MM/yyyy'}}</td>
                             <td [ngClass]="{'text-success': !f.faturaFechada, 'text-danger': f.faturaFechada}" style="font-size: larger; text-transform: uppercase;">
                               <strong>{{ getStatusFatura(f) }}</strong>
                             </td>

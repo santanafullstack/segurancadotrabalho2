@@ -10,6 +10,7 @@ export class CadastrarTurmas{
     cargahoraria: string = ''; 
     modalidade: string = '';
     status: string = '';
+    instrutor: string = '';
     descricao: string = '';
     diasespecificos: string = '';
     tipo: string = '';

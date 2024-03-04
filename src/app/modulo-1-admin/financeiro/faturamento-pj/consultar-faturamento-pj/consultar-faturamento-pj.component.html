@@ -13,12 +13,12 @@
                     </div>
                     <div class="modal-body">    
                       <div *ngIf="faturamentoSelecionado">
-                        <h5>Matrículas do Faturamento de número: {{ faturamentoSelecionado.numeroFaturamento }}</h5>
-                        <h5>Empresa: {{  faturamentoSelecionado?.empresa?.razaosocial }}</h5>
-                        <h5>CNPJ: {{  faturamentoSelecionado?.empresa?.cnpj }}</h5>
+                        <strong> Matrículas do Faturamento de Número: {{ faturamentoSelecionado.numeroFaturamento }}</strong>
+                        <p><strong> Empresa: {{  faturamentoSelecionado?.empresa?.razaosocial }} </strong>
+                        <strong> - CNPJ: {{  faturamentoSelecionado?.empresa?.cnpj }} </strong>
+                      </p>
 
-
-                        <h5>Valor Total do Faturamento: R$ {{ faturamentoSelecionado?.total || 0 }}</h5>                        <div class="row">
+                        <strong>Valor Total do Faturamento: R$ {{ faturamentoSelecionado?.total || 0 }}</strong>                        <div class="row">
                           <div class="col-md-6 mt-3">
     
                           </div>
@@ -65,8 +65,8 @@
                             <td></td>
                             <td></td>
 
-                            <td>Total</td>
-                            <td><h5> R$ {{ faturamentoSelecionado?.total || 0 }}</h5></td>
+                            <td><p><strong> Total</strong></p></td>
+                            <td><p><strong> R$ {{ faturamentoSelecionado?.total || 0 }}</strong></p></td>
 
                           </tbody>
                         </table>
@@ -160,7 +160,7 @@
 						   <th>CNPJ</th>
 						    <th>Data de Inicio</th>
 						    <th>Data Fim</th>
-                <th>Status</th>
+                <th>Status da Fatura</th>
 
                             <th>Operações</th>
 
